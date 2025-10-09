@@ -1,0 +1,24 @@
+<header class="header">
+  <div class="logo">
+    <img src="assets/img/logo.png" alt="Logo de la Parroquia" (click)="navigateHome()">
+  </div>
+
+  <nav class="nav-links" [class.active]="isMenuActive">
+  <a (click)="scrollToSection('eventos')" class="nav-link">Eventos</a>
+  <a (click)="scrollToSection('sobre-nosotros')" class="nav-link">Sobre Nosotros</a>
+  <a (click)="scrollToSection('frailes')" class="nav-link">Frailes</a>
+  <a (click)="scrollToSection('galeria')" class="nav-link">Galería de Fotos</a>
+  <a (click)="scrollToSection('donde-encontrarnos')" class="nav-link">Donde Encontrarnos</a>
+
+  <div class="access-btn">
+    <button class="access-button">
+      Acceder <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
+</nav>
+  
+  <!-- Icono de menú hamburguesa -->
+  <div class="hamburger-menu" (click)="toggleMenu()">
+    <i class="fas fa-bars"></i>
+  </div>
+</header>

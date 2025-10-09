@@ -1,0 +1,216 @@
+<!-- VIDEO DE FONDO -->
+<section class="hero-section">
+  <video autoplay muted loop class="hero-video">
+    <source src="assets/video/parroquia.mp4" type="video/mp4">
+    Tu navegador no soporta video.
+  </video>
+  <div class="hero-overlay">
+    <h1 class="hero-title">Bienvenido a la Parroquia San Agustín</h1>
+  </div>
+</section>
+
+<!-- SECCIÓN EVENTOS -->
+<section id="eventos" class="section eventos-section">
+  <div class="section-header">
+    <h2 class="section-title">EVENTOS</h2>
+    <p class="section-subtitle">
+      <span>Eventos </span><span style="color:#C98E6E">Importantes </span><span>Más Recientes</span>
+    </p>
+  </div>
+
+  <!-- CARRUSEL DE EVENTOS -->
+  <div class="carousel-container">
+    <div class="carousel">
+      <!-- Cada evento -->
+      <div class="event-card" *ngFor="let evento of eventos">
+        <div class="event-image" [style.backgroundImage]="'url(' + evento.imagen + ')'"></div>
+        <div class="event-info">
+          <h3 class="event-subtitle">{{evento.subtitulo}}</h3>
+          <h2 class="event-title">{{evento.titulo}}</h2>
+          <p class="event-description">{{evento.descripcion}}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flechas del carrusel -->
+    <button class="carousel-arrow left" (click)="prevSlide()">&#10094;</button>
+    <button class="carousel-arrow right" (click)="nextSlide()">&#10095;</button>
+  </div>
+</section>
+
+<!-- SECCIÓN SOBRE NOSOTROS -->
+<section id="sobre-nosotros" class="section sobre-nosotros-section">
+  <!-- Título y subtítulo -->
+  <div class="section-header">
+    <h2 class="section-title">SOBRE NOSOTROS</h2>
+    <p class="section-subtitle">
+      Una Parroquia <span style="color:#C98E6E">Muchas Almas</span>
+    </p>
+  </div>
+
+  <!-- Contenedor de cuadro y texto -->
+  <div class="sobre-nosotros-content">
+    <!-- Cuadro de la izquierda -->
+    <div class="sobre-cuadro">
+      <div class="sobre-cuadro-imagen" [style.backgroundImage]="'url(assets/img/parroquia.jpg)'"></div>
+      <div class="sobre-cuadro-textos">
+        <h3 class="sobre-cuadro-subtitulo">Pertenecemos a la parroquia Nuestra Señora de Gracia</h3>
+        <h3 class="sobre-cuadro-subtitulo" style="color:#C98E6E;">De la Orden San Agustín del Perú</h3>
+      </div>
+    </div>
+
+    <!-- Descripción de la derecha -->
+    <div class="sobre-descripcion">
+      <p class="descripcion-texto">
+        Somos una parroquia ubicada alrededor del distrito de Pimentel gestionada por la orden San Agustín del Perú.
+      </p>
+      
+      <!-- Icono y texto -->
+      <div class="descripcion-check">
+        <i class="fas fa-check"></i>
+        <p>Nuestro primer convento fue construido alrededor del 25 de julio de 1965, por el Padre Juan Barreda, a la vez que el colegio San Agustín.</p>
+      </div>
+      
+      <div class="descripcion-check">
+        <i class="fas fa-check"></i>
+        <p>Se encuentra al lado del colegio San Agustín en la carretera Pimentel.</p>
+      </div>
+      
+      <div class="descripcion-check">
+        <i class="fas fa-check"></i>
+        <p>Nuestra parroquia se ha ido expandiendo a través de los años y adquirido mayor importancia en diversos eventos de caridad en nuestra provincia, apoyados por iniciativas de comunión y grupos juveniles.</p>
+      </div>
+      
+      <!-- Video de la parroquia -->
+      <div class="sobre-video">
+        <video controls>
+          <source src="assets/video/parroquia-tour.mp4" type="video/mp4">
+          Tu navegador no soporta video.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN FRAILES -->
+<section id="frailes" class="section frailes-section">
+  <div class="section-header">
+    <h2 class="section-title">CONOCE A NUESTROS FRAILES</h2>
+    <p class="section-subtitle">
+      <span>Nuestros </span><span style="color:#C98E6E">Frailes </span><span>Actuales</span>
+    </p>
+  </div>
+
+  <div class="frailes-carousel-container">
+    <div class="frailes-carousel">
+      <!-- Tarjeta de fraile -->
+      <div class="fraile-card" *ngFor="let f of frailes">
+        <!-- 70% imagen -->
+        <div class="fraile-img" [style.backgroundImage]="'url(' + f.imagen + ')'"></div>
+
+        <!-- 30% info -->
+        <div class="fraile-info">
+          <!-- onda separadora -->
+          <div class="wave-sep" aria-hidden="true">
+            <!-- SVG ondulado superior del bloque de info -->
+            <svg viewBox="0 0 1440 70" preserveAspectRatio="none">
+              <path fill="#FFFFFF" d="M0,32 C160,64 320,0 480,16 C640,32 800,64 960,48 C1120,32 1280,0 1440,16 L1440,70 L0,70 Z"></path>
+            </svg>
+          </div>
+
+          <h3 class="fraile-nombre">{{ f.nombre }}</h3>
+          <p class="fraile-cargo">{{ f.cargo }}</p>
+
+          <!-- descripción se muestra solo al hover/expand -->
+          <p class="fraile-desc">
+            {{ f.descripcion }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Flechas -->
+    <button class="frailes-arrow left" type="button" aria-label="Ver frailes anteriores" (click)="prevFraile()">&#10094;</button>
+    <button class="frailes-arrow right" type="button" aria-label="Ver más frailes" (click)="nextFraile()">&#10095;</button>
+  </div>
+</section>
+
+<!-- SECCIÓN GALERÍA -->
+<section id="galeria" class="section galeria-section">
+  <div class="section-header">
+    <h2 class="section-title">GALERIA</h2>
+    <p class="section-subtitle">
+      <span>Nuestra </span><span style="color:#C98E6E">Galería de Fotos</span>
+    </p>
+  </div>
+
+  <div class="galeria-carousel-container"
+       (mouseenter)="pauseGallery()"
+       (mouseleave)="resumeGallery()">
+    <div class="galeria-carousel" [style.transform]="galleryTransform">
+      <div class="galeria-card"
+           *ngFor="let img of galeria; let i = index"
+           [class.is-center]="i === galleryIndex"
+           (click)="onGalleryClick(i)">
+        <img [src]="img.src" [alt]="img.alt">
+      </div>
+    </div>
+
+    <!-- indicadores -->
+    <div class="galeria-dots" role="tablist" aria-label="Posición de galería">
+      <button
+        *ngFor="let _ of galeria; let i = index"
+        type="button"
+        class="dot"
+        [class.active]="i === galleryIndex"
+        (click)="goToGallery(i)"
+        [attr.aria-label]="'Ir a imagen ' + (i+1)">
+      </button>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" *ngIf="lightboxOpen" (click)="closeLightbox()">
+    <div class="lightbox-inner">
+      <img [src]="galeria[galleryIndex].src" [alt]="galeria[galleryIndex].alt">
+    </div>
+  </div>
+</section>
+
+<!-- SECCIÓN DONDE ENCONTRARNOS -->
+<section id="donde-encontrarnos" class="section donde-section">
+  <div class="section-header">
+    <h2 class="section-title">DONDE ENCONTRARNOS</h2>
+    <p class="section-subtitle">
+      <span>Ubicación de la Parroquia </span><span style="color:#C98E6E">San Agustín</span>
+    </p>
+  </div>
+
+  <!-- Caja del mapa -->
+  <div class="map-card">
+    <div class="map-embed">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.714832421517!2d-79.8951593!3d-6.8045034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x904cef8d6f9e692f%3A0xa040d415a83f36b4!2sParroquia%20San%20Agust%C3%ADn%20de%20Hipona%20-%20Orden%20de%20San%20Agust%C3%ADn%2C%20Diocesis%20de%20Chiclayo!5e0!3m2!1ses-419!2spe!4v1759720541992!5m2!1ses-419!2spe"
+        style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- Datos y acciones -->
+    <div class="map-info">
+      <p class="map-address">
+        Parroquia San Agustín de Hipona – Orden de San Agustín, Diócesis de Chiclayo
+      </p>
+      <div class="map-actions">
+        <a class="btn-outline" target="_blank" rel="noopener"
+           href="https://maps.google.com/?q=Parroquia%20San%20Agust%C3%ADn%20de%20Hipona%20Chiclayo">
+          Abrir en Google Maps
+        </a>
+        <a class="btn-solid" target="_blank" rel="noopener"
+           href="https://www.google.com/maps/dir/?api=1&destination=-6.8045034,-79.8951593">
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
