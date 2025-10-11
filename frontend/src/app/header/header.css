@@ -1,141 +1,134 @@
-/* Estilos generales del header para todas las resoluciones */
+/* Contenedor fijo y CENTRADO */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #FBEADB;
-  padding: 10px 20px;
-  border-radius: 20px;
   position: fixed;
   top: 10px;
-  left: 80px;
-  right: 80px;
-  margin-top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(320px, 92vw, 1200px);
+  background-color: #FBEADB;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
   z-index: 100;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Layout interno */
+.header-inner {
+  display: flex;
+  align-items: center;
+  gap: 85px;
+  padding: 10px 20px;
+}
 
-.header .logo img {
+.logo img {
   height: 50px;
   cursor: pointer;
 }
 
-.header .access-btn {
+/* Navegación (desktop) */
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 46px;
+  position: relative;
+  flex: 1 1 auto;       /* ocupa el centro */
+}
+
+/* Botón Acceder a la derecha */
+.nav-links .access-btn {
+  margin-left: auto;
+}
+
+.nav-link {
+  color: #000000;
+  text-decoration: none;
+  position: relative;
+  transition: color .25s ease;
+  font-weight: 600;
+}
+
+.nav-link:hover {
+  color: #C98E6E;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -6px;
+  height: 2px;
   background-color: #C98E6E;
-  padding: 10px 20px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .25s ease;
+}
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
+/* Botón Acceder */
+.access-btn {
+  background-color: #C98E6E;
+  padding: 8px 18px;
   border-radius: 25px;
   display: flex;
   align-items: center;
   color: #FFFFFF;
 }
-
-.header .access-btn .access-button {
+.access-button {
   background: none;
-  border: none;
+  border: 0;
   color: #FFFFFF;
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  gap: 10px;
   cursor: pointer;
+  font-weight: 700;
 }
+.access-button i { font-size: 0.95rem; }
 
-.header .access-btn .fa-arrow-right {
-  margin-left: 10px;
-}
-
-/* Estilos para los links de navegación (escritorio por defecto) */
-.header .nav-links {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 60px;
-  position: relative;
-}
-
-/* Que el botón quede al final en escritorio */
-.header .nav-links .access-btn {
-  margin-left: auto; /* Empuja el botón hacia la derecha */
-}
-
-.header .nav-link {
-  color: #000000;
-  text-decoration: none;
-  position: relative;
-  transition: all 0.3s ease;
-}
-
-.header .nav-link:hover {
-  color: #C98E6E;
-}
-
-.header .nav-link:hover::after {
-  content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: #C98E6E;
-  animation: underline-animation 0.3s ease-in-out;
-}
-
-/* El ícono del menú hamburguesa está oculto por defecto */
+/* Hamburguesa (oculta en desktop) */
 .hamburger-menu {
   display: none;
   cursor: pointer;
-  font-size: 30px;
+  font-size: 26px;
+  background: none;
+  border: 0;
+  color: #000;
 }
 
+/* Animación subrayado */
 @keyframes underline-animation {
-  0% {
-    width: 0;
-  }
-  100% {
-    width: 100%;
-  }
+  0% { width: 0; }
+  100% { width: 100%; }
 }
 
-/* Estilos para pantallas móviles */
-
-@media screen and (max-width: 768px) {
-  /* Oculta los links de navegación y el botón de acceso en móviles */
-  .header .nav-links{
+/* Responsivo */
+@media (max-width: 768px) {
+  .nav-links {
     display: none;
-    gap: 38px;
     flex-direction: column;
+    gap: 25px;
   }
-
-  /* Muestra el ícono del menú hamburguesa */
-  .hamburger-menu {
-    display: block;
-  }
-  
-  /* Ajusta el layout del header para móviles */
-  .header {
-    left: 10px;
-    right: 10px;
-  }
-
-  /* Estilo del menú hamburguesa cuando está activo */
-  .header .nav-links.active {
+  .nav-links.active {
     display: flex;
     position: absolute;
-    top: 70px; /* Posición debajo del header fijo */
-    left: 0;
-    width: 100%;
+    top: calc(100% + 8px);
+    left: 0; right: 0;
     background-color: #FBEADB;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    padding: 20px 0;
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(0,0,0,.1);
+    padding: 16px 10px;
   }
-  
-  /* Estilo de los links dentro del menú móvil */
-  .header .nav-links.active .nav-link,
-  .header .nav-links.active .access-btn {
-    text-align: center;
-    font-size: 18px;
-    padding: 10px;
+
+  .nav-links.active .nav-link,
+  .nav-links.active .access-btn {
+    justify-content: center;
     width: 100%;
-    margin-left: 0;
+    text-align: center;
+  }
+
+  .hamburger-menu { 
+    display: inline-flex; 
+    margin-left: auto; 
   }
 }

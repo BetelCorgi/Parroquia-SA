@@ -1,1 +1,30 @@
-/* You can add global styles to this file, and also import other style files */
+/* Tipografía general para toda la aplicación */
+body {
+  font-family: 'Lato', sans-serif; /* Base legible y moderna */
+  color: #000000;
+}
+
+/* Títulos y links principales */
+h1, h2, h3, h4, h5, h6,
+.header .nav-link {
+  font-family: 'Merriweather', serif; /* Tradición y formalidad */
+  font-weight: 600;
+}
+
+/* Botones principales */
+button, .access-button {
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+}
+
+/* Links dentro de otros componentes */
+a {
+  font-family: 'Merriweather', serif;
+  font-weight: 400;
+  text-decoration: none;
+  color: #000000;
+}
+
+a:hover {
+  color: #C98E6E;
+}

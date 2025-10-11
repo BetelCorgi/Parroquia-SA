@@ -11,20 +11,20 @@ import { HostListener } from '@angular/core';
 export class Home implements OnInit, OnDestroy {
   eventos = [
     {
-      imagen: '../assets/img/evento1.jpg',
+      imagen: 'assets/img/evento1.jpg',
       subtitulo: 'Convocatorias',
       titulo: 'Apostolado',
       descripcion:
         'Nuestra parroquia recolecta las donaciones obtenidas, asi como el apoyo a diversos eventos caritativos.',
     },
     {
-      imagen: '../assets/img/evento2.jpg',
+      imagen: 'assets/img/evento2.jpg',
       subtitulo: 'Charlas',
       titulo: 'En Vivo',
       descripcion: 'Desarrollamos charlas de diversos temas, de forma virtual o presencial.',
     },
     {
-      imagen: '../assets/img/evento3.jpg',
+      imagen: 'assets/img/evento3.jpg',
       subtitulo: 'Retiros de Comunión',
       titulo: 'Retiros',
       descripcion:
@@ -76,19 +76,19 @@ export class Home implements OnInit, OnDestroy {
   // --- FRAILES ---
   frailes = [
     {
-      imagen: '../assets/img/fraile1.jpg',
+      imagen: 'assets/img/fraile1.jpg',
       nombre: 'Fr. Juan Pérez, O.S.A.',
       cargo: 'Párroco',
       descripcion: 'Acompaña la pastoral parroquial y la animación de grupos de servicio.',
     },
     {
-      imagen: '../assets/img/fraile2.jpg',
+      imagen: 'assets/img/fraile2.jpg',
       nombre: 'Fr. Miguel López, O.S.A.',
       cargo: 'Vicario Parroquial',
       descripcion: 'Responsable de catequesis familiar y formación de jóvenes.',
     },
     {
-      imagen: '../assets/img/fraile3.jpg',
+      imagen: 'assets/img/fraile3.jpg',
       nombre: 'Fr. Carlos Medina, O.S.A.',
       cargo: 'Vicario Parroquial',
       descripcion: 'Coordina la acción social y actividades de caridad.',
@@ -126,11 +126,11 @@ export class Home implements OnInit, OnDestroy {
 
   // --- GALERÍA ---
   galeria = [
-    { src: '../assets/img/gal1.jpg', alt: 'Actividad parroquial 1' },
-    { src: '../assets/img/gal2.jpg', alt: 'Actividad parroquial 2' },
-    { src: '../assets/img/gal3.jpg', alt: 'Actividad parroquial 3' },
-    { src: '../assets/img/gal4.jpg', alt: 'Actividad parroquial 4' },
-    { src: '../assets/img/gal5.jpg', alt: 'Actividad parroquial 5' },
+    { src: 'assets/img/gal1.jpg', alt: 'Actividad parroquial 1' },
+    { src: 'assets/img/gal2.jpg', alt: 'Actividad parroquial 2' },
+    { src: 'assets/img/gal3.jpg', alt: 'Actividad parroquial 3' },
+    { src: 'assets/img/gal4.jpg', alt: 'Actividad parroquial 4' },
+    { src: 'assets/img/gal5.jpg', alt: 'Actividad parroquial 5' },
   ];
 
   galleryIndex = 0;

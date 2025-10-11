@@ -1,14 +1,21 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Header } from './header/header';
-import { Home } from "./home/home";
 import { Footer } from "./footer/footer";
+import { Router, RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [Header, Home, Footer],
+  imports: [Header, Footer, RouterOutlet, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('parroquiaSA-app');
+  isLoginPage = false;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      this.isLoginPage = this.router.url.includes('/login');
+    });
+  }
 }
