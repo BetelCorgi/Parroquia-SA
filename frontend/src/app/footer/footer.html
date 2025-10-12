@@ -1,0 +1,85 @@
+<footer class="site-footer">
+
+  <!-- Rectángulo 1: Top (80%) -->
+  <div class="footer-top">
+    <!-- Fondo desenfocado -->
+    <div class="top-bg" aria-hidden="true">
+      <!-- Cambia la imagen por la de tu parroquia -->
+      <img src="assets/img/footer-bg.jpg" alt="">
+    </div>
+
+    <!-- Contenido -->
+    <div class="top-content">
+      <!-- CONTACTANOS -->
+      <section class="col contact">
+        <h3 class="col-title">CONTACTANOS</h3>
+        <ul class="contact-list">
+          <li>
+            <i class="fa-solid fa-church"></i>
+            <a class="link" target="_blank" rel="noopener"
+               href="https://maps.google.com/?q=Parroquia%20San%20Agust%C3%ADn%20de%20Hipona%20Chiclayo">
+              {{ direccion }}
+            </a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a class="link" [href]="'mailto:' + correo">{{ correo }}</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a class="link" [href]="'tel:' + telefonoHref">{{ telefono }}</a>
+          </li>
+        </ul>
+      </section>
+
+      <!-- CONECTATE -->
+      <section class="col social">
+        <h3 class="col-title">CONECTATE</h3>
+        <div class="social-row">
+          <a *ngFor="let r of redes"
+             class="social-btn"
+             [href]="r.href"
+             target="_blank" rel="noopener"
+             [attr.aria-label]="r.label"
+             [style.--hover]="r.color">
+            <i [class]="r.icon"></i>
+          </a>
+        </div>
+      </section>
+
+      <!-- HORARIOS DE MISAS -->
+      <section class="col schedule">
+        <h3 class="col-title">HORARIOS DE MISAS</h3>
+        <ul class="schedule-list">
+          <li *ngFor="let m of misas">
+            <span class="dia">{{ m.dia }}</span>
+            <span class="hora">{{ m.hora }}</span>
+          </li>
+        </ul>
+
+        <div class="santisimo">
+          <div class="titulo">{{ exposicion.titulo }}</div>
+          <div class="fila">
+            <span class="dia">{{ exposicion.dia }}</span>
+            <span class="hora">{{ exposicion.hora }}</span>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Rectángulo 2: Bottom (20%) -->
+  <div class="footer-bottom">
+    <div class="bottom-left">
+      <img src="assets/img/logo.png" alt="Logo Parroquia San Agustín">
+    </div>
+
+    <div class="bottom-center">
+      <p>¡Sirviendo a la Comunidad con amor y fe!</p>
+    </div>
+
+    <div class="bottom-right">
+      <small>copyright©2025 Parroquia San Agustín</small>
+    </div>
+  </div>
+</footer>

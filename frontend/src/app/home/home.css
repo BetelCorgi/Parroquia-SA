@@ -1,0 +1,552 @@
+/* VIDEO DE FONDO */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.hero-title {
+  color: #FFFFFF;
+  font-family: 'Merriweather', serif;
+  font-size: 3rem;
+  text-align:center;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+}
+
+/* SECCIÓN EVENTOS */
+.section {
+  padding: 100px 20px;
+  text-align: center;
+  font-family: 'Merriweather', serif;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+}
+
+/* CARRUSEL DE EVENTOS */
+.carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.carousel {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+
+.event-card {
+ flex: 0 0 calc((100% - 40px) / 3);
+  background-color: #FBEADB;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.event-card .event-image {
+  width: 100%;
+  height: 450px;
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  margin: 0;
+  display: block;  
+}
+
+.event-info {
+  padding: 15px;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.2); 
+  color: #FFFFFF;
+  box-sizing: border-box;
+}
+
+.event-subtitle {
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.event-title {
+  color: #FFFFFF;
+  text-decoration: underline;
+  text-decoration-color: #C98E6E;
+  transition: all 0.3s ease;
+}
+
+.event-card:hover .event-title {
+  text-decoration: underline;
+}
+
+.event-description {
+  color: #ffffff;
+  margin-top: 5px;
+  font-size: 0.9rem;
+}
+
+/* FLECHAS */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: #C98E6E;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0px;
+  border-radius: 0;
+  z-index: 10;
+}
+
+.carousel-arrow.left { left: 10px; }
+.carousel-arrow.right { right: 10px; }
+
+/* SECCIÓN SOBRE NOSOTROS */
+
+.sobre-nosotros-section {
+  padding: 100px 20px;
+  font-family: 'Merriweather', serif;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2rem;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  margin-bottom: 50px;
+}
+
+.sobre-nosotros-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+/* Cuadro de la izquierda */
+.sobre-cuadro {
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  padding: 20px;
+  width: 45%;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.sobre-cuadro:hover {
+  transform: scale(1.05);
+}
+
+.sobre-cuadro-imagen {
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+}
+
+.sobre-cuadro-textos {
+  padding: 40px 0;
+}
+
+.sobre-cuadro-subtitulo {
+  color: #000000;
+  margin-bottom: 5px;
+}
+
+.sobre-cuadro-subtitulo[style="color:#C98E6E;"] {
+  color: #C98E6E;
+}
+
+/* Descripción a la derecha */
+.sobre-descripcion {
+  width: 50%;
+  text-align: left;
+}
+
+.descripcion-texto {
+  color: #000000;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.descripcion-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.descripcion-check i {
+  color: #C98E6E;
+  font-size: 1.2rem;
+}
+
+.descripcion-check p {
+  font-size: 1rem;
+  color: #000000;
+}
+
+/* Video de la parroquia */
+.sobre-video video {
+  width: 100%;
+  border-radius: 10px;
+}
+
+/* SECCIÓN FRAILES */
+.frailes-section {
+  padding: 100px 20px;
+  font-family: 'Merriweather', serif;
+  text-align: center;
+}
+
+.frailes-carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.frailes-carousel {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.5s ease;
+}
+
+/* Tarjeta */
+.fraile-card {
+  flex: 0 0 calc((100% - 40px) / 3); /* 3 en desktop */
+  background: #FFFFFF;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  cursor: default;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transform-origin: center bottom;
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* Hover: “agrandarse para la parte de arriba” (sube y crece ~10-15%) */
+.fraile-card:hover {
+  transform: translateY(-10px) scale(1.08);
+  box-shadow: 0 14px 28px rgba(0,0,0,.12);
+}
+
+/* 70% imagen (relativo a la tarjeta; la altura real depende del ancho) */
+.fraile-img {
+  width: 100%;
+  aspect-ratio: 3 / 4; /* alto visual generoso */
+  background-size: cover;
+  background-position: center;
+}
+
+/* 30% info */
+.fraile-info {
+  position: relative;
+  background: #FFFFFF;
+  padding: 20px 16px 22px 16px;
+  text-align: center;
+}
+
+/* Onda separadora encima del bloque de info */
+.wave-sep {
+  position: absolute;
+  top: -24px; left: 0; right: 0;
+  height: 24px;
+  pointer-events: none;
+  overflow: hidden;
+}
+.wave-sep svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Tipos */
+.fraile-nombre {
+  color: #000000;
+  font-size: 1.1rem;
+  margin: 6px 0 2px 0;
+}
+.fraile-cargo {
+  color: #C98E6E;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+}
+
+/* Descripción: oculta por defecto, aparece en hover */
+.fraile-desc {
+  color: #000000;
+  font-size: .95rem;
+  line-height: 1.35;
+  margin: 6px 0 0 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height .25s ease, opacity .25s ease;
+}
+.fraile-card:hover .fraile-desc {
+  max-height: 140px; /* suficiente para 2-3 líneas */
+  opacity: 1;
+}
+
+/* Flechas */
+.frailes-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  color: #C98E6E;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+.frailes-arrow.left { left: 10px; }
+.frailes-arrow.right { right: 10px; }
+
+/* SECCIÓN GALERÍA */
+.galeria-section {
+  padding: 100px 20px;
+  font-family: 'Merriweather', serif;
+  text-align: center;
+}
+
+.galeria-carousel-container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden; /* para recortar los lados */
+  padding: 0 0 24px 0;
+}
+
+.galeria-carousel {
+  display: flex;
+  gap: 20px;                 /* mantener en sync con TS */
+  align-items: center;
+  transition: transform .5s ease;
+  will-change: transform;
+}
+
+/* Tarjeta */
+.galeria-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  flex: 0 0 calc((100% - 40px) / 3);  /* 3 visibles en desktop */
+  transform: scale(.9);                /* laterales un poco más pequeñas */
+  transition: transform .35s ease, box-shadow .35s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,.08);
+  position: relative;
+}
+.galeria-card.is-center {
+  transform: scale(1.05);             /* centro más grande */
+  z-index: 2;
+  box-shadow: 0 14px 28px rgba(0,0,0,.12);
+}
+
+.galeria-card img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Indicadores */
+.galeria-dots {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 14px;
+}
+.galeria-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: none;
+  background: #d8c2b5; /* tono suave */
+  cursor: pointer;
+}
+.galeria-dots .dot.active {
+  background: #C98E6E;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+}
+.lightbox-inner {
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,.3);
+}
+.lightbox-inner img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* SECCIÓN DONDE ENCONTRARNOS */
+.donde-section {
+  padding: 100px 20px;
+  font-family: 'Merriweather', serif;
+  text-align: center;
+}
+
+.map-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 8px 22px rgba(0,0,0,.08);
+  overflow: hidden;            /* respeta bordes redondeados del iframe */
+  padding: 18px;
+}
+
+/* Wrapper responsive del iframe */
+.map-embed {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #FBEADB;
+  /* Usa aspect-ratio moderno, con fallback */
+  aspect-ratio: 16 / 9;
+  position: relative;
+}
+.map-embed iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  display: block;
+  border: 0;
+}
+
+/* Info y botones */
+.map-info {
+  text-align: center;
+  padding: 16px 4px 6px;
+}
+.map-address {
+  color: #000000;
+  margin: 8px 0 14px;
+}
+.map-actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.btn-outline, .btn-solid {
+  display: inline-block;
+  border-radius: 24px;
+  padding: 10px 16px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
+}
+.btn-outline {
+  border: 2px solid #C98E6E;
+  color: #C98E6E;
+  background: transparent;
+}
+.btn-outline:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+.btn-solid {
+  background: #C98E6E;
+  color: #FFFFFF;
+  border: 2px solid #C98E6E;
+}
+.btn-solid:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
+
+/* RESPONSIVE */
+@media screen and (max-width: 768px) {
+  /* SECCIÓN EVENTOS */
+  .event-card .event-image { height: 350px; }
+  .event-card { flex: 0 0 100%; }
+    
+    /* Centrar las flechas más cerca en móviles */
+    .carousel-arrow.left { left: 5px; }
+    .carousel-arrow.right { right: 5px; }
+
+  /* SECCIÓN SOBRE NOSOTROS */
+  .sobre-cuadro {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .sobre-descripcion {
+    width: 100%;
+  }
+
+  /* SECCIÓN FRAILES */
+  .fraile-card { flex: 0 0 100%; } /* 1 por vista en móvil */
+  .frailes-arrow.left { left: 5px; }
+  .frailes-arrow.right { right: 5px; }
+
+  /* SECCIÓN GALERÍA */
+  /* “peek” en móvil: una imagen centrada y 20% de las contiguas asomando */
+  .galeria-carousel-container {
+    padding: 0 10vw 20px 0vw; /* deja espacio para ver ~20% de los lados */
+  }
+
+  .galeria-card {
+    flex: 0 0 50vw;     /* 1 imagen por vista, 10% a cada lado para el peek */
+  }
+
+  .galeria-card img {
+    height: 320px;
+  }
+
+  /* SECCIÓN DONDE ENCONTRARNOS */
+  .map-card { padding: 14px; }
+  .map-embed { aspect-ratio: 4 / 3; } /* un poco más alto en móvil */
+  .map-info { padding: 12px 2px 4px; }
+  .map-actions { gap: 10px; }
+}

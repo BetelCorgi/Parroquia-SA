@@ -1,0 +1,258 @@
+/* Contenedor general con dos rectángulos */
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px 20px 40px;
+  background: transparent; /* el fondo real lo pone cada rectángulo */
+}
+
+/* ---------- TOP (80%) ---------- */
+.footer-top {
+  position: relative;
+  border-radius: 9px;
+  overflow: hidden;
+  min-height: 450px; /* altura base para lograr un ~80% visual */
+}
+
+/* Fondo desenfocado */
+.top-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+.top-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(6px);
+  transform: scale(1.06); /* compensa el blur en bordes */
+  opacity: 0.65;
+}
+
+/* Contenido sobre el fondo */
+.top-content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  padding: 40px 32px;
+  color: #000000;
+}
+
+/* Tarjetas/columnas internas */
+.col {
+  background: rgba(251, 234, 219, 0.7); /* #FBEADB con transparencia */
+  border-radius: 14px;
+  padding: 18px 16px;
+  backdrop-filter: saturate(110%) blur(2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+.col-title {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0 0 12px 0;
+  color: #000000;
+}
+
+/* CONTACTO */
+.contact-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.contact-list li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.contact-list i {
+  color: #c98e6e;
+  line-height: 1.1;
+  margin-top: 2px;
+}
+.link {
+  color: #000000;
+  text-decoration: none;
+}
+.link:hover {
+  text-decoration: underline;
+}
+
+/* SOCIAL */
+.social-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #c98e6e;
+  color: #c98e6e;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.15s ease, border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+.social-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  color: var(--hover, #c98e6e);
+  border-color: var(--hover, #c98e6e);
+  background: #fff;
+}
+.social-btn i {
+  font-size: 1rem;
+}
+
+/* HORARIOS */
+.schedule-list {
+  list-style: none;
+  margin: 0 0 10px 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.schedule-list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  padding: 8px 12px;
+  flex-wrap: nowrap;
+}
+.schedule-list .dia {
+  color: #000000;
+  font-weight: 600;
+}
+.schedule-list .hora {
+  color: #000000;
+}
+
+.santisimo {
+  margin-top: 10px;
+  border: 2px dashed #c98e6e;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: rgba(201, 142, 110, 0.08);
+}
+.santisimo .titulo {
+  font-weight: 800;
+  color: #c98e6e;
+  margin-bottom: 6px;
+  text-align: center;
+}
+.santisimo .fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: nowrap;
+}
+.santisimo .fila .dia {
+  color: #000000;
+  font-weight: 600;
+}
+.santisimo .fila .hora {
+  color: #000000;
+}
+
+/* ---------- BOTTOM (20%) ---------- */
+.footer-bottom {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 10px 16px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+.bottom-left img {
+  height: 46px;
+  width: auto;
+}
+.bottom-center {
+  text-align: center;
+  color: #000000;
+  font-weight: 700;
+}
+.bottom-right {
+  text-align: right;
+  color: #000000;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media screen and (max-width: 992px) {
+  /* Apila las 3 columnas en una sola y ajusta el padding del top-content */
+  .top-content {
+    grid-template-columns: 1fr;
+    padding: 30px 24px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .site-footer {
+    padding: 20px 14px 28px;
+  }
+  .footer-top {
+    min-height: 0;
+    padding: 0;
+  }
+  .top-content {
+    padding: 24px 18px;
+    gap: 16px;
+  }
+
+  .col {
+    padding: 16px 14px;
+  }
+  .footer-bottom {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 8px;
+    padding: 12px;
+  }
+  .bottom-left img {
+    margin: 0 auto;
+  }
+  .bottom-right {
+    text-align: center;
+  }
+
+  .social-row {
+    justify-content: center;
+  }
+
+  .santisimo .fila {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .schedule-list li {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* Accesibilidad/Preferencias */
+@media (prefers-reduced-motion: reduce) {
+  .social-btn,
+  .santisimo,
+  .schedule-list li {
+    transition: none;
+  }
+}

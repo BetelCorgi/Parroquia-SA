@@ -1,0 +1,25 @@
+<section class="login-wrap">
+  <!-- botón volver -->
+  <button type="button" class="back-btn" (click)="goHome()" aria-label="Volver al inicio">
+    ← Volver al inicio
+  </button>
+
+  <div class="login-card">
+    <img class="login-logo" src="assets/img/logo.png" alt="Parroquia San Agustín">
+    <h1 class="login-title">Acceso Administradores</h1>
+
+    <form class="login-form" (submit)="$event.preventDefault()">
+      <label>
+        <span>Usuario</span>
+        <input type="text" placeholder="correo@parroquia.pe" required>
+      </label>
+      <label>
+        <span>Contraseña</span>
+        <input type="password" placeholder="••••••••" required>
+      </label>
+      <button type="submit" class="login-btn">Ingresar</button>
+    </form>
+
+    <p class="login-note">Acceso restringido al personal autorizado.</p>
+  </div>
+</section>
