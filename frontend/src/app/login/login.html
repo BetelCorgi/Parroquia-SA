@@ -1,25 +1,45 @@
-<section class="login-wrap">
-  <!-- botón volver -->
-  <button type="button" class="back-btn" (click)="goHome()" aria-label="Volver al inicio">
-    ← Volver al inicio
-  </button>
+<section class="login-shell">
+  <!-- Panel Izquierdo -->
+  <aside class="login-left">
+    <div class="left-inner">
+      <img class="left-logo" src="assets/img/logo.png" alt="Parroquia San Agustín">
+      <h2 class="left-title">SAN AGUSTIN</h2>
+    </div>
+  </aside>
 
-  <div class="login-card">
-    <img class="login-logo" src="assets/img/logo.png" alt="Parroquia San Agustín">
-    <h1 class="login-title">Acceso Administradores</h1>
+  <!-- Panel Derecho -->
+  <main class="login-right">
+    <!-- Volver al inicio -->
+    <button type="button" class="back-btn" (click)="goHome()" aria-label="Volver al inicio">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Volver al inicio</span>
+    </button>
 
-    <form class="login-form" (submit)="$event.preventDefault()">
-      <label>
-        <span>Usuario</span>
-        <input type="text" placeholder="correo@parroquia.pe" required>
-      </label>
-      <label>
-        <span>Contraseña</span>
-        <input type="password" placeholder="••••••••" required>
-      </label>
-      <button type="submit" class="login-btn">Ingresar</button>
-    </form>
+    <div class="right-card">
+      <h1 class="right-title">Acceso a Fieles</h1>
 
-    <p class="login-note">Acceso restringido al personal autorizado.</p>
-  </div>
+      <form class="login-form" (submit)="$event.preventDefault()">
+        <label class="field">
+          <span>Usuario</span>
+          <input type="text" placeholder="correo@parroquia.pe" required>
+        </label>
+
+        <label class="field">
+          <span>Contraseña</span>
+          <div class="password-wrap">
+            <input [type]="showPass ? 'text' : 'password'" placeholder="••••••••" required>
+            <button type="button" class="toggle-pass" (click)="showPass = !showPass" aria-label="Mostrar/ocultar contraseña">
+              <i class="fa-solid" [class.fa-eye]="!showPass" [class.fa-eye-slash]="showPass"></i>
+            </button>
+          </div>
+        </label>
+
+        <div class="form-aux">
+          <a class="forgot" href="#" (click)="$event.preventDefault()">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <button type="submit" class="login-btn">Ingresar</button>
+      </form>
+    </div>
+  </main>
 </section>

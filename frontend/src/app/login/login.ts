@@ -9,6 +9,8 @@ import { Router } from '@angular/router';
   styleUrl: './login.css'
 })
 export class Login {
+  showPass = false;
+
   constructor(private router: Router) {}
 
   goHome() {

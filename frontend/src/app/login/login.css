@@ -1,70 +1,178 @@
-.login-wrap {
+/* Contenedor pantalla completa */
+.login-shell {
   min-height: 100dvh;
-  padding-top: 110px; /* evita solape con header fijo cuando exista en otras páginas */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background: #FBEADB;
+  display: grid;
+  grid-template-columns: 5fr 5fr; 
+  background: #ffffff;
 }
 
+/* Panel izquierdo */
+.login-left {
+  background: #C98E6E;
+  display: grid;
+  place-items: center;
+  padding: 32px 20px;
+  border-top-right-radius: 28px;
+  border-bottom-right-radius: 28px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.15) inset;
+}
+
+.left-inner {
+  text-align: center;
+  max-width: 520px;
+  width: min(80%, 440px);
+}
+
+.left-logo {
+  width: 240px;
+  height: auto;
+  display: block;
+  margin: 0 auto 14px;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,.15));
+}
+
+.left-title {
+  font-family: 'Merriweather', serif;
+  letter-spacing: 1.2px;
+  color: #FFFFFF;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+/* Panel derecho */
+.login-right {
+  background: #FFFFFF;
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 28px 20px;
+}
+
+/* Botón volver arriba a la izquierda del panel derecho */
 .back-btn {
-  align-self: flex-start;
-  margin: 0 auto 10px;  /* centra el flujo horizontal y separa del card */
+  position: absolute;
+  top: 16px; left: 16px;
+  display: inline-flex;
+  align-items: center; gap: 8px;
   background: transparent;
   border: 0;
   color: #000000;
   font-weight: 700;
   cursor: pointer;
-  padding: 8px 4px;
-  border-radius: 8px;
+  padding: 6px 8px;
+  border-radius: 10px;
 }
-.back-btn:hover {
-  text-decoration: underline;
-}
+.back-btn:hover { text-decoration: underline; }
 
-.login-card {
-  width: min(92vw, 420px);
+/* Tarjeta del formulario */
+.right-card {
+  width: min(90%, 420px);
   background: #FFFFFF;
-  border-radius: 14px;
+  border-radius: 16px;
   box-shadow: 0 10px 28px rgba(0,0,0,.12);
-  padding: 24px 22px;
-  text-align: center;
+  padding: 26px 22px 22px;
 }
 
-.login-logo { height: 64px; margin-bottom: 8px; }
-.login-title {
-  margin: 6px 0 14px 0;
+.right-title {
+  margin: 0 0 14px 0;
+  text-align: center;
   color: #000000;
   font-family: 'Merriweather', serif;
+  font-size: 1.6rem;
 }
 
-.login-form { display: grid; gap: 12px; text-align: left; }
-
-.login-form label span {
-  display: block; font-weight: 600; color: #000000; margin-bottom: 6px;
+/* Formulario */
+.login-form {
+  display: grid; gap: 14px;
 }
-.login-form input {
+
+.field span {
+  display: block; font-weight: 700; color: #000000; margin-bottom: 6px;
+}
+
+.field input {
   width: 100%;
   border: 1px solid rgba(0,0,0,.15);
   border-radius: 10px;
   padding: 10px 12px;
   outline: none;
 }
-.login-form input:focus {
+.field input:focus {
   border-color: #C98E6E;
   box-shadow: 0 0 0 3px rgba(201,142,110,.2);
 }
 
-.login-btn {
-  background: #C98E6E; color: #FFFFFF;
-  border: 0; border-radius: 24px;
-  padding: 10px 16px; font-weight: 700; cursor: pointer;
+/* Mostrar/ocultar contraseña */
+.password-wrap {
+  position: relative;
 }
-.login-btn:hover { filter: brightness(0.95); }
-
-.login-note {
-  margin-top: 10px;
+.toggle-pass {
+  position: absolute;
+  top: 50%; right: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: 0;
   color: #000000;
-  opacity: .8;
-  font-size: .9rem;
+  opacity: .65;
+  cursor: pointer;
+}
+.toggle-pass:hover { opacity: 1; }
+
+/* Auxiliares */
+.form-aux {
+  display: flex;
+  justify-content: flex-end;
+}
+.forgot {
+  text-decoration: none;
+  color: #C98E6E;
+  font-weight: 700;
+}
+.forgot:hover { text-decoration: underline; }
+
+/* Botón principal */
+.login-btn {
+  width: 100%;
+  background: #C98E6E; 
+  color: #FFFFFF;
+  border: 0; border-radius: 24px;
+  padding: 12px 16px; font-weight: 700; cursor: pointer;
+  transition: filter .15s ease;
+}
+.login-btn:hover { filter: brightness(.95); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 992px) {
+  .login-shell {
+    grid-template-columns: 1fr;
+    background: #fdfdfd;
+  }
+  .left-logo {
+    width: 180px;
+  }
+  .left-title {
+    font-size: 1.8rem;
+  }
+  .login-left {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 28px;
+    border-bottom-left-radius: 28px;  
+    padding: 30px 16px 36px;
+  }
+  .login-right {
+    padding: 24px 14px 40px;
+  }
+  .right-card {
+    width: min(94%, 440px);
+  }
+  .back-btn {
+    position: static;
+    margin: -6px 0 10px;
+    align-self: start;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  .login-btn, .toggle-pass { transition: none; }
 }
