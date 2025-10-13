@@ -1,0 +1,181 @@
+/* ===== Shell general ===== */
+.admin-shell {
+  min-height: 100dvh;
+  background: #F5F4F2;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+/* ===== Topbar ===== */
+.admin-topbar {
+  background: #FFFFFF;
+  border-bottom: 1px solid rgba(0,0,0,.07);
+  padding: 10px 16px; /* ✨ MEJORA: Un poco más de padding lateral */
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 10px;
+  position: sticky; /* ✨ OPCIONAL: Fija la barra superior al hacer scroll */
+  top: 0;
+  z-index: 10;
+}
+
+/* Hamburguesa: oculta por defecto (solo en móvil se muestra) */
+.menu-btn {
+  border: 0;
+  background: transparent;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #000;
+  display: none; /* ⬅️ DESKTOP: oculto */
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+.brand img { 
+  height: 36px; 
+  width: auto; 
+}
+.brand strong { 
+  color: #000; 
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-size: 1.2rem;
+}
+.top-spacer { 
+  width: 32px; 
+} /* placeholder derecha */
+
+/* ===== Body ===== */
+.admin-body {
+  position: relative;
+  display: grid;
+  grid-template-columns: 260px 1fr; /* ⬅️ Sidebar fija + contenido en desktop */
+}
+
+/* ===== Sidebar ===== */
+.admin-sidebar {
+  background: #FFFFFF;
+  border-right: 1px solid rgba(0,0,0,.07);
+  display: flex;
+  flex-direction: column;
+  z-index: 5;
+  position: static;   /* ⬅️ Fija en desktop */
+  width: 260px;
+  left: 0;
+  box-shadow: none;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 12px 10px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #000;
+  padding: 28px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.nav-item:hover { background: rgba(201,142,110,.08); }
+.nav-item.active {
+  background: rgba(201,142,110,.15);
+  font-weight: 700;
+}
+.nav-item.logout {
+  color: #C43D3D;
+}
+.nav-item.logout:hover {
+  background: rgba(196, 61, 61, .08);
+}
+
+.divider {
+  height: 1px;
+  background: rgba(0,0,0,.08);
+  margin: 6px 0;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* ===== Contenido ===== */
+.admin-content {
+  padding: 24px;
+  min-width: 0; /* evita overflow por grids internos */
+}
+
+/* Wrapper para centrar y limitar ancho del contenido principal */
+.content-container {
+  width: 100%; /* El ancho lo controla el grid padre */
+  max-width: 1200px; /* Ancho máximo para el contenido */
+  margin: 0 auto;           /* centrado horizontal */
+}
+
+/* ===== Overlay (solo móvil) ===== */
+.overlay {
+  position: fixed; /* ✨ MEJORA: 'fixed' para cubrir toda la pantalla siempre */
+  inset: 0;
+  background: rgba(0, 0, 0, .4);
+  z-index: 4;
+  display: none;
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.sidebar-open .overlay {
+  display: block;
+  opacity: 1;
+}
+
+/* ===== Responsive (móvil / tablet) ===== */
+@media (max-width: 900px) {
+  /* Mostrar hamburguesa en móvil */
+  .menu-btn { display: inline-flex; }
+
+  /* El body pasa a una sola columna */
+  .admin-body {
+    grid-template-columns: 1fr;
+  }
+
+  /* Sidebar deslizante */
+  .admin-sidebar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -280px;
+    width: 260px;
+    transition: left .2s ease;
+    box-shadow: 0 10px 28px rgba(0,0,0,.18);
+  }
+  .admin-sidebar.is-open {
+    left: 0;
+  }
+
+  /* Overlay visible en móvil al abrir el menú */
+  .overlay {
+    display: block;
+  }
+
+  .admin-content {
+    padding: 16px; /* ✨ MEJORA: Padding más ajustado para móviles */
+  }
+}
+
+/* ===== Accesibilidad ===== */
+@media (prefers-reduced-motion: reduce) {
+  .admin-sidebar, .overlay, .nav-item {
+    transition: none;
+  }
+}

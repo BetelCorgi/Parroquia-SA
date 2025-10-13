@@ -18,16 +18,16 @@
     <div class="right-card">
       <h1 class="right-title">Acceso a Fieles</h1>
 
-      <form class="login-form" (submit)="$event.preventDefault()">
+      <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <label class="field">
           <span>Usuario</span>
-          <input type="text" placeholder="correo@parroquia.pe" required>
+          <input type="email" name="email" [(ngModel)]="email" placeholder="correo@parroquia.pe" required>
         </label>
 
         <label class="field">
           <span>Contraseña</span>
           <div class="password-wrap">
-            <input [type]="showPass ? 'text' : 'password'" placeholder="••••••••" required>
+            <input name="password" [(ngModel)]="password" [type]="showPass ? 'text' : 'password'" placeholder="••••••••" required>
             <button type="button" class="toggle-pass" (click)="showPass = !showPass" aria-label="Mostrar/ocultar contraseña">
               <i class="fa-solid" [class.fa-eye]="!showPass" [class.fa-eye-slash]="showPass"></i>
             </button>
@@ -37,6 +37,9 @@
         <div class="form-aux">
           <a class="forgot" href="#" (click)="$event.preventDefault()">¿Olvidaste tu contraseña?</a>
         </div>
+
+        <!-- Mensaje de error -->
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
         <button type="submit" class="login-btn">Ingresar</button>
       </form>

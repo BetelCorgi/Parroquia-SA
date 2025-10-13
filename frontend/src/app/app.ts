@@ -11,11 +11,12 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.css'
 })
 export class App {
-  isLoginPage = false;
+  hideChrome = false; // ocultar header/footer
 
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
-      this.isLoginPage = this.router.url.includes('/login');
+      const url = this.router.url;
+      this.hideChrome = url.startsWith('/login') || url.startsWith('/admin');
     });
   }
 }

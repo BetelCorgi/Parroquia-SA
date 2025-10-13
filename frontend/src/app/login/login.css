@@ -167,7 +167,7 @@
   }
   .back-btn {
     position: static;
-    margin: -6px 0 10px;
+    margin: -6px 0 10px;                  /* reubica ordenadamente sobre la tarjeta */
     align-self: start;
   }
 }

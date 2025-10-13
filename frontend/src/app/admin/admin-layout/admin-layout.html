@@ -1,0 +1,75 @@
+<div class="admin-shell" [class.sidebar-open]="isSidebarOpen">
+  <!-- Topbar -->
+  <header class="admin-topbar">
+    <button class="menu-btn" (click)="toggleSidebar()" aria-label="Abrir menú">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+
+    <div class="brand" (click)="goDashboard()" role="button" tabindex="0" aria-label="Panel Parroquial">
+      <img src="assets/img/logo.png" alt="Parroquia San Agustín" />
+      <strong>Panel Parroquial</strong>
+    </div>
+
+    <!-- Acciones de la derecha (opcional) -->
+    <div class="top-spacer"></div>
+  </header>
+
+  <!-- Cuerpo -->
+  <div class="admin-body">
+    <!-- Sidebar -->
+    <aside class="admin-sidebar" [class.is-open]="isSidebarOpen" aria-label="Menú del panel">
+      <nav class="side-nav">
+        <button class="nav-item" [class.active]="isActive('/admin')" (click)="goDashboard()">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span>Dashboard</span>
+        </button>
+
+        <button class="nav-item" [class.active]="isActive('/admin/avisos')" (click)="goAvisos()">
+          <i class="fa-solid fa-bell"></i>
+          <span>Avisos Recientes</span>
+        </button>
+
+        <button class="nav-item" [class.active]="isActive('/admin/solicitar-eventos')" (click)="goSolicitarEventos()">
+          <i class="fa-solid fa-hand-holding-heart"></i>
+          <span>Solicitar Eventos Eucarísticos</span>
+        </button>
+
+        <button class="nav-item" [class.active]="isActive('/admin/eventos-programados')" (click)="goEventosProgramados()">
+          <i class="fa-solid fa-calendar-days"></i>
+          <span>Eventos Programados</span>
+        </button>
+
+        <button class="nav-item" [class.active]="isActive('/admin/oracion-del-dia')" (click)="goOracionDelDia()">
+          <i class="fa-solid fa-praying-hands"></i>
+          <span>Oración del Día</span>
+        </button>
+
+        <div class="divider"></div>
+
+        <!-- Ir al sitio dentro del menú hamburguesa -->
+        <button class="nav-item" (click)="goSite()">
+          <i class="fa-solid fa-house-chimney"></i>
+          <span>Ir al sitio</span>
+        </button>
+
+        <div class="spacer"></div>
+
+        <!-- Cerrar sesión al final -->
+        <button class="nav-item logout" (click)="logout()">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>Cerrar sesión</span>
+        </button>
+      </nav>
+    </aside>
+
+    <!-- Overlay para móvil -->
+    <div class="overlay" *ngIf="isSidebarOpen" (click)="toggleSidebar(false)" aria-hidden="true"></div>
+
+    <!-- Contenido -->
+    <main class="admin-content">
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </main>
+  </div>
+</div>
