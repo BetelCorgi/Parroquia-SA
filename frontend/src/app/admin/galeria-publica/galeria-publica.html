@@ -1,0 +1,9 @@
+<h1 class="dash-title">Galeria Publica</h1>
+
+<section class="card-grid">
+  <div class="galeria" *ngFor="let img of galeria; let i = index">
+    <img [src]="img.src" [alt]="img.alt" />
+    <p class="title">{{img.title}}</p>
+    <p class="title">{{img.description}}</p>
+  </div>
+</section>

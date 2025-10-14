@@ -6,6 +6,7 @@ import { AvisosRecientes } from './avisos-recientes/avisos-recientes';
 import { SolicitarEventos } from './solicitar-eventos/solicitar-eventos';
 import { EventosProgramados } from './eventos-programados/eventos-programados';
 import { OracionDelDia } from './oracion-del-dia/oracion-del-dia';
+import { GaleriaPublica } from './galeria-publica/galeria-publica';
 
 export const adminRoutes: Routes = [
   {
@@ -17,6 +18,7 @@ export const adminRoutes: Routes = [
       { path: 'solicitar-eventos', component: SolicitarEventos },
       { path: 'eventos-programados', component: EventosProgramados },
       { path: 'oracion-del-dia', component: OracionDelDia },
+      { path: 'galeria-publica', component: GaleriaPublica },
     ]
   }
 ];

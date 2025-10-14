@@ -49,6 +49,9 @@ export class AdminLayout implements OnDestroy {
   goOracionDelDia() {
     this.router.navigate(['/admin/oracion-del-dia']).then(() => this.toggleSidebar(false));
   }
+  goGaleriaPublica() {
+    this.router.navigate(['/admin/galeria-publica']).then(() => this.toggleSidebar(false));
+  }
   goSite() {
     this.router.navigate(['/']).then(() => this.toggleSidebar(false));
   }

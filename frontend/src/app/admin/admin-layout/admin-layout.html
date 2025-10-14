@@ -44,6 +44,11 @@
           <span>Oración del Día</span>
         </button>
 
+        <button class="nav-item" [class.active]="isActive('/admin/galeria-publica')" (click)="goGaleriaPublica()">
+          <i class="fa-solid fa-praying-hands"></i>
+          <span>Galeria Publica</span>
+        </button>
+
         <div class="divider"></div>
 
         <!-- Ir al sitio dentro del menú hamburguesa -->
