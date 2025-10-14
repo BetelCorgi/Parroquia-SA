@@ -52,6 +52,9 @@ export class AdminLayout implements OnDestroy {
   goGaleriaPublica() {
     this.router.navigate(['/admin/galeria-publica']).then(() => this.toggleSidebar(false));
   }
+  goMultimedia() {
+    this.router.navigate(['/admin/multimedia']).then(() => this.toggleSidebar(false));
+  }
   goSite() {
     this.router.navigate(['/']).then(() => this.toggleSidebar(false));
   }

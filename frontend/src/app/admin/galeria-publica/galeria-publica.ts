@@ -58,23 +58,18 @@ export class GaleriaPublica {
   }
 
   abrirModal(img: any, index: number) {
-    console.log('Imagen recibida:', img); // 🔍 Debug
-    console.log('Índice:', index); // 🔍 Debug
-
     this.imagenSeleccionada = { ...img };
     this.indiceSeleccionado = index;
     this.modalAbierto = true;
 
-    console.log('imagenSeleccionada después de asignar:', this.imagenSeleccionada); // 🔍 Debug
-
     document.body.style.overflow = 'hidden';
   }
-  
+
   cerrarModal() {
     this.modalAbierto = false;
     this.imagenSeleccionada = null;
     this.indiceSeleccionado = null;
-    document.body.style.overflow = ''; // restaura scroll
+    document.body.style.overflow = '';
   }
 
   guardarCambios() {

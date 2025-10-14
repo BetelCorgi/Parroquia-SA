@@ -1,0 +1,194 @@
+<div>
+  <h2>Panel de Administración Multimedia</h2>
+
+  <div class="grid-2col">
+    <!-- VIDEO DE PRESENTACIÓN -->
+    <div class="card video-card">
+      <h2 class="card-title">Video de Presentación</h2>
+
+      <div class="video-preview">
+        <iframe
+          [src]="video.url"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          class="video-iframe"
+        ></iframe>
+      </div>
+
+      <input
+        type="text"
+        [(ngModel)]="video.url"
+        placeholder="https://www.youtube.com/watch?v=..."
+        class="input-url"
+      />
+
+      <div class="frame-inputs">
+        <div class="frame-group">
+          <label class="frame-label">Frame de inicio</label>
+          <input type="text" [(ngModel)]="video.frameInicio" class="frame-input" />
+        </div>
+        <div class="frame-group">
+          <label class="frame-label">Frame de final</label>
+          <input type="text" [(ngModel)]="video.frameFinal" class="frame-input" />
+        </div>
+      </div>
+    </div>
+
+    <!-- ENLACE DE REDES -->
+    <div class="card redes-card">
+      <h2 class="card-title">Enlace de Redes</h2>
+
+      <div class="redes-list">
+        <div class="red-item" *ngFor="let red of redes">
+          <div class="red-icon" [ngClass]="'icon-' + red.tipo">
+            <i *ngIf="red.tipo === 'youtube'" class="fa-brands fa-youtube"></i>
+            <i *ngIf="red.tipo === 'facebook'" class="fa-brands fa-facebook"></i>
+            <i *ngIf="red.tipo === 'instagram'" class="fa-brands fa-instagram"></i>
+            <i *ngIf="red.tipo === 'twitter'" class="fa-brands fa-twitter"></i>
+            <i *ngIf="red.tipo === 'otros'" class="fa-solid fa-link"></i>
+          </div>
+          <input
+            type="text"
+            [value]="red.url"
+            (input)="actualizarRed(red.id, $any($event.target).value)"
+            placeholder="youtube.com/......"
+            class="red-input"
+          />
+          <button class="btn-delete" (click)="eliminarRed(red.id)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn-add" (click)="agregarRed()">
+        <i class="fa-solid fa-plus"></i>
+        Agregar Red Social
+      </button>
+    </div>
+  </div>
+
+  <div class="grid-2col">
+    <!-- GOOGLE MAPS -->
+    <div class="card mapa-card">
+      <h2 class="card-title">Link "Donde encontrarnos" mapa</h2>
+
+      <div class="mapa-preview">
+        <iframe
+          [src]="mapa.url"
+          frameborder="0"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="mapa-iframe"
+        ></iframe>
+      </div>
+
+      <div class="mapa-item">
+        <div class="mapa-icon">
+          <i class="fa-solid fa-map-marker-alt"></i>
+        </div>
+        <input
+          type="text"
+          [(ngModel)]="mapa.url"
+          placeholder="https://www.google.com/maps/embed?pb=..."
+          class="mapa-input"
+        />
+      </div>
+    </div>
+
+    <!-- BOTONES DE SECCIONES -->
+    <div class="secciones-col">
+      <div class="card seccion-card">
+        <h2 class="seccion-title">Eventos Importantes</h2>
+        <button class="btn-seccion" (click)="irABoletines()">
+          <i class="fa-solid fa-arrow-right"></i>
+          Ir a Sección Boletines
+        </button>
+      </div>
+
+      <div class="card seccion-card">
+        <h2 class="seccion-title">Galería Pública</h2>
+        <button class="btn-seccion" (click)="irAGaleria()">
+          <i class="fa-solid fa-image"></i>
+          Administrar Galería
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL DE LA PARROQUIA -->
+  <div class="card personal-card">
+    <h2 class="card-title">Personal de la Parroquia</h2>
+
+    <div class="personal-grid">
+      <div class="persona-card" *ngFor="let persona of personal">
+        <div class="persona-header">
+          <div class="persona-avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <div class="persona-info">
+            <h3 class="persona-nombre">{{ persona.nombre }}</h3>
+            <p class="persona-cargo">{{ persona.cargo }}</p>
+            <p class="persona-contacto" *ngIf="persona.telefono">📞 {{ persona.telefono }}</p>
+            <p class="persona-contacto" *ngIf="persona.email">✉️ {{ persona.email }}</p>
+          </div>
+          <button class="btn-delete-persona" (click)="eliminarPersonal(persona.id)">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Formulario agregar personal -->
+    <div class="form-personal" *ngIf="mostrarFormPersonal">
+      <h3 class="form-title">Agregar Nuevo Personal</h3>
+      <div class="form-grid">
+        <input
+          type="text"
+          placeholder="Nombre completo"
+          [(ngModel)]="nuevoPersonal.nombre"
+          class="form-input"
+        />
+        <input
+          type="text"
+          placeholder="Cargo"
+          [(ngModel)]="nuevoPersonal.cargo"
+          class="form-input"
+        />
+        <input
+          type="tel"
+          placeholder="Teléfono"
+          [(ngModel)]="nuevoPersonal.telefono"
+          class="form-input"
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          [(ngModel)]="nuevoPersonal.email"
+          class="form-input"
+        />
+      </div>
+      <div class="form-actions">
+        <button class="btn-guardar-persona" (click)="agregarPersonal()">Guardar Personal</button>
+        <button class="btn-cancelar" (click)="mostrarFormPersonal = false">Cancelar</button>
+      </div>
+    </div>
+
+    <button *ngIf="!mostrarFormPersonal" class="btn-add" (click)="mostrarFormPersonal = true">
+      <i class="fa-solid fa-plus"></i>
+      Agregar Nuevo Personal
+    </button>
+
+    <button class="btn-administrar-personal" (click)="irAAdministrarPersonal()">
+      <i class="fa-solid fa-save"></i>
+      Ir a administrar a Personal
+    </button>
+  </div>
+
+  <!-- BOTÓN GUARDAR TODO -->
+  <button class="btn-guardar-todo" (click)="guardarTodo()">
+    <i class="fa-solid fa-save"></i>
+    GUARDAR TODOS LOS CAMBIOS
+  </button>
+</div>
