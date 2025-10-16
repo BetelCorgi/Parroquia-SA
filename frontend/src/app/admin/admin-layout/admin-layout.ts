@@ -37,8 +37,8 @@ export class AdminLayout implements OnDestroy {
   goDashboard() {
     this.router.navigate(['/admin']).then(() => this.toggleSidebar(false));
   }
-  goAvisos() {
-    this.router.navigate(['/admin/avisos']).then(() => this.toggleSidebar(false));
+  goNotificaciones() {
+    this.router.navigate(['/admin/notificaciones']).then(() => this.toggleSidebar(false));
   }
   goSolicitarEventos() {
     this.router.navigate(['/admin/solicitar-eventos']).then(() => this.toggleSidebar(false));

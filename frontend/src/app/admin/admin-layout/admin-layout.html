@@ -5,13 +5,7 @@
       <i class="fa-solid fa-bars"></i>
     </button>
 
-    <div
-      class="brand"
-      (click)="goDashboard()"
-      role="button"
-      tabindex="0"
-      aria-label="Panel Parroquial"
-    >
+    <div class="brand" (click)="goDashboard()" role="button" tabindex="0" aria-label="Panel Parroquial">
       <img src="assets/img/logo.png" alt="Parroquia San Agustín" />
       <strong>Panel Parroquial</strong>
     </div>
@@ -30,34 +24,22 @@
           <span>Dashboard</span>
         </button>
 
-        <button class="nav-item" [class.active]="isActive('/admin/avisos')" (click)="goAvisos()">
+        <button class="nav-item" [class.active]="isActive('/admin/notificaciones')" (click)="goNotificaciones()">
           <i class="fa-solid fa-bell"></i>
-          <span>Avisos Recientes</span>
+          <span>Notificaciones</span>
         </button>
 
-        <button
-          class="nav-item"
-          [class.active]="isActive('/admin/solicitar-eventos')"
-          (click)="goSolicitarEventos()"
-        >
+        <button class="nav-item" [class.active]="isActive('/admin/solicitar-eventos')" (click)="goSolicitarEventos()">
           <i class="fa-solid fa-hand-holding-heart"></i>
           <span>Solicitar Eventos Eucarísticos</span>
         </button>
 
-        <button
-          class="nav-item"
-          [class.active]="isActive('/admin/eventos-programados')"
-          (click)="goEventosProgramados()"
-        >
+        <button class="nav-item" [class.active]="isActive('/admin/eventos-programados')" (click)="goEventosProgramados()">
           <i class="fa-solid fa-calendar-days"></i>
           <span>Eventos Programados</span>
         </button>
 
-        <button
-          class="nav-item"
-          [class.active]="isActive('/admin/oracion-del-dia')"
-          (click)="goOracionDelDia()"
-        >
+        <button class="nav-item" [class.active]="isActive('/admin/oracion-del-dia')" (click)="goOracionDelDia()">
           <i class="fa-solid fa-praying-hands"></i>
           <span>Oración del Día</span>
         </button>
@@ -81,12 +63,7 @@
     </aside>
 
     <!-- Overlay para móvil -->
-    <div
-      class="overlay"
-      *ngIf="isSidebarOpen"
-      (click)="toggleSidebar(false)"
-      aria-hidden="true"
-    ></div>
+    <div class="overlay" *ngIf="isSidebarOpen" (click)="toggleSidebar(false)" aria-hidden="true"></div>
 
     <!-- Contenido -->
     <main class="admin-content">
