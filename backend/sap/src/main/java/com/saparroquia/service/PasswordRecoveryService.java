@@ -1,5 +1,5 @@
 
-package service;
+package com.saparroquia.service;
 
 class PassRecoveryService {
 

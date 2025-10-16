@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -18,37 +17,31 @@ public class Usuario {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idUsuario;
     
     @Column(nullable = false, unique = true, length = 100)
     private String email;
     
     @Column(nullable = false)
-    private String password;
-    
-    @Column(nullable = false, length = 100)
-    private String nombre;
-    
-    @Column(nullable = false, length = 100)
-    private String apellido;
+    private String passwordHash;
     
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 20)
     private RolUsuario rol;
     
     @Column(nullable = false)
-    private Boolean activo = true;
+    private Boolean estado = true;
     
     @CreationTimestamp
     @Column(name = "fecha_creacion", nullable = false, updatable = false)
     private LocalDateTime fechaCreacion;
     
-    @UpdateTimestamp
-    @Column(name = "fecha_actualizacion")
-    private LocalDateTime fechaActualizacion;
+    @ManyToOne
+    @JoinColumn(name = "id_fiel")
+    private Fiel fiel;
     
     public enum RolUsuario {
-        ADMINISTRADOR,
-        FIEL
+        FIEL,
+        ADMINISTRADOR
     }
 }

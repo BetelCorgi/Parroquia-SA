@@ -1,4 +1,4 @@
-package exception;
+package com.saparroquia.exception;
 
 public class ResourceNotFoundException {
 }

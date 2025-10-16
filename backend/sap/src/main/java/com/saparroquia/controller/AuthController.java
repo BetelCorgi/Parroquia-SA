@@ -4,6 +4,7 @@ import com.saparroquia.model.dto.ErrorResponse;
 import com.saparroquia.model.dto.LoginRequest;
 import com.saparroquia.model.dto.LoginResponse;
 import com.saparroquia.model.dto.MessageResponse;
+import com.saparroquia.model.dto.RecoveryPasswordRequest;
 import com.saparroquia.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -92,12 +93,20 @@ public class AuthController {
     }
     
     /**
-     * Endpoint para verificar si el token es válido
-     * GET /api/auth/validate
+     * Endpoint para recuperar contraseña
+     * POST /api/auth/recover-password
      */
-    @GetMapping("/validate")
-    public ResponseEntity<?> validateToken() {
-        return ResponseEntity.ok(new MessageResponse("Token válido"));
+    @PostMapping("/recover-password")
+    public ResponseEntity<MessageResponse> recoverPassword(@Valid @RequestBody RecoveryPasswordRequest request) {
+        try {
+            MessageResponse response = authService.recoverPassword(request);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            log.error("Error durante la recuperación de contraseña: ", e);
+            return ResponseEntity
+                    .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new MessageResponse("Error al procesar la solicitud de recuperación"));
+        }
     }
     
     /**
@@ -111,3 +120,13 @@ public class AuthController {
         return null;
     }
 }
+
+
+
+
+/*
+
+curl -X POST http://192.168.100.28:8080/api/auth/recover-password \
+  -H "Content-Type: application/json" \
+  -d '{"email":"borisgonzasanchez31@gmail.com"}'
+ */

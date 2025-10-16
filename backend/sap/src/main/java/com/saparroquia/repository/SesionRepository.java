@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface SesionRepository extends JpaRepository<Sesion, Long> {
     
-    Optional<Sesion> findByTokenAndActivaTrue(String token);
+    Optional<Sesion> findByTokenSesionAndActivaTrue(String token);
     
     List<Sesion> findByUsuarioAndActivaTrue(Usuario usuario);
     
@@ -26,5 +26,5 @@ public interface SesionRepository extends JpaRepository<Sesion, Long> {
     @Query("UPDATE Sesion s SET s.activa = false WHERE s.fechaExpiracion < :fecha AND s.activa = true")
     void desactivarSesionesExpiradas(LocalDateTime fecha);
     
-    void deleteByToken(String token);
+    void deleteByTokenSesion(String token);
 }

@@ -2,6 +2,8 @@ package com.saparroquia.service;
 
 import com.saparroquia.model.dto.LoginRequest;
 import com.saparroquia.model.dto.LoginResponse;
+import com.saparroquia.model.dto.RecoveryPasswordRequest;
+import com.saparroquia.model.dto.MessageResponse;
 import com.saparroquia.model.entity.Sesion;
 import com.saparroquia.model.entity.Usuario;
 import com.saparroquia.repository.SesionRepository;
@@ -16,7 +18,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 
@@ -52,7 +53,8 @@ public class AuthService {
         // Guardar sesión
         Sesion sesion = new Sesion();
         sesion.setUsuario(usuario);
-        sesion.setToken(jwt);
+        sesion.setTokenSesion(jwt);
+        sesion.setFechaInicio(LocalDateTime.now());
         sesion.setFechaExpiracion(
                 LocalDateTime.ofInstant(
                         tokenProvider.getExpirationDateFromToken(jwt).toInstant(),
@@ -71,22 +73,44 @@ public class AuthService {
         return LoginResponse.builder()
                 .token(jwt)
                 .tipo("Bearer")
-                .id(usuario.getId())
+                .id(usuario.getIdUsuario())
                 .email(usuario.getEmail())
-                .nombre(usuario.getNombre())
-                .apellido(usuario.getApellido())
+                .nombre(usuario.getFiel() != null ? usuario.getFiel().getNombre() : null)
+                .apellido(usuario.getFiel() != null ? usuario.getFiel().getApellido() : null)
                 .rol(usuario.getRol().name())
                 .build();
     }
     
     @Transactional
     public void logout(String token) {
-        sesionRepository.findByTokenAndActivaTrue(token)
+        sesionRepository.findByTokenSesionAndActivaTrue(token)
                 .ifPresent(sesion -> {
                     sesion.setActiva(false);
                     sesionRepository.save(sesion);
                     log.info("Sesión cerrada para usuario: {}", sesion.getUsuario().getEmail());
                 });
+    }
+    
+    @Transactional
+    public MessageResponse recoverPassword(RecoveryPasswordRequest request) {
+        // Buscar usuario por email
+        Usuario usuario = usuarioRepository.findByEmailAndEstadoTrue(request.getEmail())
+                .orElse(null);
+        
+        if (usuario != null) {
+            // Generar token de recuperación
+            String recoveryToken = tokenProvider.generateRecoveryToken(usuario.getEmail());
+            
+            // Enviar email (implementar EmailService)
+            // emailService.sendRecoveryEmail(usuario.getEmail(), recoveryToken);
+            
+            log.info("Solicitud de recuperación de contraseña para: {}", request.getEmail());
+        } else {
+            log.warn("Intento de recuperación para email no encontrado: {}", request.getEmail());
+        }
+        
+        // Siempre devolver el mismo mensaje para seguridad
+        return new MessageResponse("Si el correo existe, recibirás un enlace de recuperación.");
     }
     
     private String getClientIp(HttpServletRequest request) {

@@ -24,18 +24,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findByEmailAndActivoTrue(email)
+        Usuario usuario = usuarioRepository.findByEmailAndEstadoTrue(email)
                 .orElseThrow(() -> new UsernameNotFoundException(
                         "Usuario no encontrado con email: " + email));
         
         return User.builder()
                 .username(usuario.getEmail())
-                .password(usuario.getPassword())
+                .password(usuario.getPasswordHash())
                 .authorities(getAuthorities(usuario))
                 .accountExpired(false)
-                .accountLocked(!usuario.getActivo())
+                .accountLocked(!usuario.getEstado())
                 .credentialsExpired(false)
-                .disabled(!usuario.getActivo())
+                .disabled(!usuario.getEstado())
                 .build();
     }
     
@@ -53,7 +53,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         
         return User.builder()
                 .username(usuario.getEmail())
-                .password(usuario.getPassword())
+                .password(usuario.getPasswordHash())
                 .authorities(getAuthorities(usuario))
                 .build();
     }

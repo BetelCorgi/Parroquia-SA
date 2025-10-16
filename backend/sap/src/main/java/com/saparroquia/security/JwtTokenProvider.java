@@ -34,6 +34,22 @@ public class JwtTokenProvider {
     }
     
     /**
+     * Genera un token de recuperación con expiración corta
+     */
+    public String generateRecoveryToken(String email) {
+        Date now = new Date();
+        Date expiryDate = new Date(now.getTime() + 3600000); // 1 hora
+        
+        return Jwts.builder()
+                .subject(email)
+                .claim("type", "recovery")
+                .issuedAt(now)
+                .expiration(expiryDate)
+                .signWith(getSigningKey())
+                .compact();
+    }
+    
+    /**
      * Genera un token JWT a partir del email del usuario
      */
     public String generateTokenFromUsername(String email) {

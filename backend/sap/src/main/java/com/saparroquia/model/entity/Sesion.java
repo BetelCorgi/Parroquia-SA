@@ -17,24 +17,23 @@ public class Sesion {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long idSesion;
     
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "usuario_id", nullable = false)
+    @JoinColumn(name = "id_usuario", nullable = false)
     private Usuario usuario;
     
-    @Column(nullable = false, unique = true, length = 500)
-    private String token;
+    @Column(name = "token_sesion", nullable = false, unique = true, length = 255)
+    private String tokenSesion;
+    
+    @Column(name = "fecha_inicio", nullable = false)
+    private LocalDateTime fechaInicio;
     
     @Column(name = "fecha_expiracion", nullable = false)
     private LocalDateTime fechaExpiracion;
     
     @Column(nullable = false)
     private Boolean activa = true;
-    
-    @CreationTimestamp
-    @Column(name = "fecha_creacion", nullable = false, updatable = false)
-    private LocalDateTime fechaCreacion;
     
     @Column(name = "ip_address", length = 50)
     private String ipAddress;

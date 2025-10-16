@@ -5,33 +5,66 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="390f42e3-39c9-44d5-a827-51957edb3bff" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MarsCodeWorkspaceAppSettings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Parroquia-SA.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/migrateChatHistory.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/config/JwtConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/config/JwtConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/SanAgustinParroquiaApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/SanAgustinParroquiaApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/AdministradorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/AdministradorController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/ErrorResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/ErrorResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/LoginResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/LoginResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/MessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/MessageResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/BoletinController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/BoletinController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/ComunidadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/ComunidadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/EventoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/EventoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/FielController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/controller/FielController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/exception/ResourceNotFoundException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/exception/ResourceNotFoundException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/exception/UnauthorizedException.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/exception/UnauthorizedException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/AprobacionEventoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/AprobacionEventoRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/BoletinRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/BoletinRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/EventoRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/EventoRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/RecoveryPasswordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/RecoveryPasswordRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/ResetPasswordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/dto/ResetPasswordRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Administrador.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Administrador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/AprobacionEvento.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/AprobacionEvento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Boletin.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Boletin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Comunidad.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Comunidad.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/CreacionBoletin.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/CreacionBoletin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Fiel.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Fiel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Sesion.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Sesion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/SolicitudEvento.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/SolicitudEvento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/TipoEvento.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/TipoEvento.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/TokenRecuperacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/TokenRecuperacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/model/entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/AdministradorRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/AdministradorRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/AprobacionEventoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/AprobacionEventoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/BoletinRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/BoletinRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/ComunidadRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/ComunidadRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/CreacionBoletinRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/CreacionBoletinRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/FielRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/FielRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/SesionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/SesionRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/SolicitudEventoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/SolicitudEventoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/TipoEventoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/TipoEventoRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/TokenRecuperacionRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/TokenRecuperacionRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/repository/UsuarioRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/security/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/security/CustomUserDetailsService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/security/JwtAuthenticationFilter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/security/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/security/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/AdministradorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/AdministradorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/BoletinService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/BoletinService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/ComunidadService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/ComunidadService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/EmailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/EmailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/EventoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/EventoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/FielService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/FielService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/PasswordRecoveryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/PasswordRecoveryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/util/PasswordEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/java/com/saparroquia/util/PasswordEncoder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/sap/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/sap/src/main/resources/templates/email/recovery-password.html" beforeDir="false" afterPath="$PROJECT_DIR$/backend/sap/src/main/resources/templates/email/recovery-password.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/login/login.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/login/login.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -175,6 +208,8 @@
       <workItem from="1760295517584" duration="120000" />
       <workItem from="1760295904953" duration="19000" />
       <workItem from="1760295958391" duration="13000" />
+      <workItem from="1760310960556" duration="2000" />
+      <workItem from="1760451605704" duration="59000" />
     </task>
     <servers />
   </component>
