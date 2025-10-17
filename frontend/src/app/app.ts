@@ -16,7 +16,7 @@ export class App {
   constructor(private router: Router) {
     this.router.events.subscribe(() => {
       const url = this.router.url;
-      this.hideChrome = url.startsWith('/login') || url.startsWith('/admin');
+      this.hideChrome = url.startsWith('/login') || url.startsWith('/admin') || url.startsWith('/recuperar') || url.startsWith('/reset');
     });
   }
 }
