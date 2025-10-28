@@ -1,0 +1,108 @@
+<section class="noti-shell">
+  <aside class="filters">
+    <h2 class="filters-title">Filtrar</h2>
+    <form [formGroup]="form" class="filters-form">
+      <label class="field">
+        <span>Estado</span>
+        <select formControlName="estado">
+          <option value="">Todos</option>
+          <option value="aceptado">Aceptado</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="denegado">Denegado</option>
+        </select>
+      </label>
+      <div class="field-row">
+        <label class="field">
+          <span>Desde</span>
+          <input type="date" formControlName="desde">
+        </label>
+        <label class="field">
+          <span>Hasta</span>
+          <input type="date" formControlName="hasta">
+        </label>
+      </div>
+      <label class="field">
+        <span>Asunto</span>
+        <input type="text" placeholder="Buscar por título o asunto" formControlName="asunto">
+      </label>
+      <div class="actions">
+        <button type="button" class="btn btn--ghost" (click)="resetFilters()">Limpiar</button>
+      </div>
+    </form>
+  </aside>
+
+  <div class="list-area">
+    <h1 class="list-title">Notificaciones</h1>
+    <div *ngIf="filtered().length === 0" class="empty">
+      No se encontraron solicitudes con los filtros seleccionados.
+    </div>
+
+    <article class="card" *ngFor="let s of filtered()">
+      <div class="card-left">
+        <div class="when">
+          <i class="fa-solid fa-calendar-day"></i>
+          <div>
+            <div class="date">{{ s.fecha | date:'EEEE d MMMM, y':'':'es-PE' }}</div>
+            <div class="time" *ngIf="s.hora">{{ s.hora }}</div>
+            <div class="time" *ngIf="!s.hora">Hora no definida</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-right">
+        <h3 class="title">{{ s.titulo }}</h3>
+
+        <div class="meta">
+          <div class="meta-item">
+            <i class="fa-solid fa-align-left"></i>
+            <span class="label">Asunto:</span>
+            <span class="value">{{ s.asunto }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="fa-solid fa-user-group"></i>
+            <span class="label">Invitados:</span>
+            <span class="value">{{ s.invitados }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="label">Ubicación:</span>
+            <span class="value">{{ s.ubicacion }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="fa-solid fa-church"></i>
+            <span class="label">Tipo:</span>
+            <span class="value">{{ s.tipo }}</span>
+          </div>
+          <div class="meta-item">
+            <i class="fa-solid fa-link"></i>
+            <span class="label">Enlace:</span>
+            <span class="value">
+              <a *ngIf="s.enlaceVideo" [href]="s.enlaceVideo" target="_blank" rel="noopener noreferrer">Abrir Enlace</a>
+              <span *ngIf="!s.enlaceVideo">—</span>
+            </span>
+          </div>
+          <div class="meta-item">
+            <i class="fa-solid fa-flag"></i>
+            <span class="label">Estado:</span>
+            <span class="value">
+              <span [class]="badgeClass(s.estado)">{{ stateLabel(s.estado) }}</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="denied" *ngIf="s.estado === 'denegado' && s.motivoDenegacion">
+          <i class="fa-solid fa-circle-info"></i>
+          <div>
+            <strong>Motivo de la denegación:</strong>
+            <p>{{ s.motivoDenegacion }}</p>
+          </div>
+        </div>
+        
+        <div class="cover-image-container" *ngIf="s.portadaUrl">
+          <img [src]="s.portadaUrl" alt="Portada del evento" class="cover-image" />
+        </div>
+
+      </div>
+    </article>
+  </div>
+</section>

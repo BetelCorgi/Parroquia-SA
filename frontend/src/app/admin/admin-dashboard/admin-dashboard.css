@@ -1,0 +1,72 @@
+.dash-title {
+  margin: 0 0 4px 0;
+  color: #000;
+  font-family: 'Merriweather', serif;
+  font-size: 1.8rem;
+}
+.dash-sub { 
+  margin: 0 0 24px 0; /* ✨ MEJORA: Más espacio inferior */
+  color: #000;
+  opacity: .8;
+  font-size: 1.1rem; 
+}
+
+.tiles {
+  display: grid;
+  /* ✨ MEJORA RADICAL: Grid fluida y automática sin media queries */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+}
+
+.tile {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #000;
+  background-color: #FFFFFF; /* ✨ AÑADIDO: Color de fondo por defecto */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.tile:hover { 
+  transform: translateY(-4px); 
+  box-shadow: 0 10px 24px rgba(0,0,0,.1); 
+}
+
+.tile-icon i {
+  font-size: 1.8rem;
+  color: #000;
+  width: 40px; /* ✨ MEJORA: Ancho fijo para alinear íconos */
+  text-align: center;
+}
+
+.tile-body h3 {
+  margin: 0 0 4px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.tile-body p {
+  margin: 0;
+  opacity: .8;
+  font-size: 0.95rem;
+}
+
+.tile-arrow i {
+  color: #000;
+  opacity: .5;
+  transition: transform 0.2s ease;
+}
+
+.tile:hover .tile-arrow i {
+  transform: translateX(3px); /* ✨ DETALLE: La flecha se mueve al hacer hover */
+}
+
+@media (max-width: 700px) {
+  .tiles {
+    grid-template-columns: 1fr; /* Una columna en móvil */
+  }
+}

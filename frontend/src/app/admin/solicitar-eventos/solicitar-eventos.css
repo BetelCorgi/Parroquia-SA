@@ -1,0 +1,150 @@
+.solicitud-wrap {
+  max-width: 100%; /* Evita que el formulario sea demasiado ancho */
+  margin: 0 auto;   /* Centra el contenedor */
+  padding: 1rem;
+}
+.title {
+  margin: 0 0 4px 0;
+  color: #000;
+  font-family: 'Merriweather', serif;
+  font-size: 1.6rem;
+}
+.sub {
+  margin: 0 0 24px 0;
+  color: #000;
+  opacity: 0.85;
+  font-size: 1.05rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px 20px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field span {
+  font-weight: 700;
+  color: #000;
+  font-size: 0.9rem;
+}
+
+input[type='text'],
+input[type='number'],
+input[type='date'],
+input[type='time'],
+input[type='url'],
+select,
+textarea {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 12px 14px;
+  outline: none;
+  background: #fff;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s ease;
+}
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #c98e6e;
+  box-shadow: 0 0 0 3px rgba(201, 142, 110, 0.18);
+}
+
+.row2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.preview img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 8px;
+}
+.btn-primary {
+  background: #c98e6e;
+  color: #fff;
+  border: 0;
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+}
+.btn-primary:not([disabled]):hover {
+  background: #b57a5b;
+  transform: translateY(-2px);
+}
+
+.btn-primary[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.msg, .error, .ok {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.msg {
+  color: #c43d3d; /* Mensajes de validación en rojo */
+}
+
+.error {
+  color: #c43d3d;
+  background-color: #fde7e9;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.ok {
+  color: #1a8848;
+  background-color: #e5f6ec;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+
+/* --- Diseño Adaptable (Responsive) --- */
+@media (max-width: 992px) {
+  /* En tabletas y móviles, el grid principal pasa a una sola columna */
+  .grid {
+    display: flow-root;
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 480px) {
+  /* En móviles pequeños, ajustamos la tipografía */
+  .title {
+    font-size: 1.4rem;
+  }
+  .sub {
+    font-size: 1rem;
+  }
+}

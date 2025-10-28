@@ -1,0 +1,48 @@
+<section class="login-shell">
+  <!-- Panel Izquierdo -->
+  <aside class="login-left">
+    <div class="left-inner">
+      <img class="left-logo" src="assets/img/logo.png" alt="Parroquia San Agustín">
+      <h2 class="left-title">SAN AGUSTIN</h2>
+    </div>
+  </aside>
+
+  <!-- Panel Derecho -->
+  <main class="login-right">
+    <!-- Volver al inicio -->
+    <button type="button" class="back-btn" (click)="goHome()" aria-label="Volver al inicio">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Volver al inicio</span>
+    </button>
+
+    <div class="right-card">
+      <h1 class="right-title">Acceso a Fieles</h1>
+
+      <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
+        <label class="field">
+          <span>Usuario</span>
+          <input type="email" name="email" [(ngModel)]="email" placeholder="correo@parroquia.pe" required>
+        </label>
+
+        <label class="field">
+          <span>Contraseña</span>
+          <div class="password-wrap">
+            <input name="password" [(ngModel)]="password" [type]="showPass ? 'text' : 'password'" placeholder="••••••••" required>
+            <button type="button" class="toggle-pass" (click)="showPass = !showPass" aria-label="Mostrar/ocultar contraseña">
+              <i class="fa-solid" [class.fa-eye]="!showPass" [class.fa-eye-slash]="showPass"></i>
+            </button>
+          </div>
+        </label>
+
+        <div class="form-aux">
+          <a class="forgot" routerLink="/recuperar">¿Olvidaste tu contraseña?</a>
+        </div>
+
+        <!-- Mensaje de error -->
+        <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+        <button type="submit" class="login-btn">Ingresar</button>
+      </form>
+    </div>
+  </main>
+</section>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel Parroquial - Disponibilidad</title>
+  <link rel="stylesheet" href="eventos-programados.css">
+</head>
+<body>
+
+<div class="panel-parroquial">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <h3>Parroquia San Agustín</h3>
+    </div>
+
+    <button class="btn-solicitar">Solicitar<br>Evento Eucarístico</button>
+   
+
+    <div class="filtros">
+      <h4>Filtros</h4>
+
+      <label>Nombre</label>
+      <input type="text" placeholder="Ingrese nombre">
+
+      <label>Apellido</label>
+      <input type="text" placeholder="Ingrese apellido">
+
+      <label>Rol</label>
+      <select>
+        <option value="">Seleccione...</option>
+        <option>Fiel</option>
+        <option>Coordinador</option>
+        <option>Padre</option>
+      </select>
+    </div>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="contenido">
+    <div class="header">
+      <button class="btn-volver">← Volver al formulario</button>
+      <h2>Disponibilidad</h2>
+    </div>
+
+    <div class="calendario">
+      <!-- Días de la semana -->
+      <div class="dias-semana">
+        <div>Domingo</div>
+        <div>Lunes</div>
+        <div>Martes</div>
+        <div>Miércoles</div>
+        <div>Jueves</div>
+        <div>Viernes</div>
+        <div>Sábado</div>
+      </div>
+
+      <!-- Horas y cuadrícula -->
+      <div class="tabla-calendario">
+        <!-- Columna de horas -->
+        <div class="horas">
+          <div>7am</div>
+          <div>8am</div>
+          <div>9am</div>
+          <div>10am</div>
+          <div>11am</div>
+          <div>12pm</div>
+          <div>1pm</div>
+          <div>2pm</div>
+          <div>3pm</div>
+          <div>4pm</div>
+          <div>5pm</div>
+          <div>6pm</div>
+          <div>7pm</div>
+        </div>
+
+        <!-- Celdas de los días -->
+        <div class="grid-dias">
+          <!-- Eventos -->
+          <div class="evento verde" style="grid-column: 2; grid-row: 13;">
+            <span>Misa de Acción de Gracias</span>
+            <small>7:00pm</small>
+          </div>
+
+          <div class="evento rojo" style="grid-column: 4; grid-row: 10;">
+            <span>Funeral</span>
+            <small>4:00pm</small>
+          </div>
+
+          <div class="evento amarillo" style="grid-column: 7; grid-row: 5;">
+            <span>Bautizo</span>
+            <small>11:30am</small>
+          </div>
+
+          <div class="evento verde" style="grid-column: 1; grid-row: 12;">
+            <span>Misa Comunitaria</span>
+            <small>6:00pm</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
