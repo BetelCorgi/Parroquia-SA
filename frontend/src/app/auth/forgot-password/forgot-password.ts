@@ -6,11 +6,17 @@ import { AuthRecovery } from '../shared/auth-recovery';
 
 @Component({
   selector: 'app-forgot-password',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.css'
 })
 export class ForgotPassword {
+  private readonly STORAGE_BUCKET_URL = 'https://firebasestorage.googleapis.com/v0/b/parroquia-sa-1530d.firebasestorage.app/o/';
+  private readonly STORAGE_BUCKET_SUFFIX = '?alt=media';
+
+  public logoUrl: string = this.STORAGE_BUCKET_URL + 'logo.png' + this.STORAGE_BUCKET_SUFFIX;
+
   form: FormGroup;
   error = '';
   info  = '';
@@ -38,14 +44,15 @@ export class ForgotPassword {
     const { email, dni } = this.form.value as { email: string; dni: string; };
     try {
       const token = this.recovery.requestRecovery(email, dni);
-      // En un sistema real, aquí se enviaría el correo con el link:
-      // https://tusitio/restablecer/<token>
-      // Mostramos un aviso y redirigimos automáticamente
       this.info = 'Hemos enviado un enlace de recuperación a su correo. Redirigiendo...';
       setTimeout(() => this.router.navigate(['/restablecer', token]), 1200);
     } catch (e: any) {
       this.error = e?.message || 'No se pudo iniciar la recuperación.';
     }
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
   }
 
   backToLogin() {

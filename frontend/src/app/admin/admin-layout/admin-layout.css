@@ -10,13 +10,12 @@
 .admin-topbar {
   background: #FFFFFF;
   border-bottom: 1px solid rgba(0,0,0,.07);
-  padding: 10px 16px; /* ✨ MEJORA: Un poco más de padding lateral */
+  padding: 10px 16px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 10px;
-  position: sticky; /* ✨ OPCIONAL: Fija la barra superior al hacer scroll */
-  top: 0;
+  position: sticky;
   z-index: 10;
 }
 
@@ -27,7 +26,7 @@
   font-size: 1.2rem;
   cursor: pointer;
   color: #000;
-  display: none; /* ⬅️ DESKTOP: oculto */
+  display: none;
 }
 
 .brand {
@@ -36,6 +35,7 @@
   gap: 10px;
   cursor: pointer;
 }
+
 .brand img { 
   height: 36px; 
   width: auto; 
@@ -48,13 +48,13 @@
 }
 .top-spacer { 
   width: 32px; 
-} /* placeholder derecha */
+}
 
 /* ===== Body ===== */
 .admin-body {
   position: relative;
   display: grid;
-  grid-template-columns: 260px 1fr; /* ⬅️ Sidebar fija + contenido en desktop */
+  grid-template-columns: 260px 1fr;
 }
 
 /* ===== Sidebar ===== */
@@ -64,7 +64,7 @@
   display: flex;
   flex-direction: column;
   z-index: 5;
-  position: static;   /* ⬅️ Fija en desktop */
+  position: static;
   width: 260px;
   left: 0;
   box-shadow: none;
@@ -114,19 +114,17 @@
 /* ===== Contenido ===== */
 .admin-content {
   padding: 24px;
-  min-width: 0; /* evita overflow por grids internos */
+  min-width: 0;
 }
 
-/* Wrapper para centrar y limitar ancho del contenido principal */
 .content-container {
-  width: 100%; /* El ancho lo controla el grid padre */
-  max-width: 1200px; /* Ancho máximo para el contenido */
-  margin: 0 auto;           /* centrado horizontal */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* ===== Overlay (solo móvil) ===== */
 .overlay {
-  position: fixed; /* ✨ MEJORA: 'fixed' para cubrir toda la pantalla siempre */
+  position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, .4);
   z-index: 4;
@@ -141,15 +139,12 @@
 
 /* ===== Responsive (móvil / tablet) ===== */
 @media (max-width: 900px) {
-  /* Mostrar hamburguesa en móvil */
   .menu-btn { display: inline-flex; }
 
-  /* El body pasa a una sola columna */
   .admin-body {
     grid-template-columns: 1fr;
   }
 
-  /* Sidebar deslizante */
   .admin-sidebar {
     position: absolute;
     top: 0;
@@ -163,13 +158,12 @@
     left: 0;
   }
 
-  /* Overlay visible en móvil al abrir el menú */
   .overlay {
     display: block;
   }
 
   .admin-content {
-    padding: 16px; /* ✨ MEJORA: Padding más ajustado para móviles */
+    padding: 16px;
   }
 }
 

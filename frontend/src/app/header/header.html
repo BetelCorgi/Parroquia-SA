@@ -1,7 +1,7 @@
 <header class="header">
   <div class="header-inner">
     <div class="logo" (click)="navigateHome()" role="button" tabindex="0" aria-label="Ir al inicio">
-      <img src="assets/img/logo.png" alt="Logo de la Parroquia">
+      <img [src]="logoUrl" alt="Logo de la Parroquia">
     </div>
 
     <nav class="nav-links" [class.active]="isMenuActive" aria-label="Navegación principal">

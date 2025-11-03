@@ -11,6 +11,12 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.css'
 })
 export class Login {
+  private readonly STORAGE_BUCKET_URL = 'https://firebasestorage.googleapis.com/v0/b/parroquia-sa-1530d.firebasestorage.app/o/';
+  private readonly STORAGE_BUCKET_SUFFIX = '?alt=media';
+
+  // URL del logo construida para el template
+  public logoUrl: string = this.STORAGE_BUCKET_URL + 'logo.png' + this.STORAGE_BUCKET_SUFFIX;
+  
   showPass = false;
   email = '';
   password = '';
@@ -28,10 +34,8 @@ export class Login {
 
   onSubmit() {
     if (this.email === this.adminEmail && this.password === this.adminPassword) {
-      // ✅ Credenciales correctas, redirige al panel
       this.router.navigate(['/admin']);
     } else {
-      // ❌ Credenciales incorrectas, muestra mensaje
       this.errorMessage = 'Usuario o contraseña incorrectos.';
     }
   }

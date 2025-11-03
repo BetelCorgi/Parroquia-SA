@@ -23,12 +23,10 @@
   width: min(80%, 440px);
 }
 
-.left-logo {
-  width: 240px;
+.left-inner img {
+  width: 70%;
   height: auto;
-  display: block;
-  margin: 0 auto 14px;
-  filter: drop-shadow(0 4px 12px rgba(0,0,0,.15));
+  border-radius: 4px;
 }
 
 .left-title {
@@ -167,7 +165,7 @@
   }
   .back-btn {
     position: static;
-    margin: -6px 0 10px;                  /* reubica ordenadamente sobre la tarjeta */
+    margin: -6px 0 10px;
     align-self: start;
   }
 }

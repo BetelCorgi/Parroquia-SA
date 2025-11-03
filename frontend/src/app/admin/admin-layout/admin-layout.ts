@@ -6,11 +6,18 @@ import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-layout',
+  standalone: true,
   imports: [CommonModule, RouterOutlet],
   templateUrl: './admin-layout.html',
   styleUrl: './admin-layout.css'
 })
 export class AdminLayout implements OnDestroy {
+  private readonly STORAGE_BUCKET_URL = 'https://firebasestorage.googleapis.com/v0/b/parroquia-sa-1530d.firebasestorage.app/o/';
+  private readonly STORAGE_BUCKET_SUFFIX = '?alt=media';
+
+  // URL del logo construida para el template
+  public logoUrl: string = this.STORAGE_BUCKET_URL + 'logo.png' + this.STORAGE_BUCKET_SUFFIX;
+
   isSidebarOpen = false;
   currentUrl = '/admin';
   private sub: Subscription;
@@ -55,13 +62,11 @@ export class AdminLayout implements OnDestroy {
 
   // Cerrar sesión
   logout() {
-    // Si en el futuro guardas token: localStorage.removeItem('auth');
     this.router.navigate(['/login']);
   }
 
   // Helpers para 'activo'
   isActive(path: string): boolean {
-    // coincide exacto para dashboard, e incluye para hijos
     if (path === '/admin') return this.currentUrl === '/admin';
     return this.currentUrl.startsWith(path);
   }
