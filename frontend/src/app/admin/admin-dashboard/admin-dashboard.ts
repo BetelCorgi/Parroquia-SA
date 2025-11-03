@@ -12,9 +12,9 @@ export class AdminDashboard {
   tiles = [
     {
       icon: 'fa-solid fa-bell',
-      title: 'Avisos Recientes',
-      desc: 'Publica y gestiona avisos para los feligreses.',
-      link: '/admin/avisos',
+      title: 'Notificaciones',                            
+      desc: 'Consulta y filtra tus solicitudes.',
+      link: '/admin/notificaciones',
       color: '#FFD8C2'
     },
     {
