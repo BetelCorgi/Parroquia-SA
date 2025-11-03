@@ -21,7 +21,7 @@ export class EventosProgramados {
   constructor(private router: Router) {}
 
   volverAlFormulario() {
-    this.router.navigate(['/solicitar-eventos']);
+    this.router.navigate(['/admin/solicitar-eventos']);
   }
 
   mostrarListaPersonal() {
