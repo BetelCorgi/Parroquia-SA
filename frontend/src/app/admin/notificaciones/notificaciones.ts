@@ -1,11 +1,12 @@
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
-import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
+// IMPORTANTE: AGREGAR FormsModule para el pop-up
+import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup } from '@angular/forms'; 
 import localeEsPE from '@angular/common/locales/es';
 import { startWith } from 'rxjs';
 
 // Se importan el servicio y los tipos
-import { EventRequests, Estado } from '../shared/event-requests';
+import { EventRequests, Estado } from '../shared/event-requests'; // Asumo que estos tipos son correctos
 
 registerLocaleData(localeEsPE, 'es-PE');
 
@@ -29,12 +30,13 @@ interface Solicitud {
 @Component({
   selector: 'admin-notificaciones',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  // AGREGAR FormsModule aquí
+  imports: [CommonModule, ReactiveFormsModule, FormsModule], 
   templateUrl: './notificaciones.html',
   styleUrl: './notificaciones.css'
 })
 export class Notificaciones {
-  // Datos demo (luego vendrán del backend)
+  // Datos demo - Convertido a writable signal para poder actualizar el estado
   private readonly data = signal<Solicitud[]>([
     {
       id: 1,
@@ -79,6 +81,11 @@ export class Notificaciones {
     }
   ]);
 
+  // Propiedades para el modal de denegación
+  isModalOpen = signal(false);
+  denialReason: string = '';
+  private requestIdToDeny: number | null = null;
+
   form: FormGroup;
 
   private filters = signal({
@@ -101,12 +108,11 @@ export class Notificaciones {
       if (hasta && s.fecha > hasta) return false;
       if (asunto && !(s.titulo.toLowerCase().includes(asunto) || s.asunto.toLowerCase().includes(asunto))) return false;
       return true;
-    }); // NOTA: El sort ya se hace en el `load` del servicio
+    });
   });
 
   constructor(
     private fb: FormBuilder,
-    // CORRECCIÓN: Se inyecta el servicio con el nombre correcto
     private events: EventRequests
   ) {
     this.form = this.fb.group({
@@ -127,6 +133,52 @@ export class Notificaciones {
     this.form.reset({ estado: '', desde: '', hasta: '', asunto: '' });
   }
 
+  // --- Lógica de Aceptar/Denegar ---
+
+  openDenyModal(id: number) {
+    this.requestIdToDeny = id;
+    this.denialReason = ''; // Limpiar la razón anterior
+    this.isModalOpen.set(true);
+  }
+
+  closeDenyModal() {
+    this.isModalOpen.set(false);
+    this.requestIdToDeny = null;
+    this.denialReason = '';
+  }
+
+  acceptRequest(id: number) {
+    this.updateRequestState(id, 'aceptado');
+  }
+
+  denyRequest() {
+    if (this.requestIdToDeny === null || !this.denialReason.trim()) {
+      return; 
+    }
+
+    this.updateRequestState(this.requestIdToDeny, 'denegado', this.denialReason.trim());
+    this.closeDenyModal();
+  }
+
+  private updateRequestState(id: number, newState: Estado, reason?: string) {
+    // Actualiza la señal de datos, simulando el cambio en el sistema
+    this.data.update(requests => 
+      requests.map(s => {
+        if (s.id === id) {
+          return {
+            ...s,
+            estado: newState,
+            // Solo se guarda el motivo si el nuevo estado es 'denegado'
+            motivoDenegacion: newState === 'denegado' ? reason : undefined
+          };
+        }
+        return s;
+      })
+    );
+  }
+
+  // --- Funciones de vista originales ---
+  
   badgeClass(estado: Estado): string {
     switch (estado) {
       case 'aceptado': return 'badge badge--ok';

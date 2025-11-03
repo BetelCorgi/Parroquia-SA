@@ -89,6 +89,11 @@
             </span>
           </div>
         </div>
+        
+        <div class="actions-card" *ngIf="s.estado === 'pendiente'">
+          <button class="btn btn--accept" (click)="acceptRequest(s.id)">Aceptar</button>
+          <button class="btn btn--deny" (click)="openDenyModal(s.id)">Denegar</button>
+        </div>
 
         <div class="denied" *ngIf="s.estado === 'denegado' && s.motivoDenegacion">
           <i class="fa-solid fa-circle-info"></i>
@@ -106,3 +111,14 @@
     </article>
   </div>
 </section>
+
+<div class="modal-overlay" *ngIf="isModalOpen()">
+  <div class="modal-content">
+    <h3>Motivo de la Denegación</h3>
+    <textarea [(ngModel)]="denialReason" placeholder="Escriba la razón de la denegación..."></textarea>
+    <div class="modal-actions">
+      <button type="button" class="btn btn--ghost" (click)="closeDenyModal()">Cancelar</button>
+      <button type="button" class="btn btn--accept" [disabled]="!denialReason.trim()" (click)="denyRequest()">Confirmar Denegación</button>
+    </div>
+  </div>
+</div>

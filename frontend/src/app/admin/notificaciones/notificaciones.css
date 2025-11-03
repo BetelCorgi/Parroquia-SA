@@ -120,12 +120,12 @@ select:focus {
 }
 
 .cover-image {
-  max-width: 250px; /* Un poco más grande para mejor visibilidad */
+  max-width: 250px; 
   width: 100%;
-  height: auto; /* Mantiene la proporción */
+  height: auto; 
   border-radius: 8px;
   border: 1px solid rgba(0, 0, 0, 0.1);
-  display: block; /* Evita espacios extra debajo de la imagen */
+  display: block; 
 }
 
 .when i {
@@ -144,7 +144,7 @@ select:focus {
 
 .card-right .title {
   margin: 0 0 8px 0;
-  color: #c98e6e; /* título con color de paleta */
+  color: #c98e6e; 
   font-size: 1.15rem;
 }
 
@@ -182,15 +182,15 @@ select:focus {
 .badge--ok {
   background: #e5f6ec;
   color: #137333;
-} /* aceptado verde */
+} 
 .badge--ko {
   background: #fde7e9;
   color: #c43d3d;
-} /* denegado rojo */
+} 
 .badge--wait {
   background: #fff4e5;
   color: #a05a00;
-} /* pendiente ámbar */
+} 
 
 .denied {
   display: grid;
@@ -208,6 +208,84 @@ select:focus {
 .denied p {
   margin: 2px 0 0 0;
   color: #000;
+}
+
+/* --- NUEVOS ESTILOS DE ACCIONES Y MODAL --- */
+
+/* Estilos para el bloque de acciones en la tarjeta */
+.actions-card {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  max-width: 300px;
+}
+.actions-card .btn {
+  width: 50%;
+  font-size: 0.9rem;
+  padding: 8px 10px;
+}
+.btn--accept {
+  background: #137333; /* Verde */
+  color: #fff;
+}
+.btn--accept:hover {
+  background: #0d5d28;
+}
+.btn--deny {
+  background: #c43d3d; /* Rojo */
+  color: #fff;
+}
+.btn--deny:hover {
+  background: #a93232;
+}
+
+/* Estilos para el Modal/Pop-up */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h3 {
+  margin-top: 0;
+  color: #000;
+  font-weight: 700;
+}
+
+.modal-content textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 15px;
+  resize: vertical;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.modal-actions .btn {
+  width: auto;
 }
 
 /* Responsive */
