@@ -1,0 +1,97 @@
+<div>
+  <div class="title-bar">
+    <h1 class="title">Personas y Comunidades</h1>
+
+    <div class="tabs">
+      <button
+        (click)="setTab('comunidades')"
+        [ngClass]="{ 'active-tab': activeTab === 'comunidades' }"
+      >
+        Comunidades
+      </button>
+      <button (click)="setTab('fieles')" [ngClass]="{ 'active-tab': activeTab === 'fieles' }">
+        Fieles
+      </button>
+    </div>
+  </div>
+
+  <div class="view-tabs">
+    <button (click)="setView('list')" [ngClass]="{ 'active-view': view === 'list' }">Lista</button>
+    <button (click)="setView('gallery')" [ngClass]="{ 'active-view': view === 'gallery' }">
+      Galería
+    </button>
+  </div>
+
+  <div class="main-content">
+    <div *ngIf="view === 'list'" class="list-container">
+      <ng-container *ngIf="activeTab === 'comunidades'; else fielesList">
+        <div class="list-header">
+          <div>Nombre</div>
+          <div>Dirigente</div>
+          <div>Tipo</div>
+          <div>Foto</div>
+          <div>Estado</div>
+          <div></div>
+        </div>
+
+        <div
+          *ngFor="let c of communities; let i = index"
+          class="list-row"
+          [ngClass]="{ 'alt-row': i % 2 === 0 }"
+        >
+          <div>{{ c.nombre }}</div>
+          <div>{{ c.dirigente }}</div>
+          <div>{{ c.tipo }}</div>
+          <div class="circle"></div>
+          <div>
+            <span [ngClass]="c.estado === 'Activo' ? 'estado-activo' : 'estado-inactivo'">
+              {{ c.estado }}
+            </span>
+          </div>
+          <div class="actions">
+            <button (click)="eliminarComunidad(c.id)" title="Eliminar">🗑️</button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #fielesList>
+        <div class="list-header fieles-header">
+          <div>DNI</div>
+          <div>Nombre</div>
+          <div>Apellido</div>
+          <div>Foto</div>
+          <div>F.Nac</div>
+          <div>Comunidad</div>
+          <div>Rol</div>
+          <div>Estado</div>
+        </div>
+
+        <div
+          *ngFor="let f of fieles; let i = index"
+          class="list-row fieles-row"
+          [ngClass]="{ 'alt-row': i % 2 === 0 }"
+        >
+          <div>{{ f.dni }}</div>
+          <div>{{ f.nombre }}</div>
+          <div>{{ f.apellido }}</div>
+          <div class="circle small"></div>
+          <div>{{ f.fNac }}</div>
+          <div>{{ f.comunidad }}</div>
+          <div>{{ f.rol }}</div>
+          <div>
+            <span [ngClass]="f.estado === 'Activo' ? 'estado-activo' : 'estado-inactivo'">
+              {{ f.estado }}
+            </span>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+
+    <div *ngIf="view === 'gallery'" class="gallery">
+      <div *ngFor="let g of galleryItems" class="gallery-item">
+        <div class="gallery-circle"></div>
+        <p>{{ g.community }}</p>
+      </div>
+    </div>
+  </div>
+</div>

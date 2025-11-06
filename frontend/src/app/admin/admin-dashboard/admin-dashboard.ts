@@ -38,5 +38,12 @@ export class AdminDashboard {
       link: '/admin/oracion-del-dia',
       color: '#F4E6FF'
     },
+    {
+      icon: 'fa-solid fa-people-group',
+      title: 'Personas y Comunidad',
+      desc: 'Gestiona la información de miembros y grupos.',
+      link: '/admin/personas-comunidad',
+      color: '#E0F7FA' 
+    }
   ];
 }
