@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -41,6 +41,36 @@ export class PersonasComunidad{
   activeTab: 'comunidades' | 'fieles' = 'comunidades';
   view: 'list' | 'gallery' = 'list';
 
+  // Filtros para Comunidades
+  filters = {
+    nombre: '',
+    lider: '',
+    tipo: '',
+    estado: ''
+  };
+
+  // Filtros para Fieles
+  fielesFilters = {
+    dni: '',
+    nombre: '',
+    apellido: '',
+    comunidad: '',
+    rol: '',
+    estado: ''
+  };
+
+  // Selección para acciones de pie de página
+  selectedCommunityIds: Set<number> = new Set<number>();
+
+  // Panel de boletines
+  showBulletin = false;
+  bulletinTarget: { tipo: 'comunidad' | 'fiel'; nombre: string; id: number } | null = null;
+  bulletinForm = {
+    titulo: '',
+    tipo: 'Aviso',
+    mensaje: '',
+  };
+
   communities: Comunidad[] = [
     { id: 1, nombre: 'Comunidad 1', dirigente: 'Juan Pérez', tipo: 'Tipo A', foto: '', estado: 'Activo' },
     { id: 2, nombre: 'Comunidad 2', dirigente: 'María García', tipo: 'Tipo B', foto: '', estado: 'Activo' },
@@ -76,5 +106,86 @@ export class PersonasComunidad{
 
   eliminarComunidad(id: number) {
     this.communities = this.communities.filter(c => c.id !== id);
+    
+  }
+
+  // Lista filtrada de comunidades
+  get filteredCommunities(): Comunidad[] {
+    const byNombre = (v: string) => v.toLowerCase().includes(this.filters.nombre.trim().toLowerCase());
+    const byLider = (v: string) => v.toLowerCase().includes(this.filters.lider.trim().toLowerCase());
+    const byTipo = (v: string) => v.toLowerCase().includes(this.filters.tipo.trim().toLowerCase());
+    const estado = this.filters.estado.trim().toLowerCase();
+
+    return this.communities.filter(c => {
+      const matchNombre = !this.filters.nombre || byNombre(c.nombre);
+      const matchLider = !this.filters.lider || byLider(c.dirigente);
+      const matchTipo = !this.filters.tipo || byTipo(c.tipo);
+      const matchEstado = !estado || c.estado.toLowerCase() === estado;
+      return matchNombre && matchLider && matchTipo && matchEstado;
+    });
+  }
+
+  clearFilters() {
+    this.filters = { nombre: '', lider: '', tipo: '', estado: '' };
+  }
+
+  // Lista filtrada de fieles
+  get filteredFieles(): Fiel[] {
+    const toLower = (v: string) => v.toLowerCase();
+    const contains = (src: string, q: string) => toLower(src).includes(toLower(q.trim()));
+    const estado = this.fielesFilters.estado.trim().toLowerCase();
+    return this.fieles.filter(f => {
+      const okDni = !this.fielesFilters.dni || contains(f.dni, this.fielesFilters.dni);
+      const okNombre = !this.fielesFilters.nombre || contains(f.nombre, this.fielesFilters.nombre);
+      const okApellido = !this.fielesFilters.apellido || contains(f.apellido, this.fielesFilters.apellido);
+      const okComunidad = !this.fielesFilters.comunidad || contains(f.comunidad, this.fielesFilters.comunidad);
+      const okRol = !this.fielesFilters.rol || contains(f.rol, this.fielesFilters.rol);
+      const okEstado = !estado || f.estado.toLowerCase() === estado;
+      return okDni && okNombre && okApellido && okComunidad && okRol && okEstado;
+    });
+  }
+
+  clearFielesFilters() {
+    this.fielesFilters = { dni: '', nombre: '', apellido: '', comunidad: '', rol: '', estado: '' };
+  }
+
+  // Selección de filas
+  toggleSelectCommunity(id: number) { }
+
+isSelected(id: number): boolean { return false; }
+
+  addCommunity() {
+    // Placeholder: aquí abrirías un modal/formulario real
+    console.log('Agregar comunidad');
+  }
+
+  modifySelected() { }
+
+  modifyCommunity(id: number) { }
+
+  // Abrir/cerrar panel y enviar
+  openBulletin(tipo: 'comunidad' | 'fiel', nombre: string, id: number) {
+    this.bulletinTarget = { tipo, nombre, id };
+    this.showBulletin = true;
+  }
+
+  openBulletinIcon(tipo: 'comunidad' | 'fiel', nombre: string, id: number) {
+    this.openBulletin(tipo, nombre, id);
+  }
+
+  closeBulletin() {
+    this.showBulletin = false;
+  }
+
+  sendBulletin() {
+    if (!this.bulletinTarget) return;
+    const payload = {
+      para: this.bulletinTarget,
+      ...this.bulletinForm,
+    };
+    console.log('Enviar boletín:', payload);
+    // Reset simple
+    this.bulletinForm = { titulo: '', tipo: 'Aviso', mensaje: '' };
+    this.showBulletin = false;
   }
 }
