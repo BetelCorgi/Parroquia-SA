@@ -35,5 +35,12 @@ export class AdminDashboard {
       desc: 'Revisa la oración diaria para la comunidad.',
       link: '/admin/oracion-del-dia',
     },
+    {
+      icon: 'fa-solid fa-people-group',
+      title: 'Personas y Comunidad',
+      desc: 'Gestiona la información de miembros y grupos.',
+      link: '/admin/personas-comunidad',
+      color: '#E0F7FA' 
+    }
   ];
 }
