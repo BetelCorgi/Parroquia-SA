@@ -1,1 +1,27 @@
-<h2>Oración del Día</h2><p>Publicación diaria.</p>
+<h1 class="title">Oración del Día</h1>
+<p class="sub">Un versículo bíblico para la reflexión diaria, actualizado automáticamente.</p>
+
+<!-- Estado de Carga -->
+<div class="oracion-card" *ngIf="loading()">
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <p>Cargando oración...</p>
+  </div>
+</div>
+
+<!-- Estado de Error -->
+<div class="oracion-card error" *ngIf="!loading() && error()">
+  <i class="fa-solid fa-circle-exclamation"></i>
+  <p><strong>Error al cargar</strong></p>
+  <p>{{ error() }}</p>
+</div>
+
+<!-- Contenido Exitoso -->
+<figure class="oracion-card" *ngIf="!loading() && !error()">
+  <blockquote class="texto">
+    "{{ texto() }}"
+  </blockquote>
+  <figcaption class="referencia">
+    — {{ referencia() }}
+  </figcaption>
+</figure>

@@ -1,12 +1,9 @@
 import { Component, computed, signal } from '@angular/core';
 import { CommonModule, registerLocaleData } from '@angular/common';
-// IMPORTANTE: AGREGAR FormsModule para el pop-up
 import { ReactiveFormsModule, FormsModule, FormBuilder, FormGroup } from '@angular/forms'; 
 import localeEsPE from '@angular/common/locales/es';
 import { startWith } from 'rxjs';
-
-// Se importan el servicio y los tipos
-import { EventRequests, Estado } from '../shared/event-requests'; // Asumo que estos tipos son correctos
+import { EventRequests, Estado } from '../shared/event-requests';
 
 registerLocaleData(localeEsPE, 'es-PE');
 
@@ -30,13 +27,11 @@ interface Solicitud {
 @Component({
   selector: 'admin-notificaciones',
   standalone: true,
-  // AGREGAR FormsModule aquí
   imports: [CommonModule, ReactiveFormsModule, FormsModule], 
   templateUrl: './notificaciones.html',
   styleUrl: './notificaciones.css'
 })
 export class Notificaciones {
-  // Datos demo - Convertido a writable signal para poder actualizar el estado
   private readonly data = signal<Solicitud[]>([
     {
       id: 1,
@@ -137,7 +132,7 @@ export class Notificaciones {
 
   openDenyModal(id: number) {
     this.requestIdToDeny = id;
-    this.denialReason = ''; // Limpiar la razón anterior
+    this.denialReason = '';
     this.isModalOpen.set(true);
   }
 

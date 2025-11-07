@@ -1,75 +1,69 @@
 <div class="admin-shell" [class.sidebar-open]="isSidebarOpen">
-  <!-- Topbar -->
-  <header class="admin-topbar">
-    <button class="menu-btn" (click)="toggleSidebar()" aria-label="Abrir menú">
-      <i class="fa-solid fa-bars"></i>
-    </button>
-
+  
+  <!-- Sidebar Fija -->
+  <aside class="admin-sidebar" [class.is-open]="isSidebarOpen" aria-label="Menú del panel">
+    
+    <!-- Logo y Título movidos -->
     <div class="brand" (click)="goDashboard()" role="button" tabindex="0" aria-label="Panel Parroquial">
       <img [src]="logoUrl" alt="Logo de la Parroquia">
       <strong>Panel Parroquial</strong>
     </div>
 
-    <!-- Acciones de la derecha (opcional) -->
-    <div class="top-spacer"></div>
-  </header>
+    <!-- Navegación con scroll propio -->
+    <nav class="side-nav">
+      <button class="nav-item" [class.active]="isActive('/admin')" (click)="goDashboard()">
+        <i class="fa-solid fa-gauge-high"></i>
+        <span>Dashboard</span>
+      </button>
 
-  <!-- Cuerpo -->
-  <div class="admin-body">
-    <!-- Sidebar -->
-    <aside class="admin-sidebar" [class.is-open]="isSidebarOpen" aria-label="Menú del panel">
-      <nav class="side-nav">
-        <button class="nav-item" [class.active]="isActive('/admin')" (click)="goDashboard()">
-          <i class="fa-solid fa-gauge-high"></i>
-          <span>Dashboard</span>
-        </button>
+      <button class="nav-item" [class.active]="isActive('/admin/notificaciones')" (click)="goNotificaciones()">
+        <i class="fa-solid fa-bell"></i>
+        <span>Notificaciones</span>
+      </button>
 
-        <button class="nav-item" [class.active]="isActive('/admin/notificaciones')" (click)="goNotificaciones()">
-          <i class="fa-solid fa-bell"></i>
-          <span>Notificaciones</span>
-        </button>
+      <button class="nav-item" [class.active]="isActive('/admin/solicitar-eventos')" (click)="goSolicitarEventos()">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+        <span>Solicitar Eventos Eucarísticos</span>
+      </button>
 
-        <button class="nav-item" [class.active]="isActive('/admin/solicitar-eventos')" (click)="goSolicitarEventos()">
-          <i class="fa-solid fa-hand-holding-heart"></i>
-          <span>Solicitar Eventos Eucarísticos</span>
-        </button>
+      <button class="nav-item" [class.active]="isActive('/admin/eventos-programados')" (click)="goEventosProgramados()">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Eventos Programados</span>
+      </button>
 
-        <button class="nav-item" [class.active]="isActive('/admin/eventos-programados')" (click)="goEventosProgramados()">
-          <i class="fa-solid fa-calendar-days"></i>
-          <span>Eventos Programados</span>
-        </button>
+      <button class="nav-item" [class.active]="isActive('/admin/oracion-del-dia')" (click)="goOracionDelDia()">
+        <i class="fa-solid fa-praying-hands"></i>
+        <span>Oración del Día</span>
+      </button>
 
-        <button class="nav-item" [class.active]="isActive('/admin/oracion-del-dia')" (click)="goOracionDelDia()">
-          <i class="fa-solid fa-praying-hands"></i>
-          <span>Oración del Día</span>
-        </button>
+      <div class="divider"></div>
 
-        <div class="divider"></div>
+      <button class="nav-item" (click)="goSite()">
+        <i class="fa-solid fa-house-chimney"></i>
+        <span>Ir al sitio</span>
+      </button>
 
-        <!-- Ir al sitio dentro del menú hamburguesa -->
-        <button class="nav-item" (click)="goSite()">
-          <i class="fa-solid fa-house-chimney"></i>
-          <span>Ir al sitio</span>
-        </button>
+      <div class="spacer"></div>
 
-        <div class="spacer"></div>
+      <button class="nav-item logout" (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+        <span>Cerrar sesión</span>
+      </button>
+    </nav>
+  </aside>
 
-        <!-- Cerrar sesión al final -->
-        <button class="nav-item logout" (click)="logout()">
-          <i class="fa-solid fa-right-from-bracket"></i>
-          <span>Cerrar sesión</span>
-        </button>
-      </nav>
-    </aside>
+  <div class="overlay" *ngIf="isSidebarOpen" (click)="toggleSidebar(false)" aria-hidden="true"></div>
 
-    <!-- Overlay para móvil -->
-    <div class="overlay" *ngIf="isSidebarOpen" (click)="toggleSidebar(false)" aria-hidden="true"></div>
+  <main class="admin-content">
+    
+    <!-- Botón de hamburguesa -->
+    <button class="menu-btn" (click)="toggleSidebar()" aria-label="Abrir menú">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    
+    <div class="content-container">
+      <router-outlet></router-outlet>
+    </div>
+  </main>
 
-    <!-- Contenido -->
-    <main class="admin-content">
-      <div class="content-container">
-        <router-outlet></router-outlet>
-      </div>
-    </main>
-  </div>
 </div>

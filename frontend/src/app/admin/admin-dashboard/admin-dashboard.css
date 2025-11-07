@@ -1,72 +1,98 @@
 .dash-title {
   margin: 0 0 4px 0;
-  color: #000;
+  color: #A88350;
   font-family: 'Merriweather', serif;
   font-size: 1.8rem;
 }
+
 .dash-sub { 
-  margin: 0 0 24px 0; /* ✨ MEJORA: Más espacio inferior */
-  color: #000;
-  opacity: .8;
+  margin: 0 0 24px 0;
+  color: #7a6a58;
+  opacity: 1;
   font-size: 1.1rem; 
 }
 
 .tiles {
   display: grid;
-  /* ✨ MEJORA RADICAL: Grid fluida y automática sin media queries */
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 
 .tile {
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
-  gap: 14px;
-  padding: 16px;
-  border-radius: 12px;
+  gap: 16px;
+  padding: 20px;
+  border-radius: 16px;
   text-decoration: none;
-  color: #000;
-  background-color: #FFFFFF; /* ✨ AÑADIDO: Color de fondo por defecto */
+  color: #4a3a28;
+  background-color: #FFFFFF;
   box-shadow: 0 4px 12px rgba(0, 0, 0, .06);
   transition: transform .2s ease, box-shadow .2s ease;
+  border: 1px solid #EAD8C7;
 }
 .tile:hover { 
-  transform: translateY(-4px); 
-  box-shadow: 0 10px 24px rgba(0,0,0,.1); 
+  transform: translateY(-5px);
+  box-shadow: 0 10px 24px rgba(168, 131, 80, .2);
 }
 
+/* Contenedor de icono */
+.tile-icon {
+  background-color: #EAD8C7;
+  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+}
 .tile-icon i {
-  font-size: 1.8rem;
-  color: #000;
-  width: 40px; /* ✨ MEJORA: Ancho fijo para alinear íconos */
+  font-size: 1.6rem;
+  color: #A88350;
+  width: auto;
   text-align: center;
 }
 
 .tile-body h3 {
   margin: 0 0 4px 0;
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
+  color: #4a3a28;
 }
 
 .tile-body p {
   margin: 0;
-  opacity: .8;
+  opacity: 1;
   font-size: 0.95rem;
+  color: #7a6a58;
 }
 
 .tile-arrow i {
-  color: #000;
-  opacity: .5;
+  color: #E3B474;
+  opacity: 0.8;
+  font-size: 1.2rem;
   transition: transform 0.2s ease;
 }
 
 .tile:hover .tile-arrow i {
-  transform: translateX(3px); /* ✨ DETALLE: La flecha se mueve al hacer hover */
+  transform: translateX(3px);
+  opacity: 1;
+}
+
+/* Colores Específicos para Iconos */
+.tile[data-tile-id="/admin/notificaciones"] .tile-icon,
+.tile[data-tile-id="/admin/oracion-del-dia"] .tile-icon {
+  background-color: #FFD0A4;
+  color: #A88350;
+}
+
+.tile[data-tile-id="/admin/solicitar-eventos"] .tile-icon,
+.tile[data-tile-id="/admin/eventos-programados"] .tile-icon {
+  background-color: #EAD8C7;
 }
 
 @media (max-width: 700px) {
   .tiles {
-    grid-template-columns: 1fr; /* Una columna en móvil */
+    grid-template-columns: 1fr;
   }
 }

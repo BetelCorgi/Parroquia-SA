@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-solicitar-eventos',
+  standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './solicitar-eventos.html',
   styleUrl: './solicitar-eventos.css'

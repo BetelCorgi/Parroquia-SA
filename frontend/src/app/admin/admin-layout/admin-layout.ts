@@ -14,8 +14,6 @@ import { filter } from 'rxjs/operators';
 export class AdminLayout implements OnDestroy {
   private readonly STORAGE_BUCKET_URL = 'https://firebasestorage.googleapis.com/v0/b/parroquia-sa-1530d.firebasestorage.app/o/';
   private readonly STORAGE_BUCKET_SUFFIX = '?alt=media';
-
-  // URL del logo construida para el template
   public logoUrl: string = this.STORAGE_BUCKET_URL + 'logo.png' + this.STORAGE_BUCKET_SUFFIX;
 
   isSidebarOpen = false;
@@ -23,7 +21,6 @@ export class AdminLayout implements OnDestroy {
   private sub: Subscription;
 
   constructor(private router: Router) {
-    // Escucha cambios de ruta para resaltar activo
     this.sub = this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe(e => {
@@ -35,7 +32,6 @@ export class AdminLayout implements OnDestroy {
     this.sub?.unsubscribe();
   }
 
-  // Toggle del menú (true/false para forzar, sin arg para alternar)
   toggleSidebar(force?: boolean) {
     this.isSidebarOpen = typeof force === 'boolean' ? force : !this.isSidebarOpen;
   }
