@@ -24,13 +24,13 @@
       <aside class="filters" *ngIf="activeTab === 'comunidades'">
         <h3>Filtros</h3>
         <label>Nombre</label>
-        <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+        <input type="text" [(ngModel)]="filters.nombre" placeholder="Buscar por nombre..." />
 
         <label>Lider</label>
-        <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+        <input type="text" [(ngModel)]="filters.lider" placeholder="Buscar por líder..." />
 
         <label>Tipo</label>
-        <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+        <input type="text" [(ngModel)]="filters.tipo" placeholder="Buscar por tipo..." />
 
         <label>Estado</label>
         <select [(ngModel)]="filters.estado">
@@ -46,19 +46,19 @@
       <aside class="filters" *ngIf="activeTab === 'fieles'">
         <h3>Filtros</h3>
         <label>DNI</label>
-        <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+        <input type="text" [(ngModel)]="fielesFilters.dni" placeholder="Buscar por DNI..." />
 
         <label>Nombre</label>
-        <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+        <input type="text" [(ngModel)]="fielesFilters.nombre" placeholder="Buscar por nombre..." />
 
         <label>Apellido</label>
-        <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+        <input type="text" [(ngModel)]="fielesFilters.apellido" placeholder="Buscar por apellido..." />
 
         <label>Comunidad</label>
-        <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+        <input type="text" [(ngModel)]="fielesFilters.comunidad" placeholder="Buscar por comunidad..." />
 
         <label>Rol</label>
-        <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+        <input type="text" [(ngModel)]="fielesFilters.rol" placeholder="Buscar por rol..." />
 
         <label>Estado</label>
         <select [(ngModel)]="fielesFilters.estado">
