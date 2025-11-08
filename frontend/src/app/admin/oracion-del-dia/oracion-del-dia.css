@@ -105,6 +105,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
+  min-width: 260px;
 }
 
 .reading-card {
@@ -155,8 +156,10 @@
 }
 
 .content-area {
-  display: grid;
+  display: flex;
   gap: 16px;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .tip-card {
@@ -182,6 +185,10 @@
   max-width: 800px;
   margin-left: auto;
   margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 300px;
+  box-sizing: border-box;
 }
 
 .plan-editor .toggle {
@@ -222,4 +229,20 @@
 .plan-editor .save:hover,
 .plan-editor .toggle:hover {
   opacity: .9;
+}
+
+.reading-card {
+  height: auto;
+  min-height: 0;
+}
+
+.tip-card {
+  flex: 0 0 220px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  .content-area {
+    display: grid;
+  }
 }
