@@ -4,6 +4,7 @@ import { Login } from './auth/login/login';
 import { ForgotPassword } from './auth/forgot-password/forgot-password';
 import { ResetPassword } from './auth/reset-password/reset-password';
 import { Register } from './auth/register/register';
+import { VerifyEmail } from './auth/verify-email/verify-email';
 
 import { adminRoutes } from './admin/admin.routes';
 
@@ -11,6 +12,7 @@ export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login', component: Login },
   { path: 'registrarse', component: Register },
+  { path: 'verify-email', component: VerifyEmail },
 
 
   // Recuperación de clave

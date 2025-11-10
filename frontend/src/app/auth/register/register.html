@@ -84,7 +84,7 @@
         </div>
 
         <div class="grid-2">
-          <label class="field">
+          <label class="field full-row">
             <span>Comunidad</span>
             <select formControlName="comunidadId" [disabled]="isLoadingCommunities">
               <option [ngValue]="null">Selecciona una comunidad (opcional)</option>
@@ -93,11 +93,6 @@
                 {{ comunidad.nombre }}
               </option>
             </select>
-          </label>
-
-          <label class="field">
-            <span>Rol en la comunidad</span>
-            <input type="text" formControlName="rolComunidad" placeholder="Ej. Ministro de música">
           </label>
         </div>
 
@@ -137,6 +132,7 @@
 
       <footer class="card-foot">
         <p>¿Ya tienes una cuenta? <a routerLink="/login">Inicia sesión</a></p>
+        <a class="ghost-link" role="button" (click)="backToLogin()">Volver a Ingresar</a>
       </footer>
     </div>
   </main>

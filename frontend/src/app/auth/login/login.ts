@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { finalize } from 'rxjs';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,22 +22,44 @@ export class Login {
   email = '';
   password = '';
   errorMessage = '';
+  isSubmitting = false;
 
-  // Credenciales simuladas
-  private readonly adminEmail = 'admin@parroquia.pe';
-  private readonly adminPassword = '12345';
-
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private authService: AuthService
+  ) {}
 
   goHome() {
     this.router.navigate(['/']);
   }
 
   onSubmit() {
-    if (this.email === this.adminEmail && this.password === this.adminPassword) {
-      this.router.navigate(['/admin']);
-    } else {
-      this.errorMessage = 'Usuario o contraseña incorrectos.';
+    this.errorMessage = '';
+
+    if (!this.email || !this.password) {
+      this.errorMessage = 'Debes ingresar tu usuario y contraseña.';
+      return;
     }
+
+    this.isSubmitting = true;
+    this.authService.login({ email: this.email, password: this.password })
+      .pipe(finalize(() => this.isSubmitting = false))
+      .subscribe({
+        next: (response) => {
+          localStorage.setItem('authToken', response?.token ?? '');
+          localStorage.setItem('authEmail', response?.email ?? this.email);
+          localStorage.setItem('authRole', response?.rol ?? '');
+
+          if ((response?.rol ?? '').toLowerCase() === 'administrador') {
+            this.router.navigate(['/admin']);
+          } else {
+            this.router.navigate(['/']);
+          }
+        },
+        error: (error) => {
+          const backendMessage = error?.error?.message || error?.error?.detalle;
+          this.errorMessage = backendMessage || 'Usuario o contraseña incorrectos.';
+        }
+      });
   }
 }

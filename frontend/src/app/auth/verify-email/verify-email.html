@@ -1,0 +1,70 @@
+<section class="verify-shell" [class.disabled]="!token">
+  <aside class="verify-left">
+    <div class="left-inner">
+      <img [src]="logoUrl" alt="Logo de la Parroquia" class="left-logo">
+      <h2 class="left-title">Confirma tu cuenta</h2>
+      <p class="left-text">
+        Estamos a un paso de darte la bienvenida a la comunidad. Ingresa una nueva contraseña
+        para activar tu usuario y disfrutar de toda la experiencia de la Parroquia San Agustín.
+      </p>
+      <div class="mini-card">
+        <i class="fa-solid fa-shield-heart"></i>
+        <div>
+          <span>Tu enlace expira en 48 horas.</span>
+          <small>Por seguridad, genera una nueva solicitud si pasa este tiempo.</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <main class="verify-right">
+    <button type="button" class="back-btn" (click)="goHome()" aria-label="Volver al inicio">
+      <i class="fa-solid fa-arrow-left"></i>
+      <span>Volver al inicio</span>
+    </button>
+
+    <div class="form-card">
+      <header class="card-head">
+        <h1>Configura tu contraseña</h1>
+        <p>Ingresa y confirma tu nueva contraseña para finalizar la verificación.</p>
+      </header>
+
+      <form class="verify-form" [formGroup]="form" (ngSubmit)="submit()" novalidate>
+        <label class="field">
+          <span>Nueva contraseña *</span>
+          <div class="password-wrap">
+            <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="••••••••">
+            <button type="button" class="toggle-pass" (click)="showPassword = !showPassword" aria-label="Mostrar contraseña">
+              <i class="fa-solid" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
+            </button>
+          </div>
+          <small class="helper">Debe tener mínimo 8 caracteres.</small>
+        </label>
+
+        <label class="field">
+          <span>Confirmar contraseña *</span>
+          <div class="password-wrap">
+            <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="••••••••">
+            <button type="button" class="toggle-pass" (click)="showConfirmPassword = !showConfirmPassword" aria-label="Mostrar confirmación">
+              <i class="fa-solid" [class.fa-eye]="!showConfirmPassword" [class.fa-eye-slash]="showConfirmPassword"></i>
+            </button>
+          </div>
+        </label>
+
+        <p class="error" *ngIf="serverError()">{{ serverError() }}</p>
+        <p class="success" *ngIf="successMessage()">{{ successMessage() }}</p>
+
+        <button type="submit" class="submit-btn" [disabled]="isSubmitting || !token">
+          <span *ngIf="!isSubmitting">Verificar correo</span>
+          <span *ngIf="isSubmitting" class="spinner">
+            <i class="fa-solid fa-circle-notch fa-spin"></i> Verificando...
+          </span>
+        </button>
+      </form>
+
+      <footer class="card-foot">
+        <p>¿Ya estás listo? <a (click)="backToLogin()">Inicia sesión</a></p>
+      </footer>
+    </div>
+  </main>
+</section>

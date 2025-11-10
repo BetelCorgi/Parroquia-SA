@@ -14,7 +14,6 @@ type RegisterFormGroup = {
   telefono: FormControl<string | null>;
   fechaNacimiento: FormControl<string | null>;
   comunidadId: FormControl<number | null>;
-  rolComunidad: FormControl<string | null>;
   password: FormControl<string>;
   confirmPassword: FormControl<string>;
 };
@@ -57,7 +56,6 @@ export class Register implements OnInit {
       telefono: this.fb.control<string | null>(null),
       fechaNacimiento: this.fb.control<string | null>(null),
       comunidadId: this.fb.control<number | null>(null),
-      rolComunidad: this.fb.control<string | null>(null),
       password: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(8)]),
       confirmPassword: this.fb.nonNullable.control('', [Validators.required])
     });
@@ -101,7 +99,6 @@ export class Register implements OnInit {
       telefono: value.telefono || null,
       fechaNacimiento: value.fechaNacimiento || null,
       comunidadId: value.comunidadId,
-      rolComunidad: value.rolComunidad || null,
       password: value.password,
       confirmPassword: value.confirmPassword
     };
@@ -126,5 +123,9 @@ export class Register implements OnInit {
 
   goHome(): void {
     this.router.navigate(['/']);
+  }
+
+  backToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

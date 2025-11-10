@@ -78,7 +78,6 @@ public class AuthService {
         fiel.setDni(request.getDni());
         fiel.setNombre(request.getNombre());
         fiel.setApellido(request.getApellido());
-        fiel.setRol(request.getRolComunidad());
         fiel.setFechaNac(request.getFechaNacimiento());
         fiel.setCorreo(request.getEmail());
         fiel.setTelefono(request.getTelefono());

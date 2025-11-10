@@ -31,7 +31,11 @@ public class Sesion {
     
     @Column(name = "fecha_expiracion", nullable = false)
     private LocalDateTime fechaExpiracion;
-    
+
+    @CreationTimestamp
+    @Column(name = "fecha_creacion", nullable = false, updatable = false)
+    private LocalDateTime fechaCreacion;
+
     @Column(nullable = false)
     private Boolean activa = true;
     

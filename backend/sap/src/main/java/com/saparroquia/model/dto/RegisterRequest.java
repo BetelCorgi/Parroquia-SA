@@ -23,8 +23,6 @@ public class RegisterRequest {
     @NotBlank(message = "El apellido es obligatorio")
     private String apellido;
 
-    private String rolComunidad;
-
     private String telefono;
 
     private LocalDate fechaNacimiento;
