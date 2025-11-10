@@ -17,4 +17,12 @@ export class AuthService {
   login(credentials: { email: string; password: string }): Observable<any> {
     return this.http.post(`${this.apiUrl}/login`, credentials);
   }
+
+  registerFiel(payload: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register-fiel`, payload);
+  }
+
+  verifyEmail(token: string, passwords: { password: string; confirmPassword: string }): Observable<any> {
+    return this.http.post(`${this.apiUrl}/verify-email`, { token, ...passwords });
+  }
 }

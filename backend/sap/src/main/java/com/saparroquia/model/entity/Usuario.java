@@ -31,6 +31,15 @@ public class Usuario {
     
     @Column(nullable = false)
     private Boolean estado = true;
+
+    @Column(name = "correo_verificado", nullable = false)
+    private Boolean correoVerificado = false;
+
+    @Column(name = "token_verificacion", length = 255)
+    private String tokenVerificacion;
+
+    @Column(name = "token_verificacion_expira")
+    private LocalDateTime tokenVerificacionExpira;
     
     @CreationTimestamp
     @Column(name = "fecha_creacion", nullable = false, updatable = false)
@@ -41,7 +50,11 @@ public class Usuario {
     private Fiel fiel;
     
     public enum RolUsuario {
-        FIEL,
-        ADMINISTRADOR
+        administrador,
+        fiel;
+
+        public String getAuthority() {
+            return "ROLE_" + name().toUpperCase();
+        }
     }
 }

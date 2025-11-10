@@ -31,16 +31,16 @@ public class Fiel {
     @Column(nullable = false, length = 50)
     private String apellido;
     
-    @Column(length = 50)
+    @Column(length = 80)
     private String rol;
     
-    @Column(length = 50)
+    @Column(length = 150)
     private String fotografia;
     
     @Column(name = "fecha_nac")
     private LocalDate fechaNac;
     
-    @Column(length = 25)
+    @Column(length = 100)
     private String correo;
     
     @Column(length = 15)

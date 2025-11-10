@@ -36,4 +36,26 @@ public class EmailService {
             log.error("Error enviando email de recuperación a {}: {}", to, e.getMessage());
         }
     }
+
+    public void sendVerificationEmail(String to, String verificationLink, String nombre) {
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
+
+            helper.setTo(to);
+            helper.setSubject("Verifica tu correo - Parroquia San Agustín");
+
+            Context context = new Context();
+            context.setVariable("verificationLink", verificationLink);
+            context.setVariable("nombre", nombre);
+
+            String htmlContent = templateEngine.process("email/verify-account", context);
+            helper.setText(htmlContent, true);
+
+            mailSender.send(message);
+            log.info("Email de verificación enviado a: {}", to);
+        } catch (Exception e) {
+            log.error("Error enviando email de verificación a {}: {}", to, e.getMessage());
+        }
+    }
 }

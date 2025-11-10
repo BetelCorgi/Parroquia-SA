@@ -57,10 +57,11 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/api/auth/**",
                                 "/api/public/**",
+                                "/api/comunidades/**",
                                 "/error"
                         ).permitAll()
                         // Endpoints de administrador
-                        .requestMatchers("/api/admin/**").hasRole("ADMINISTRADOR")
+                        .requestMatchers("/api/admin/**").hasRole("administrador")
                         // Todos los demás requieren autenticación
                         .anyRequest().authenticated()
                 )
