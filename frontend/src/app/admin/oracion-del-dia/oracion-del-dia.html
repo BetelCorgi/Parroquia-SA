@@ -1,27 +1,60 @@
-<h1 class="title">Oración del Día</h1>
-<p class="sub">Un versículo bíblico para la reflexión diaria, actualizado automáticamente.</p>
+﻿<div class="prayer-wrap">
+  <div class="header-row">
+    <div class="header-icon">📖</div>
+    <div>
+      <h1 class="title">Oración del Día</h1>
+      <p class="sub">Un versículo para la reflexión diaria — {{ today | date:'fullDate':undefined:'es-PE' }}</p>
+    </div>
+  </div>
 
-<!-- Estado de Carga -->
-<div class="oracion-card" *ngIf="loading()">
-  <div class="spinner-container">
-    <div class="spinner"></div>
-    <p>Cargando oración...</p>
+  <!-- Estado de Carga -->
+  <div class="oracion-card" *ngIf="loading()">
+    <div class="spinner-container">
+      <div class="spinner"></div>
+      <p>Cargando oración...</p>
+    </div>
+  </div>
+
+  <!-- Estado de Error -->
+  <div class="oracion-card error" *ngIf="!loading() && error()">
+    <i class="fa-solid fa-circle-exclamation"></i>
+    <p><strong>Error al cargar</strong></p>
+    <p>{{ error() }}</p>
+  </div>
+
+  <!-- Contenido Exitoso -->
+  <div *ngIf="!loading() && !error()" class="content-area">
+    <div class="cards" *ngIf="lecturas().length > 0; else singleVerse">
+      <div class="reading-card" *ngFor="let r of lecturas()">
+        <div class="reading-head">
+          <span class="badge">{{ fixEncoding(r.tipo || 'Versiculo del dia') }}</span>
+          <span class="reading-ref">{{ r.referencia }}</span>
+        </div>
+        <div class="reading-text">{{ r.texto }}</div>
+      </div>
+    </div>
+    <ng-template #singleVerse>
+      <figure class="oracion-card">
+        <blockquote class="texto">“{{ texto() }}”</blockquote>
+        <figcaption class="referencia">{{ referencia() }}</figcaption>
+      </figure>
+    </ng-template>
+
+    <div class="tip-card">
+      <span class="tip-badge">Consejo</span>
+      <p>{{ tipOfDay }}</p>
+    </div>
+
+    <!-- Editor simple para plan local -->
+    <div class="plan-editor">
+      <button class="toggle" (click)="toggleEditMode()">{{ editMode() ? 'Cerrar editor' : 'Agregar lectura local' }}</button>
+      <div class="editor-body" *ngIf="editMode()">
+        <label>Referencia</label>
+        <input type="text" placeholder="Ej.: Juan 3:16" [ngModel]="newRef()" (ngModelChange)="newRef.set($event)" />
+        <label>Texto</label>
+        <textarea rows="3" placeholder="Escribe el texto…" [ngModel]="newText()" (ngModelChange)="newText.set($event)"></textarea>
+        <button class="save" (click)="addLocalReading()">Guardar en plan local</button>
+      </div>
+    </div>
   </div>
 </div>
-
-<!-- Estado de Error -->
-<div class="oracion-card error" *ngIf="!loading() && error()">
-  <i class="fa-solid fa-circle-exclamation"></i>
-  <p><strong>Error al cargar</strong></p>
-  <p>{{ error() }}</p>
-</div>
-
-<!-- Contenido Exitoso -->
-<figure class="oracion-card" *ngIf="!loading() && !error()">
-  <blockquote class="texto">
-    "{{ texto() }}"
-  </blockquote>
-  <figcaption class="referencia">
-    — {{ referencia() }}
-  </figcaption>
-</figure>
