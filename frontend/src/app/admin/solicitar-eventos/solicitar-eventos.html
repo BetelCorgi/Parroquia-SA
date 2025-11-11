@@ -1,0 +1,84 @@
+<section class="solicitud-wrap">
+  <h1 class="title">Solicitar Eventos Eucarísticos</h1>
+  <p class="sub">Complete los datos para enviar su solicitud. Los cambios se reflejarán en Notificaciones.</p>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="grid">
+    <!-- Columna izquierda -->
+    <div class="col">
+      <label class="field">
+        <span>Título *</span>
+        <input type="text" formControlName="titulo" placeholder="Ej: Misa de Acción de Gracias">
+        <small class="msg" *ngIf="form.controls['titulo'].touched && form.controls['titulo'].invalid">Campo requerido.</small>
+      </label>
+
+      <label class="field">
+        <span>Descripción (Asunto) *</span>
+        <textarea rows="6" formControlName="asunto" placeholder="Describa el motivo..."></textarea>
+        <small class="msg" *ngIf="form.controls['asunto'].touched && form.controls['asunto'].invalid">Campo requerido.</small>
+      </label>
+
+      <label class="field">
+        <span>Cantidad de invitados *</span>
+        <input type="number" formControlName="invitados" min="1" max="1000">
+        <small class="msg" *ngIf="form.controls['invitados'].touched && form.controls['invitados'].invalid">Ingrese un número válido (1-1000).</small>
+      </label>
+    </div>
+
+    <!-- Columna derecha -->
+    <div class="col">
+      <div class="row2">
+        <label class="field">
+          <span>Fecha *</span>
+          <input type="date" formControlName="fecha">
+          <small class="msg" *ngIf="form.controls['fecha'].touched && form.controls['fecha'].invalid">Campo requerido.</small>
+        </label>
+
+        <label class="field">
+          <span>Hora inicio *</span>
+          <input type="time" formControlName="hora">
+          <small class="msg" *ngIf="form.controls['hora'].touched && form.controls['hora'].invalid">Campo requerido.</small>
+        </label>
+
+        <label class="field">
+          <span>Hora final</span>
+          <input type="time" formControlName="horaFin">
+        </label>
+      </div>
+
+      <label class="field">
+        <span>Ubicación *</span>
+        <input type="text" formControlName="ubicacion" placeholder="Ej: Templo Principal, Capilla San José...">
+        <small class="msg" *ngIf="form.controls['ubicacion'].touched && form.controls['ubicacion'].invalid">Campo requerido.</small>
+
+      </label>
+
+      <label class="field">
+        <span>Tipo de Evento Eucarístico *</span>
+        <select formControlName="tipo">
+          <option value="">Seleccione…</option>
+          <option *ngFor="let t of tipos" [value]="t">{{ t }}</option>
+        </select>
+        <small class="msg" *ngIf="form.controls['tipo'].touched && form.controls['tipo'].invalid">Campo requerido.</small>
+      </label>
+
+      <label class="field">
+        <span>Enlace a Zoom/Meet (opcional)</span>
+        <input type="url" formControlName="enlaceVideo" placeholder="https://zoom.us/... o https://meet.google.com/...">
+      </label>
+
+      <div class="field">
+        <span>Imagen de portada (opcional)</span>
+        <input type="file" accept="image/*" (change)="onPortadaChange($event)">
+        <div class="preview" *ngIf="portadaPreview()">
+          <img [src]="portadaPreview()!" alt="Portada" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <p class="error" *ngIf="error()">{{ error() }}</p>
+        <p class="ok" *ngIf="ok()">{{ ok() }}</p>
+        <button type="submit" class="btn-primary" [disabled]="sending()">Enviar Solicitud</button>
+      </div>
+    </div>
+  </form>
+</section>

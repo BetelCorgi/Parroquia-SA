@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "app.frontend.base-url",
+      "type": "java.lang.String",
+      "description": "URL base del frontend utilizada para construir enlaces en correos."
+    }
+  ]
+}

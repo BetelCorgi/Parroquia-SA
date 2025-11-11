@@ -1,0 +1,17 @@
+<h1 class="dash-title">Bienvenido al Panel</h1>
+<p class="dash-sub">Selecciona una función para comenzar</p>
+
+<div class="tiles">
+  <a class="tile" *ngFor="let t of tiles" [routerLink]="t.link" [attr.data-tile-id]="t.link">
+    <div class="tile-icon">
+      <i [class]="t.icon"></i>
+    </div>
+    <div class="tile-body">
+      <h3>{{ t.title }}</h3>
+      <p>{{ t.desc }}</p>
+    </div>
+    <div class="tile-arrow">
+      <i class="fa-solid fa-chevron-right"></i>
+    </div>
+  </a>
+</div>

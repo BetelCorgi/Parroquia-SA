@@ -1,0 +1,95 @@
+<main class="contenido">
+  <div class="header">
+    <button class="btn-volver" (click)="volverAlFormulario()">← Volver al formulario</button>
+    <h2>Disponibilidad</h2>
+    <div class="acciones-btns">
+      <button class="btn-lista" (click)="mostrarListaPersonal()">Lista de personal</button>
+      <button class="btn-volver-tabla" (click)="mostrarCalendario()">Disponibilidades</button>
+    </div>
+  </div>
+
+  <!-- Calendario -->
+  <div class="calendario" *ngIf="!mostrarLista">
+    <div class="dias-semana">
+      <div>Domingo</div>
+      <div>Lunes</div>
+      <div>Martes</div>
+      <div>Miércoles</div>
+      <div>Jueves</div>
+      <div>Viernes</div>
+      <div>Sábado</div>
+    </div>
+
+    <div class="tabla-calendario">
+      <div class="horas">
+        <div>7am</div>
+        <div>8am</div>
+        <div>9am</div>
+        <div>10am</div>
+        <div>11am</div>
+        <div>12pm</div>
+        <div>1pm</div>
+        <div>2pm</div>
+        <div>3pm</div>
+        <div>4pm</div>
+        <div>5pm</div>
+        <div>6pm</div>
+        <div>7pm</div>
+      </div>
+
+      <div class="grid-dias">
+        <div class="evento verde" style="grid-column: 2; grid-row: 13">
+          <span>Misa de Acción de Gracias</span>
+          <small>7:00pm</small>
+        </div>
+
+        <div class="evento rojo" style="grid-column: 4; grid-row: 10">
+          <span>Funeral</span>
+          <small>4:00pm</small>
+        </div>
+
+        <div class="evento amarillo" style="grid-column: 7; grid-row: 5">
+          <span>Bautizo</span>
+          <small>11:30am</small>
+        </div>
+
+        <div class="evento verde" style="grid-column: 1; grid-row: 12">
+          <span>Misa Comunitaria</span>
+          <small>6:00pm</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de personal -->
+  <div class="tabla-personal" *ngIf="mostrarLista">
+    <div class="tabla-header">
+      <h2>Lista de Personal</h2>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>DNI</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <th>Rol</th>
+          <th>Teléfono</th>
+          <th>Correo</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of personal">
+          <td>{{ p.dni }}</td>
+          <td>{{ p.nombre }}</td>
+          <td>{{ p.apellido }}</td>
+          <td>{{ p.rol }}</td>
+          <td>{{ p.telefono }}</td>
+          <td>{{ p.correo }}</td>
+          <td>{{ p.estado }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

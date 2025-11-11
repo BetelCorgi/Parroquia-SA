@@ -1,0 +1,181 @@
+﻿<div>
+  <div class="title-bar">
+    <h1 class="title">Personas y Comunidades</h1>
+
+    <div class="tabs">
+      <button (click)="setTab('comunidades')" [ngClass]="{ 'active-tab': activeTab === 'comunidades' }">
+        Comunidades
+      </button>
+      <button (click)="setTab('fieles')" [ngClass]="{ 'active-tab': activeTab === 'fieles' }">
+        Fieles
+      </button>
+    </div>
+  </div>
+
+  <div class="view-tabs">
+    <button (click)="setView('list')" [ngClass]="{ 'active-view': view === 'list' }">Lista</button>
+    <button (click)="setView('gallery')" [ngClass]="{ 'active-view': view === 'gallery' }">Galeria</button>
+  </div>
+
+  <div class="main-content">
+    <!-- Vista Lista con filtros -->
+    <div *ngIf="view === 'list'" class="content-wrapper">
+      <!-- Filtros para Comunidades -->
+      <aside class="filters" *ngIf="activeTab === 'comunidades'">
+        <h3>Filtros</h3>
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="filters.nombre" placeholder="Buscar por nombre..." />
+
+        <label>Lider</label>
+        <input type="text" [(ngModel)]="filters.lider" placeholder="Buscar por líder..." />
+
+        <label>Tipo</label>
+        <input type="text" [(ngModel)]="filters.tipo" placeholder="Buscar por tipo..." />
+
+        <label>Estado</label>
+        <select [(ngModel)]="filters.estado">
+          <option value="">Todos</option>
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+
+        <button class="clear-btn" (click)="clearFilters()">Limpiar</button>
+      </aside>
+
+      <!-- Filtros para Fieles -->
+      <aside class="filters" *ngIf="activeTab === 'fieles'">
+        <h3>Filtros</h3>
+        <label>DNI</label>
+        <input type="text" [(ngModel)]="fielesFilters.dni" placeholder="Buscar por DNI..." />
+
+        <label>Nombre</label>
+        <input type="text" [(ngModel)]="fielesFilters.nombre" placeholder="Buscar por nombre..." />
+
+        <label>Apellido</label>
+        <input type="text" [(ngModel)]="fielesFilters.apellido" placeholder="Buscar por apellido..." />
+
+        <label>Comunidad</label>
+        <input type="text" [(ngModel)]="fielesFilters.comunidad" placeholder="Buscar por comunidad..." />
+
+        <label>Rol</label>
+        <input type="text" [(ngModel)]="fielesFilters.rol" placeholder="Buscar por rol..." />
+
+        <label>Estado</label>
+        <select [(ngModel)]="fielesFilters.estado">
+          <option value="">Todos</option>
+          <option value="Activo">Activo</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+
+        <button class="clear-btn" (click)="clearFielesFilters()">Limpiar</button>
+      </aside>
+
+      <!-- Listado -->
+      <div class="list-container">
+        <!-- Panel Comunidades -->
+        <div class="tab-panel" *ngIf="activeTab === 'comunidades'">
+          <div class="list-header">
+            <div>Nombre</div>
+            <div>Dirigente</div>
+            <div>Tipo</div>
+            <div>Foto</div>
+            <div>Estado</div>
+            <div></div>
+          </div>
+
+          <div
+            *ngFor="let c of filteredCommunities; let i = index"
+            class="list-row"
+            [ngClass]="{ 'alt-row': i % 2 === 0 }"
+          >
+            <div>{{ c.nombre }}</div>
+            <div>{{ c.dirigente }}</div>
+            <div>{{ c.tipo }}</div>
+            <div class="circle"></div>
+            <div>
+              <span [ngClass]="c.estado === 'Activo' ? 'estado-activo' : 'estado-inactivo'">
+                {{ c.estado }}
+              </span>
+            </div>
+            <div class="actions">
+              <button class="icon-btn mail" (click)="$event.stopPropagation(); openBulletin('comunidad', c.nombre, c.id)" title="Enviar bolet&iacute;n">&#9993;</button>
+              <button class="danger" (click)="$event.stopPropagation(); eliminarComunidad(c.id)" title="Eliminar">&times;</button>
+              
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel Fieles -->
+        <div class="tab-panel" *ngIf="activeTab === 'fieles'">
+          <div class="list-header fieles-header">
+            <div>DNI</div>
+            <div>Nombre</div>
+            <div>Apellido</div>
+            <div>Foto</div>
+            <div>F.Nac</div>
+            <div>Comunidad</div>
+            <div>Rol</div>
+            <div>Estado</div>
+          </div>
+
+          <div
+            *ngFor="let f of filteredFieles; let i = index"
+            class="list-row fieles-row"
+            [ngClass]="{ 'alt-row': i % 2 === 0 }"
+          >
+            <div>{{ f.dni }}</div>
+            <div>{{ f.nombre }}</div>
+            <div>{{ f.apellido }}</div>
+            <div class="circle small"></div>
+            <div>{{ f.fNac }}</div>
+            <div>{{ f.comunidad }}</div>
+            <div>{{ f.rol }}</div>
+            <div>
+              <span [ngClass]="f.estado === 'Activo' ? 'estado-activo' : 'estado-inactivo'">
+                {{ f.estado }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vista Galeria -->
+    <div *ngIf="view === 'gallery'" class="gallery">
+      <div *ngFor="let g of galleryItems" class="gallery-item">
+        <div class="gallery-circle"></div>
+        <p>{{ g.community }}</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Panel deslizante: Enviar Bolet&iacute;n -->
+  <div class="bulletin-backdrop" *ngIf="showBulletin" (click)="closeBulletin()"></div>
+  <div class="bulletin-panel" *ngIf="showBulletin">
+    <div class="bulletin-header">
+      <h3>Enviar Bolet&iacute;n</h3>
+      <button class="close" (click)="closeBulletin()">&times;</button>
+    </div>
+    <div class="bulletin-body" *ngIf="bulletinTarget as t">
+      <p class="to">Para: <strong>{{ t.nombre }}</strong> <span class="pill">{{ t.tipo | titlecase }}</span></p>
+      <label>T&iacute;tulo</label>
+      <input type="text" [(ngModel)]="bulletinForm.titulo" placeholder="Introducir t&iacute;tulo..." />
+      <label>Tipo de Bolet&iacute;n</label>
+      <select [(ngModel)]="bulletinForm.tipo">
+        <option>Aviso</option>
+        <option>Invitaci&oacute;n</option>
+        <option>Recordatorio</option>
+        <option>Comunicado</option>
+      </select>
+      <label>Mensaje</label>
+      <textarea rows="5" [(ngModel)]="bulletinForm.mensaje" placeholder="Escribe el mensaje..."></textarea>
+      <div class="actions-row">
+        <button class="primary" (click)="sendBulletin()">Enviar Bolet&iacute;n</button>
+        <button class="secondary" (click)="closeBulletin()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

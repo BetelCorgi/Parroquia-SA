@@ -3,11 +3,19 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css'
 })
 export class Footer {
+  private readonly STORAGE_BUCKET_URL = 'https://firebasestorage.googleapis.com/v0/b/parroquia-sa-1530d.firebasestorage.app/o/';
+  private readonly STORAGE_BUCKET_SUFFIX = '?alt=media';
+
+  // URLs construidas para el template
+  public logoUrl: string = this.STORAGE_BUCKET_URL + 'logo.png' + this.STORAGE_BUCKET_SUFFIX;
+  public footerBgUrl: string = this.STORAGE_BUCKET_URL + 'footer-bg.jpg' + this.STORAGE_BUCKET_SUFFIX;
+
   // Datos de contacto
   direccion = 'Parroquia San Agustín de Hipona – Pimentel, Chiclayo';
   correo = 'contacto@parroquiasanagustin.pe';

@@ -4,7 +4,8 @@
   flex-direction: column;
   gap: 16px;
   padding: 24px 20px 40px;
-  background: transparent; /* el fondo real lo pone cada rectángulo */
+  background: transparent;
+  overflow-x: hidden;
 }
 
 /* ---------- TOP (80%) ---------- */
@@ -12,7 +13,8 @@
   position: relative;
   border-radius: 9px;
   overflow: hidden;
-  min-height: 450px; /* altura base para lograr un ~80% visual */
+  min-height: 450px;
+  background-color: #f7e9d7;
 }
 
 /* Fondo desenfocado */
@@ -27,7 +29,7 @@
   height: 100%;
   object-fit: cover;
   filter: blur(6px);
-  transform: scale(1.06); /* compensa el blur en bordes */
+  transform: scale(1.06);
   opacity: 0.65;
 }
 
@@ -44,7 +46,7 @@
 
 /* Tarjetas/columnas internas */
 .col {
-  background: rgba(251, 234, 219, 0.7); /* #FBEADB con transparencia */
+  background: rgba(251, 234, 219, 0.7);
   border-radius: 14px;
   padding: 18px 16px;
   backdrop-filter: saturate(110%) blur(2px);
@@ -80,6 +82,7 @@
 .link {
   color: #000000;
   text-decoration: none;
+  word-break: break-word;
 }
 .link:hover {
   text-decoration: underline;
@@ -138,9 +141,11 @@
 .schedule-list .dia {
   color: #000000;
   font-weight: 600;
+  white-space: nowrap;
 }
 .schedule-list .hora {
   color: #000000;
+  text-align: right;
 }
 
 .santisimo {
@@ -165,6 +170,7 @@
 .santisimo .fila .dia {
   color: #000000;
   font-weight: 600;
+  white-space: nowrap;
 }
 .santisimo .fila .hora {
   color: #000000;
@@ -183,7 +189,8 @@
 }
 .bottom-left img {
   height: 46px;
-  width: auto;
+  width: auto; 
+  border-radius: 4px;
 }
 .bottom-center {
   text-align: center;
@@ -201,6 +208,17 @@
   .top-content {
     grid-template-columns: 1fr;
     padding: 30px 24px;
+  }
+
+  .schedule-list li {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px; /* Menos espacio vertical */
+  }
+  .santisimo .fila {
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
   }
 }
 
@@ -235,16 +253,6 @@
 
   .social-row {
     justify-content: center;
-  }
-
-  .santisimo .fila {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .schedule-list li {
-    flex-direction: column;
-    align-items: center;
   }
 }
 

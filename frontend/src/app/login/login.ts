@@ -14,4 +14,8 @@ export class Login {
   goHome() {
     this.router.navigate(['/']);
   }
+
+  goToPasswordRecovery() {
+    this.router.navigate(['/password-recovery']);
+  }
 }

@@ -1,0 +1,252 @@
+.verify-shell {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  background: #fff8ef;
+  color: #2e2a27;
+}
+
+.verify-shell.disabled {
+  opacity: 0.6;
+}
+
+.verify-left {
+  background: linear-gradient(160deg, #c98e6e 0%, #f3d7b3 100%);
+  padding: clamp(32px, 6vw, 72px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.left-inner {
+  max-width: 480px;
+  display: grid;
+  gap: 20px;
+  color: #fff;
+}
+
+.left-logo {
+  width: clamp(130px, 40%, 210px);
+  border-radius: 14px;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.2);
+}
+
+.left-title {
+  margin: 0;
+  font-family: 'Merriweather', serif;
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  letter-spacing: 1px;
+}
+
+.left-text {
+  margin: 0;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.mini-card {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.mini-card i {
+  font-size: 1.6rem;
+  align-self: center;
+}
+
+.mini-card span {
+  font-weight: 600;
+}
+
+.mini-card small {
+  display: block;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.verify-right {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(28px, 6vw, 72px);
+  background: #fff8ef;
+}
+
+.back-btn {
+  position: absolute;
+  top: clamp(16px, 4vw, 36px);
+  left: clamp(16px, 4vw, 36px);
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #6b4b39;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.back-btn:hover {
+  text-decoration: underline;
+}
+
+.form-card {
+  width: min(92%, 520px);
+  background: #ffffff;
+  border-radius: 24px;
+  padding: clamp(26px, 6vw, 42px);
+  box-shadow: 0 22px 48px rgba(33, 20, 13, 0.18);
+  border: 1px solid rgba(201, 142, 110, 0.22);
+}
+
+.card-head h1 {
+  margin: 0 0 8px;
+  font-family: 'Merriweather', serif;
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+  color: #6b4b39;
+}
+
+.card-head p {
+  margin: 0;
+  color: #8c6d57;
+}
+
+.verify-form {
+  margin-top: 24px;
+  display: grid;
+  gap: 18px;
+}
+
+.field span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(107, 75, 57, 0.2);
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  background: #fff;
+  color: #2e2a27;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.field input:focus {
+  border-color: #c98e6e;
+  box-shadow: 0 0 0 3px rgba(201, 142, 110, 0.2);
+}
+
+.password-wrap {
+  position: relative;
+}
+
+.toggle-pass {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  border: 0;
+  background: transparent;
+  color: #8c6d57;
+  cursor: pointer;
+}
+
+.helper {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: #a1816d;
+}
+
+.error {
+  color: #d8614b;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.success {
+  color: #2f8f83;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.submit-btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 14px;
+  background: linear-gradient(120deg, #c98e6e, #f3d7b3);
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(201, 142, 110, 0.35);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}
+
+.card-foot {
+  margin-top: 18px;
+  text-align: center;
+  color: #6b4b39;
+}
+
+.card-foot a {
+  color: #c98e6e;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.card-foot a:hover {
+  text-decoration: underline;
+}
+
+.spinner i {
+  font-size: 1rem;
+}
+
+@media (max-width: 1100px) {
+  .verify-shell {
+    grid-template-columns: 1fr;
+  }
+  .verify-left {
+    padding: 36px 24px 48px;
+  }
+  .verify-right {
+    padding: 32px 18px 48px;
+  }
+}
+
+@media (max-width: 700px) {
+  .form-card {
+    width: min(100%, 480px);
+    padding: 24px 18px;
+  }
+  .back-btn {
+    position: static;
+    margin-bottom: 16px;
+  }
+}

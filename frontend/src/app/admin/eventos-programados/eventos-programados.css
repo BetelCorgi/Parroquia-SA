@@ -1,0 +1,237 @@
+.contenido {
+  width: 100%;
+}
+
+/* CABECERA */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.btn-volver {
+  background-color: #EAD8C7; 
+  border: none;
+  color: #4a3a28;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-volver:hover {
+  background-color: #d4c4b6;
+}
+
+.header h2 {
+  font-family: "Merriweather", serif;
+  color: #A88350;
+  font-weight: 700;
+  font-size: 1.8rem;
+}
+
+/* CALENDARIO */
+.calendario {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  border: 1px solid #EAD8C7;
+  overflow-x: auto;
+}
+
+/* Días de la semana */
+.dias-semana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  font-weight: 600;
+  background-color: #f7f3ef;
+  color: #A88350;
+  border-radius: 10px;
+  padding: 12px 0;
+  margin-bottom: 20px;
+  min-width: 800px;
+}
+
+/* TABLA CALENDARIO */
+.tabla-calendario {
+  display: flex;
+  width: 100%;
+  min-width: 800px;
+}
+
+/* Horas */
+.horas {
+  display: flex;
+  flex-direction: column;
+  width: 80px;
+  font-size: 0.9rem;
+  color: #7a6a58;
+  margin-right: 15px;
+}
+
+.horas div {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* GRID DE DÍAS */
+.grid-dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-template-rows: repeat(13, 60px);
+  gap: 6px;
+  width: 100%;
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+/* EVENTOS */
+.evento {
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6px 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.evento:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  filter: brightness(1.05);
+  z-index: 10;
+}
+
+/* Colores por estado (usando paleta) */
+.verde {
+  background-color: #e5f6ec;
+  border-left: 5px solid #4caf50;
+  color: #2e7d32;
+}
+.amarillo {
+  background-color: #fff8e1;
+  border-left: 5px solid #ffb300;
+  color: #9c6f00;
+}
+.rojo {
+  background-color: #fde7e9;
+  border-left: 5px solid #f44336;
+  color: #b71c1c;
+}
+
+.evento span {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.evento small {
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+}
+@media (max-width: 900px) {
+}
+
+/* Botones de acciones */
+.acciones-btns {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-lista,
+.btn-volver-tabla {
+  background-color: #E3B474;
+  color: #4a3a28;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-lista:hover,
+.btn-volver-tabla:hover {
+  background-color: #A88350;
+  color: #FFFFFF;
+}
+
+/* TABLA DE PERSONAL */
+.tabla-personal {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  animation: fadeIn 0.3s ease-in-out;
+  border: 1px solid #EAD8C7;
+  overflow-x: auto; 
+}
+
+.tabla-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.tabla-header h2 {
+  font-family: "Merriweather", serif;
+  color: #A88350;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.tabla-personal table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  min-width: 700px;
+}
+
+.tabla-personal th,
+.tabla-personal td {
+  border: 1px solid #EAD8C7;
+  padding: 10px 12px;
+  text-align: left;
+  color: #4a3a28;
+}
+
+.tabla-personal th {
+  background-color: #f7f3ef;
+  color: #A88350; 
+  font-weight: 600;
+}
+
+.tabla-personal tr:nth-child(even) {
+  background-color: #fdfcfa;
+}
+
+.tabla-personal tr:hover {
+  background-color: #f7f3ef;
+  transition: 0.2s;
+}
+
+/* Animación */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -3,12 +3,27 @@
   position: relative;
   height: 100vh;
   overflow: hidden;
+  background-color: #333;
+}
+
+.youtube-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
 }
 
 .hero-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100vw;
+  height: 56.25vw;
+  min-height: 100vh;
+  min-width: 177.77vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .hero-overlay {
@@ -20,6 +35,7 @@
   display:flex;
   justify-content:center;
   align-items:center;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .hero-title {
@@ -90,7 +106,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.2); 
+  background-color: rgba(0, 0, 0, 0.4); 
   color: #FFFFFF;
   box-sizing: border-box;
 }
@@ -136,7 +152,6 @@
 .carousel-arrow.right { right: 10px; }
 
 /* SECCIÓN SOBRE NOSOTROS */
-
 .sobre-nosotros-section {
   padding: 100px 20px;
   font-family: 'Merriweather', serif;
@@ -182,6 +197,7 @@
   background-size: cover;
   background-position: center;
   border-radius: 10px;
+  background-color: #fbeadb;
 }
 
 .sobre-cuadro-textos {
@@ -227,9 +243,27 @@
 }
 
 /* Video de la parroquia */
-.sobre-video video {
+.sobre-video {
   width: 100%;
   border-radius: 10px;
+  overflow: hidden;
+  margin-top: 20px;
+}
+
+.youtube-responsive-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%;
+  height: 0;
+  background: #eee;
+}
+
+.youtube-responsive-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* SECCIÓN FRAILES */
@@ -241,7 +275,7 @@
 
 .frailes-carousel-container {
   position: relative;
-  width: 100%;
+  width: 90%;
   margin: 0 auto;
   overflow: hidden;
 }
@@ -254,7 +288,7 @@
 
 /* Tarjeta */
 .fraile-card {
-  flex: 0 0 calc((100% - 40px) / 3); /* 3 en desktop */
+  flex: 0 0 calc((100% - 40px) / 3);
   background: #FFFFFF;
   border-radius: 12px;
   overflow: hidden;
@@ -265,21 +299,19 @@
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
-/* Hover: “agrandarse para la parte de arriba” (sube y crece ~10-15%) */
 .fraile-card:hover {
   transform: translateY(-10px) scale(1.08);
   box-shadow: 0 14px 28px rgba(0,0,0,.12);
 }
 
-/* 70% imagen (relativo a la tarjeta; la altura real depende del ancho) */
 .fraile-img {
   width: 100%;
-  aspect-ratio: 3 / 4; /* alto visual generoso */
+  aspect-ratio: 3 / 4;
   background-size: cover;
   background-position: center;
+  background-color: #fbeadb;
 }
 
-/* 30% info */
 .fraile-info {
   position: relative;
   background: #FFFFFF;
@@ -290,7 +322,9 @@
 /* Onda separadora encima del bloque de info */
 .wave-sep {
   position: absolute;
-  top: -24px; left: 0; right: 0;
+  top: -24px; 
+  left: 0; 
+  right: 0;
   height: 24px;
   pointer-events: none;
   overflow: hidden;
@@ -325,7 +359,7 @@
   transition: max-height .25s ease, opacity .25s ease;
 }
 .fraile-card:hover .fraile-desc {
-  max-height: 140px; /* suficiente para 2-3 líneas */
+  max-height: 140px;
   opacity: 1;
 }
 
@@ -356,16 +390,17 @@
   position: relative;
   width: 100%;
   margin: 0 auto;
-  overflow: hidden; /* para recortar los lados */
-  padding: 0 0 24px 0;
+  overflow: hidden;
+  padding: 24px 0 24px 0;
 }
 
 .galeria-carousel {
   display: flex;
-  gap: 20px;                 /* mantener en sync con TS */
+  gap: 20px;
   align-items: center;
   transition: transform .5s ease;
   will-change: transform;
+  padding: 0;
 }
 
 /* Tarjeta */
@@ -373,14 +408,16 @@
   background: #fff;
   border-radius: 14px;
   overflow: hidden;
-  flex: 0 0 calc((100% - 40px) / 3);  /* 3 visibles en desktop */
-  transform: scale(.9);                /* laterales un poco más pequeñas */
+  flex: 0 0 calc((100% - 40px) / 3);
+  transform: scale(.9);
   transition: transform .35s ease, box-shadow .35s ease;
   box-shadow: 0 4px 10px rgba(0,0,0,.08);
   position: relative;
+  cursor: pointer;
 }
+
 .galeria-card.is-center {
-  transform: scale(1.05);             /* centro más grande */
+  transform: scale(1.05);
   z-index: 2;
   box-shadow: 0 14px 28px rgba(0,0,0,.12);
 }
@@ -390,6 +427,7 @@
   height: 380px;
   object-fit: cover;
   display: block;
+  background-color: #fbeadb;
 }
 
 /* Indicadores */
@@ -404,7 +442,7 @@
   height: 10px;
   border-radius: 999px;
   border: none;
-  background: #d8c2b5; /* tono suave */
+  background: #d8c2b5;
   cursor: pointer;
 }
 .galeria-dots .dot.active {
@@ -415,24 +453,109 @@
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,.35);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 80;
+  z-index: 110;
+  padding: 100px 20px 20px 20px;
+  box-sizing: border-box;
 }
-.lightbox-inner {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 14px;
-  overflow: hidden;
+
+/* Contenedor principal del modal (Imagen + Info) */
+.lightbox-content {
+  background: #FFFFFF;
+  border-radius: 16px;
   box-shadow: 0 20px 40px rgba(0,0,0,.3);
-}
-.lightbox-inner img {
+  display: flex;
   width: 100%;
-  height: auto;
+  max-width: 1100px;
+  height: 85vh; 
+  max-height: 900px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Botón de Cierre (X) */
+.lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: rgba(0,0,0,0.3);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background .2s ease;
+}
+.lightbox-close:hover {
+  background: rgba(0,0,0,0.6);
+}
+
+/* Columna 1: Imagen */
+.lightbox-image {
+  flex-basis: 70%;
+  position: relative;
+  background: #eee;
+}
+.lightbox-image img {
+  width: 100%;
+  height: 100%;
   display: block;
+}
+
+/* Flechas de navegación (dentro de la imagen) */
+.lightbox-nav {
+  position: absolute;
+  bottom: 15px;
+  transform: translateY(0);
+  background: rgba(0,0,0,0.4);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 5;
+  padding: 8px 12px;
+  transition: background .2s ease;
+}
+.lightbox-nav:hover {
+  background: rgba(0,0,0,0.7);
+}
+.lightbox-nav.prev {
+  left: 50%;
+  transform: translateX(-110%);
+}
+.lightbox-nav.next {
+  right: 50%;
+  transform: translateX(110%);
+}
+
+/* Columna 2: Información */
+.lightbox-info {
+  flex-basis: 30%;
+  padding: 30px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.lightbox-title {
+  font-size: 1.8rem;
+  color: #000000;
+  margin: 0 0 15px 0;
+  line-height: 1.2;
+}
+.lightbox-description {
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
 }
 
 /* SECCIÓN DONDE ENCONTRARNOS */
@@ -448,7 +571,7 @@
   background: #FFFFFF;
   border-radius: 16px;
   box-shadow: 0 8px 22px rgba(0,0,0,.08);
-  overflow: hidden;            /* respeta bordes redondeados del iframe */
+  overflow: hidden;
   padding: 18px;
 }
 
@@ -458,7 +581,6 @@
   border-radius: 12px;
   overflow: hidden;
   background: #FBEADB;
-  /* Usa aspect-ratio moderno, con fallback */
   aspect-ratio: 16 / 9;
   position: relative;
 }
@@ -497,28 +619,38 @@
   color: #C98E6E;
   background: transparent;
 }
-.btn-outline:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.08); }
+.btn-outline:hover { 
+  transform: translateY(-1px); 
+  box-shadow: 0 6px 16px rgba(0,0,0,.08); 
+}
+
 .btn-solid {
   background: #C98E6E;
   color: #FFFFFF;
   border: 2px solid #C98E6E;
 }
-.btn-solid:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(0,0,0,.12); }
+.btn-solid:hover { 
+  transform: translateY(-1px); 
+  box-shadow: 0 6px 16px rgba(0,0,0,.12); 
+}
 
 /* RESPONSIVE */
 @media screen and (max-width: 768px) {
   /* SECCIÓN EVENTOS */
   .event-card .event-image { height: 350px; }
   .event-card { flex: 0 0 100%; }
-    
-    /* Centrar las flechas más cerca en móviles */
-    .carousel-arrow.left { left: 5px; }
-    .carousel-arrow.right { right: 5px; }
+  .carousel-arrow.left { left: 5px; }
+  .carousel-arrow.right { right: 5px; }
 
   /* SECCIÓN SOBRE NOSOTROS */
   .sobre-cuadro {
     width: 100%;
     margin-bottom: 30px;
+    padding: 15px;
+  }
+
+  .sobre-cuadro-imagen {
+    height: 300px;
   }
 
   .sobre-descripcion {
@@ -526,27 +658,52 @@
   }
 
   /* SECCIÓN FRAILES */
-  .fraile-card { flex: 0 0 100%; } /* 1 por vista en móvil */
+  .fraile-card { flex: 0 0 100%; }
   .frailes-arrow.left { left: 5px; }
   .frailes-arrow.right { right: 5px; }
 
   /* SECCIÓN GALERÍA */
-  /* “peek” en móvil: una imagen centrada y 20% de las contiguas asomando */
   .galeria-carousel-container {
-    padding: 0 10vw 20px 0vw; /* deja espacio para ver ~20% de los lados */
+    padding: 20px 0 20px 0;
   }
 
   .galeria-card {
-    flex: 0 0 50vw;     /* 1 imagen por vista, 10% a cada lado para el peek */
+    flex: 0 0 50vw;
   }
 
   .galeria-card img {
     height: 320px;
   }
 
+  /* NUEVO: Lightbox responsivo (móvil) */
+  .lightbox-content {
+    flex-direction: column; 
+    max-height: 70vh;
+  }
+  .lightbox-image {
+    flex-basis: auto;
+    height: 50vh;
+  }
+  .lightbox-info {
+    flex-basis: auto;
+    height: 35vh;
+    padding: 20px;
+    text-align: center;
+  }
+  .lightbox-title {
+    font-size: 1.3rem;
+  }
+  .lightbox-description {
+    font-size: 0.9rem;
+  }
+  .lightbox-close {
+    top: 5px;
+    right: 5px;
+  }
+
   /* SECCIÓN DONDE ENCONTRARNOS */
   .map-card { padding: 14px; }
-  .map-embed { aspect-ratio: 4 / 3; } /* un poco más alto en móvil */
+  .map-embed { aspect-ratio: 4 / 3; } 
   .map-info { padding: 12px 2px 4px; }
   .map-actions { gap: 10px; }
 }
