@@ -1,0 +1,81 @@
+.bulletins {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 28px;
+  padding: 32px;
+  box-shadow: 0 18px 45px rgba(168, 131, 80, 0.18);
+}
+
+.bulletins header h1 {
+  margin: 0;
+  color: #7b5b3c;
+  font-size: 1.7rem;
+}
+
+.bulletins header p {
+  margin: 6px 0 0;
+  color: #a07f5a;
+  font-weight: 600;
+}
+
+.bulletins__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.bulletin-card {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-areas:
+    'icon body'
+    'action action';
+  gap: 16px;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 32px rgba(168, 131, 80, 0.15);
+  align-items: center;
+}
+
+.bulletin-card__icon {
+  grid-area: icon;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(192, 132, 87, 0.18);
+  display: grid;
+  place-items: center;
+  color: #c08457;
+  font-size: 1.6rem;
+}
+
+.bulletin-card__body {
+  grid-area: body;
+}
+
+.bulletin-card__body h2 {
+  margin: 0 0 6px;
+  color: #7b5b3c;
+  font-size: 1.15rem;
+}
+
+.bulletin-card__body p {
+  margin: 0;
+  color: #a07f5a;
+  font-weight: 600;
+}
+
+.bulletin-card__action {
+  grid-area: action;
+  justify-self: flex-start;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 18px;
+  background: rgba(192, 132, 87, 0.18);
+  color: #7b5b3c;
+  font-weight: 600;
+  cursor: not-allowed;
+}

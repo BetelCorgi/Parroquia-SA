@@ -1,0 +1,218 @@
+.summary {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  min-height: calc(100vh - 160px);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 12px 40px rgba(168, 131, 80, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+}
+
+.card__header h2 {
+  margin: 0;
+  color: #7b5b3c;
+  font-size: 1.2rem;
+}
+
+.card__header--compact {
+  align-items: flex-start;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.card__amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #c08457;
+}
+
+.card__action {
+  background: #c08457;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.chip-group {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.chip {
+  border: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(192, 132, 87, 0.15);
+  color: #7b5b3c;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chip--active {
+  background: #c08457;
+  color: #fff;
+}
+
+.donations__chart {
+  height: 180px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(192, 132, 87, 0.15) 0%, rgba(192, 132, 87, 0.05) 100%);
+}
+
+.liturgic {
+  gap: 24px;
+}
+
+.liturgic__content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.liturgic__value {
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #c08457;
+}
+
+.liturgic__hint {
+  color: #7b5b3c;
+  font-weight: 600;
+}
+
+.summary__left {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.calendar__month {
+  margin: 8px 0 0;
+  color: #a07f5a;
+}
+
+.calendar__cta {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(192, 132, 87, 0.15);
+  color: #7b5b3c;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calendar__weekdays,
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  text-align: center;
+}
+
+.calendar__weekdays span {
+  font-weight: 700;
+  color: #a07f5a;
+}
+
+.calendar__grid span {
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #7b5b3c;
+  font-weight: 600;
+}
+
+.calendar__day--highlight {
+  background: #c08457 !important;
+  color: #fff !important;
+  box-shadow: 0 6px 16px rgba(192, 132, 87, 0.35);
+}
+
+.events {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.event {
+  padding: 16px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.75);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.event__info h3 {
+  margin: 0 0 6px;
+  color: #7b5b3c;
+}
+
+.event__info p {
+  margin: 0;
+  color: #a07f5a;
+  font-weight: 600;
+}
+
+.event__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.event__primary,
+.event__secondary {
+  border-radius: 999px;
+  padding: 8px 16px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.event__primary {
+  background: #c08457;
+  color: #fff;
+}
+
+.event__secondary {
+  background: rgba(192, 132, 87, 0.15);
+  color: #7b5b3c;
+}
+
+@media (max-width: 1100px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+}

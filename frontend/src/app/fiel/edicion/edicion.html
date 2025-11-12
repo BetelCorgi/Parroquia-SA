@@ -1,0 +1,45 @@
+<section class="edit">
+  <article class="edit__card">
+    <header>
+      <h1>Edición del sitio</h1>
+      <p>Actualiza la información que se muestra en la portada parroquial.</p>
+    </header>
+
+    <div class="edit__grid">
+      <div class="panel panel--video">
+        <h2>Video de presentación</h2>
+        <div class="video-placeholder" aria-hidden="true"></div>
+        <div class="panel__row">
+          <label>Link</label>
+          <span>{{ videoUrl }}</span>
+        </div>
+        <div class="panel__row">
+          <label>Frame de inicio</label>
+          <span>{{ startFrame }}</span>
+        </div>
+        <div class="panel__row">
+          <label>Frame de fin</label>
+          <span>{{ endFrame }}</span>
+        </div>
+      </div>
+
+      <div class="panel panel--links">
+        <h2>Enlaces destacados</h2>
+        <ul>
+          <li *ngFor="let link of socialLinks">
+            <strong>{{ link.name }}</strong>
+            <span>{{ link.url }}</span>
+          </li>
+        </ul>
+        <button type="button" disabled>Editar enlaces</button>
+      </div>
+
+      <div class="panel panel--gallery">
+        <h2>Galería pública</h2>
+        <p>Selecciona imágenes que representen las actividades recientes de la comunidad.</p>
+        <div class="gallery-placeholder" aria-hidden="true"></div>
+        <button type="button" disabled>Administrar galería</button>
+      </div>
+    </div>
+  </article>
+</section>

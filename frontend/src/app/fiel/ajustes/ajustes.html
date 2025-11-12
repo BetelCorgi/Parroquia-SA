@@ -1,0 +1,48 @@
+<section class="settings">
+  <header>
+    <h1>Ajustes de tu cuenta</h1>
+    <p>Gestiona la información básica y accesos rápidos de administración.</p>
+  </header>
+
+  <div class="settings__grid">
+    <article class="settings-card">
+      <h2>Perfil</h2>
+      <div class="settings-card__item">
+        <span class="label">Nombre</span>
+        <span class="value">{{ profile.nombre }}</span>
+      </div>
+      <div class="settings-card__item">
+        <span class="label">Correo</span>
+        <span class="value">{{ profile.correo }}</span>
+      </div>
+      <button type="button" disabled>Editar perfil</button>
+    </article>
+
+    <article class="settings-card">
+      <h2>Seguridad</h2>
+      <p>Próximamente podrás actualizar tu contraseña y habilitar verificación en dos pasos.</p>
+      <div class="settings-card__actions">
+        <button type="button" disabled>Actualizar correo</button>
+        <button type="button" disabled>Cambiar contraseña</button>
+      </div>
+    </article>
+
+    <article class="settings-card">
+      <h2>Herramientas rápidas</h2>
+      <ul>
+        <li>
+          <a [href]="swaggerLink" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-code"></i>
+            <span>Swagger UI (desarrollo)</span>
+          </a>
+        </li>
+        <li>
+          <a [href]="hostingLink" target="_blank" rel="noopener noreferrer">
+            <i class="fa-solid fa-cloud"></i>
+            <span>Plataforma de hosting</span>
+          </a>
+        </li>
+      </ul>
+    </article>
+  </div>
+</section>

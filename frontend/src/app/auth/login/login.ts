@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { finalize } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login {
+export class Login implements OnInit {
   private readonly STORAGE_BUCKET_URL = 'https://firebasestorage.googleapis.com/v0/b/parroquia-sa-1530d.firebasestorage.app/o/';
   private readonly STORAGE_BUCKET_SUFFIX = '?alt=media';
 
@@ -23,11 +23,19 @@ export class Login {
   password = '';
   errorMessage = '';
   isSubmitting = false;
+  isAdminLogin = false;
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private route: ActivatedRoute
   ) {}
+
+  ngOnInit(): void {
+    this.route.data.subscribe(data => {
+      this.isAdminLogin = !!data['admin'];
+    });
+  }
 
   goHome() {
     this.router.navigate(['/']);
@@ -46,20 +54,33 @@ export class Login {
       .pipe(finalize(() => this.isSubmitting = false))
       .subscribe({
         next: (response) => {
+          const role = (response?.rol ?? '').toLowerCase();
+
+          if (this.isAdminLogin && role !== 'administrador') {
+            this.errorMessage = 'Tu cuenta no tiene permisos de administrador.';
+            this.password = '';
+            this.clearStoredCredentials();
+            return;
+          }
+
           localStorage.setItem('authToken', response?.token ?? '');
           localStorage.setItem('authEmail', response?.email ?? this.email);
           localStorage.setItem('authRole', response?.rol ?? '');
 
-          if ((response?.rol ?? '').toLowerCase() === 'administrador') {
-            this.router.navigate(['/admin']);
-          } else {
-            this.router.navigate(['/']);
-          }
+          const target = role === 'administrador' ? '/admin' : '/panel/resumen';
+          this.router.navigate([target], { replaceUrl: true });
         },
         error: (error) => {
           const backendMessage = error?.error?.message || error?.error?.detalle;
           this.errorMessage = backendMessage || 'Usuario o contraseña incorrectos.';
+          this.clearStoredCredentials();
         }
       });
+  }
+
+  private clearStoredCredentials(): void {
+    localStorage.removeItem('authToken');
+    localStorage.removeItem('authEmail');
+    localStorage.removeItem('authRole');
   }
 }

@@ -1,0 +1,61 @@
+.resumen {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 24px;
+}
+
+.resumen__header h1 {
+  font-size: 1.8rem;
+  color: #7b5b3c;
+}
+
+.resumen__header p {
+  color: #a07f5a;
+  margin: 4px 0 0;
+}
+
+.resumen__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  background: #fff7ed;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.card h2 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+  color: #7b5b3c;
+}
+
+.card__value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #c08457;
+}
+
+.card small {
+  color: #a07f5a;
+}
+
+.agenda {
+  background: #fff7ed;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.agenda h2 {
+  margin-bottom: 8px;
+  color: #7b5b3c;
+}
+
+.agenda p {
+  color: #a07f5a;
+}

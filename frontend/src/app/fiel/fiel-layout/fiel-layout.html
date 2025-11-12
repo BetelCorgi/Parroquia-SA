@@ -1,0 +1,32 @@
+<div class="panel-shell">
+  <header class="panel-header">
+    <div class="brand" routerLink="/panel/resumen">
+      <img [src]="logoUrl" alt="Logo de la Parroquia">
+      <div class="brand-text">
+        <span class="brand-title">Parroquia San Agustín</span>
+        <small class="brand-sub">Panel del Fiel</small>
+      </div>
+    </div>
+
+    <nav class="panel-nav" aria-label="Navegación principal">
+      <a
+        *ngFor="let item of navItems"
+        class="nav-pill"
+        [routerLink]="item.route"
+        [class.active]="isActive(item.route)"
+      >
+        <i [class]="item.icon"></i>
+        <span>{{ item.label }}</span>
+      </a>
+    </nav>
+
+    <button type="button" class="logout-btn" (click)="logout()">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <span>Cerrar sesión</span>
+    </button>
+  </header>
+
+  <main class="panel-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
