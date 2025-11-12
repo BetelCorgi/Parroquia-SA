@@ -39,7 +39,7 @@
 
 /* Panel derecho */
 .login-right {
-  background: #FFFFFF;
+  background: #fff8ef;
   position: relative;
   display: grid;
   place-items: center;
@@ -54,7 +54,7 @@
   align-items: center; gap: 8px;
   background: transparent;
   border: 0;
-  color: #000000;
+  color: #6b4b39;
   font-weight: 700;
   cursor: pointer;
   padding: 6px 8px;
@@ -74,7 +74,7 @@
 .right-title {
   margin: 0 0 14px 0;
   text-align: center;
-  color: #000000;
+  color: #6b4b39;
   font-family: 'Merriweather', serif;
   font-size: 1.6rem;
 }
@@ -138,6 +138,12 @@
   transition: filter .15s ease;
 }
 .login-btn:hover { filter: brightness(.95); }
+
+.alt-action {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 0.95rem;
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 992px) {
