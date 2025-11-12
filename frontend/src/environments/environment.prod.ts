@@ -1,5 +1,6 @@
 export const environment = {
   production: true,
+  apiBaseUrl: 'https://parroquia-sa.onrender.com/api',
   firebase: {
     apiKey: "AIzaSyAKNNqqwOOO-j6pxndA3W6_uykc79b45mI",
     authDomain: "parroquia-sa-1530d.firebaseapp.com",
