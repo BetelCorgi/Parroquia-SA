@@ -1,0 +1,19 @@
+<section class="bulletins">
+  <header>
+    <h1>Boletines y comunicaciones</h1>
+    <p>Administra la información que compartes con tu comunidad.</p>
+  </header>
+
+  <div class="bulletins__grid">
+    <article class="bulletin-card" *ngFor="let card of cards">
+      <div class="bulletin-card__icon">
+        <i [class]="card.icon"></i>
+      </div>
+      <div class="bulletin-card__body">
+        <h2>{{ card.title }}</h2>
+        <p>{{ card.description }}</p>
+      </div>
+      <button type="button" class="bulletin-card__action" disabled>{{ card.action }}</button>
+    </article>
+  </div>
+</section>

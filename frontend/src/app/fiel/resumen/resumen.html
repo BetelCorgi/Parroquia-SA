@@ -1,0 +1,67 @@
+<section class="summary">
+  <div class="summary__left">
+    <article class="donations card">
+      <header class="card__header">
+        <h2>Donaciones recibidas este mes</h2>
+        <div class="chip-group" role="group" aria-label="Rango temporal">
+          <button type="button" class="chip chip--active">Año</button>
+          <button type="button" class="chip">Mes</button>
+          <button type="button" class="chip">Día</button>
+        </div>
+      </header>
+      <div class="donations__chart" aria-hidden="true"></div>
+      <footer class="card__footer">
+        <p class="card__amount">S/ 230</p>
+        <button type="button" class="card__action">Ver detalle</button>
+      </footer>
+    </article>
+
+    <article class="liturgic card">
+      <header class="card__header">
+        <h2>Siguiente tiempo litúrgico</h2>
+      </header>
+      <div class="liturgic__content">
+        <p class="liturgic__value">20</p>
+        <span class="liturgic__hint">días para Adviento</span>
+      </div>
+    </article>
+  </div>
+
+  <div class="summary__right card">
+    <header class="card__header card__header--compact">
+      <div>
+        <h2>Calendario</h2>
+        <p class="calendar__month">{{ calendarMonth }}</p>
+      </div>
+      <button type="button" class="calendar__cta">
+        <span>Ir a manejo de eventos</span>
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </button>
+    </header>
+
+    <section class="calendar">
+      <div class="calendar__weekdays" role="row">
+        <span *ngFor="let day of weekDays" role="columnheader">{{ day }}</span>
+      </div>
+      <div class="calendar__grid">
+        <span *ngFor="let day of [].constructor(30); let i = index"
+              [class.calendar__day--highlight]="highlightedDays.has(i + 1)">
+          {{ i + 1 }}
+        </span>
+      </div>
+    </section>
+
+    <section class="events">
+      <article *ngFor="let event of events" class="event">
+        <div class="event__info">
+          <h3>{{ event.title }}</h3>
+          <p>{{ event.schedule }} · Participantes: {{ event.participants }}</p>
+        </div>
+        <div class="event__actions">
+          <button type="button" class="event__primary">Ver detalle</button>
+          <button type="button" class="event__secondary">Iniciar Reunión</button>
+        </div>
+      </article>
+    </section>
+  </div>
+</section>

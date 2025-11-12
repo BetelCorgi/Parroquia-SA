@@ -7,10 +7,14 @@ import { Register } from './auth/register/register';
 import { VerifyEmail } from './auth/verify-email/verify-email';
 
 import { adminRoutes } from './admin/admin.routes';
+import { fielRoutes } from './fiel/fiel.routes';
+import { AdminGuard } from './auth/admin.guard';
+import { AuthGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: Home },
   { path: 'login', component: Login },
+  { path: 'admin/login', component: Login, data: { admin: true } },
   { path: 'registrarse', component: Register },
   { path: 'verify-email', component: VerifyEmail },
 
@@ -19,7 +23,18 @@ export const routes: Routes = [
   { path: 'recuperar', component: ForgotPassword },
   { path: 'restablecer/:token', component: ResetPassword },
 
-  // Panel Fieles
-  { path: 'admin', children: adminRoutes },
+  // Panel administrador
+  {
+    path: 'admin',
+    canActivate: [AdminGuard],
+    canMatch: [AdminGuard],
+    children: adminRoutes,
+  },
+  {
+    path: 'panel',
+    canActivate: [AuthGuard],
+    canMatch: [AuthGuard],
+    children: fielRoutes,
+  },
   { path: '**', redirectTo: '' },
 ];

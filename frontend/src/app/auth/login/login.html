@@ -16,7 +16,7 @@
     </button>
 
     <div class="right-card">
-      <h1 class="right-title">Acceso a Fieles</h1>
+      <h1 class="right-title">{{ isAdminLogin ? 'Acceso Administrador' : 'Acceso a Fieles' }}</h1>
 
       <form class="login-form" (ngSubmit)="onSubmit()" #loginForm="ngForm">
         <label class="field">
@@ -42,7 +42,7 @@
         <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
 
         <button type="submit" class="login-btn">Ingresar</button>
-        <p class="alt-action">
+        <p *ngIf="!isAdminLogin" class="alt-action">
           ¿Aún no tienes cuenta? <a routerLink="/registrarse">Regístrate aquí</a>
         </p>
       </form>
