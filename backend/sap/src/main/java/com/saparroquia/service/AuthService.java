@@ -26,6 +26,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -47,6 +48,7 @@ public class AuthService {
     private final AppProperties appProperties;
 
     private static final int VERIFICATION_TOKEN_EXPIRATION_HOURS = 48;
+    private static final String DEFAULT_FRONTEND_BASE_URL = "https://parroquia-sa.onrender.com";
 
     @Transactional
     public MessageResponse registerFiel(RegisterRequest request) {
@@ -219,8 +221,9 @@ public class AuthService {
 
     private String buildFrontendUrl(String path) {
         String baseUrl = appProperties.getFrontendBaseUrl();
-        if (baseUrl == null || baseUrl.isBlank()) {
-            throw new IllegalStateException("La URL base del frontend no está configurada.");
+        if (!StringUtils.hasText(baseUrl)) {
+            baseUrl = DEFAULT_FRONTEND_BASE_URL;
+            log.warn("app.frontend-base-url no está configurada. Usando valor por defecto: {}", baseUrl);
         }
         if (path == null) {
             return baseUrl;
