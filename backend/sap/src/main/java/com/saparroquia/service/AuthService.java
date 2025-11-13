@@ -87,7 +87,7 @@ public class AuthService {
 
         Usuario usuario = new Usuario();
         usuario.setEmail(request.getEmail());
-        usuario.setPasswordHash(passwordEncoder.encode(UUID.randomUUID().toString()));
+        usuario.setPasswordHash(null);
         usuario.setRol(Usuario.RolUsuario.fiel);
         usuario.setEstado(false);
         usuario.setCorreoVerificado(false);
