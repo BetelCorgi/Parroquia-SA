@@ -2,7 +2,6 @@ package com.saparroquia.model.dto;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -33,10 +32,4 @@ public class RegisterRequest {
     @Email(message = "El correo debe ser válido")
     private String email;
 
-    @NotBlank(message = "La contraseña es obligatoria")
-    @Size(min = 8, message = "La contraseña debe tener al menos 8 caracteres")
-    private String password;
-
-    @NotBlank(message = "Debe confirmar la contraseña")
-    private String confirmPassword;
 }

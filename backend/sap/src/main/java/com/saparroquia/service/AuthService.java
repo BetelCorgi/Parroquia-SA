@@ -52,8 +52,6 @@ public class AuthService {
 
     @Transactional
     public MessageResponse registerFiel(RegisterRequest request) {
-        validatePasswordConfirmation(request.getPassword(), request.getConfirmPassword());
-
         if (Boolean.TRUE.equals(usuarioRepository.existsByEmail(request.getEmail()))) {
             throw new IllegalArgumentException("El correo electrónico ya está registrado.");
         }
@@ -89,7 +87,7 @@ public class AuthService {
 
         Usuario usuario = new Usuario();
         usuario.setEmail(request.getEmail());
-        usuario.setPasswordHash(passwordEncoder.encode(request.getPassword()));
+        usuario.setPasswordHash(passwordEncoder.encode(UUID.randomUUID().toString()));
         usuario.setRol(Usuario.RolUsuario.fiel);
         usuario.setEstado(false);
         usuario.setCorreoVerificado(false);
