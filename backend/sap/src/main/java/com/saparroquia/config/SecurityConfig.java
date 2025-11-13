@@ -65,6 +65,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET,
                                 "/",
                                 "/index.html",
+                                "/verify-email/**",
                                 "/actuator/health",
                                 "/favicon.ico",
                                 "/assets/**",
