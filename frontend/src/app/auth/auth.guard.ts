@@ -19,14 +19,16 @@ export class AuthGuard implements CanActivate, CanMatch {
     const role = (localStorage.getItem('authRole') || '').toLowerCase();
 
     if (token) {
-      if (role === 'administrador') {
-        this.router.navigate(['/admin'], { replaceUrl: true });
-        return false;
+      if (role !== 'administrador') {
+        return true;
       }
-      return true;
+      this.router.navigate(['/admin'], { replaceUrl: true });
+      return false;
     }
 
-    this.router.navigate(['/login'], {
+    const loginRoute = redirectUrl.startsWith('/admin') ? '/admin/login' : '/login';
+
+    this.router.navigate([loginRoute], {
       queryParams: { returnUrl: redirectUrl || '/panel/resumen' },
       replaceUrl: true,
     });
