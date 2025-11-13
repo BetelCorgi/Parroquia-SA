@@ -9,10 +9,12 @@ import com.saparroquia.model.dto.RegisterRequest;
 import com.saparroquia.model.dto.VerifyEmailRequest;
 import com.saparroquia.model.entity.Comunidad;
 import com.saparroquia.model.entity.Fiel;
+import com.saparroquia.model.entity.RegistroPendiente;
 import com.saparroquia.model.entity.Sesion;
 import com.saparroquia.model.entity.Usuario;
 import com.saparroquia.repository.ComunidadRepository;
 import com.saparroquia.repository.FielRepository;
+import com.saparroquia.repository.RegistroPendienteRepository;
 import com.saparroquia.repository.SesionRepository;
 import com.saparroquia.repository.UsuarioRepository;
 import com.saparroquia.security.JwtTokenProvider;
@@ -45,6 +47,7 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final ComunidadRepository comunidadRepository;
     private final FielRepository fielRepository;
+    private final RegistroPendienteRepository registroPendienteRepository;
     private final AppProperties appProperties;
 
     private static final int VERIFICATION_TOKEN_EXPIRATION_HOURS = 48;
@@ -64,10 +67,69 @@ public class AuthService {
             throw new IllegalArgumentException("Ya existe un fiel registrado con ese correo electrónico.");
         }
 
+        String verificationToken = UUID.randomUUID().toString();
+        LocalDateTime expiration = LocalDateTime.now().plusHours(VERIFICATION_TOKEN_EXPIRATION_HOURS);
+
+        RegistroPendiente existente = registroPendienteRepository.findByEmail(request.getEmail()).orElse(null);
+
+        if (existente != null && Boolean.TRUE.equals(existente.getConsumido())) {
+            throw new IllegalArgumentException("El correo electrónico ya fue verificado.");
+        }
+
+        if (existente == null && registroPendienteRepository.existsByDniAndConsumidoFalse(request.getDni())) {
+            throw new IllegalArgumentException("Ya existe una solicitud pendiente con ese DNI.");
+        }
+
+        if (existente == null) {
+            existente = RegistroPendiente.builder()
+                    .email(request.getEmail())
+                    .dni(request.getDni())
+                    .build();
+        }
+
+        existente.setToken(verificationToken);
+        existente.setNombre(request.getNombre());
+        existente.setApellido(request.getApellido());
+        existente.setTelefono(request.getTelefono());
+        existente.setFechaNacimiento(request.getFechaNacimiento());
+        existente.setComunidadId(request.getComunidadId());
+        existente.setExpiraEn(expiration);
+        existente.setConsumido(false);
+        existente.setFechaConsumido(null);
+
+        registroPendienteRepository.save(existente);
+
+        String verificationLink = buildFrontendUrl("/verify-email?token=" + verificationToken);
+        emailService.sendVerificationEmail(request.getEmail(), verificationLink, request.getNombre());
+
+        log.info("Registro de fiel iniciado para email: {}", request.getEmail());
+
+        return new MessageResponse("Registro iniciado. Revisa tu correo para verificar tu cuenta.");
+    }
+
+    @Transactional
+    public MessageResponse verifyEmail(VerifyEmailRequest request) {
+        validatePasswordConfirmation(request.getPassword(), request.getConfirmPassword());
+
+        RegistroPendiente registroPendiente = registroPendienteRepository.findByTokenAndConsumidoFalse(request.getToken())
+                .orElseThrow(() -> new IllegalArgumentException("El token de verificación no es válido."));
+
+        if (registroPendiente.getExpiraEn() == null || registroPendiente.getExpiraEn().isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("El token de verificación ha expirado. Solicita un nuevo registro.");
+        }
+
+        if (Boolean.TRUE.equals(usuarioRepository.existsByEmail(registroPendiente.getEmail()))) {
+            throw new IllegalArgumentException("El correo electrónico ya está registrado.");
+        }
+
+        if (Boolean.TRUE.equals(fielRepository.existsByDni(registroPendiente.getDni()))) {
+            throw new IllegalArgumentException("El DNI ya está registrado.");
+        }
+
         Comunidad comunidad = null;
-        if (request.getComunidadId() != null) {
-            comunidad = comunidadRepository.findById(request.getComunidadId())
-                    .orElseThrow(() -> new IllegalArgumentException("La comunidad seleccionada no existe."));
+        if (registroPendiente.getComunidadId() != null) {
+            comunidad = comunidadRepository.findById(registroPendiente.getComunidadId())
+                    .orElseThrow(() -> new IllegalArgumentException("La comunidad seleccionada ya no existe."));
             if (Boolean.FALSE.equals(comunidad.getEstado())) {
                 throw new IllegalArgumentException("La comunidad seleccionada no está activa.");
             }
@@ -75,54 +137,29 @@ public class AuthService {
 
         Fiel fiel = new Fiel();
         fiel.setComunidad(comunidad);
-        fiel.setDni(request.getDni());
-        fiel.setNombre(request.getNombre());
-        fiel.setApellido(request.getApellido());
-        fiel.setFechaNac(request.getFechaNacimiento());
-        fiel.setCorreo(request.getEmail());
-        fiel.setTelefono(request.getTelefono());
+        fiel.setDni(registroPendiente.getDni());
+        fiel.setNombre(registroPendiente.getNombre());
+        fiel.setApellido(registroPendiente.getApellido());
+        fiel.setFechaNac(registroPendiente.getFechaNacimiento());
+        fiel.setCorreo(registroPendiente.getEmail());
+        fiel.setTelefono(registroPendiente.getTelefono());
         fielRepository.save(fiel);
 
-        String verificationToken = UUID.randomUUID().toString();
-
         Usuario usuario = new Usuario();
-        usuario.setEmail(request.getEmail());
-        usuario.setPasswordHash(null);
-        usuario.setRol(Usuario.RolUsuario.fiel);
-        usuario.setEstado(false);
-        usuario.setCorreoVerificado(false);
-        usuario.setTokenVerificacion(verificationToken);
-        usuario.setTokenVerificacionExpira(LocalDateTime.now().plusHours(VERIFICATION_TOKEN_EXPIRATION_HOURS));
-        usuario.setFiel(fiel);
-
-        usuarioRepository.save(usuario);
-
-        String verificationLink = buildFrontendUrl("/verify-email?token=" + verificationToken);
-        emailService.sendVerificationEmail(request.getEmail(), verificationLink, request.getNombre());
-
-        log.info("Registro de fiel iniciado para email: {}", request.getEmail());
-
-        return new MessageResponse("Registro completado. Revisa tu correo para verificar tu cuenta.");
-    }
-
-    @Transactional
-    public MessageResponse verifyEmail(VerifyEmailRequest request) {
-        validatePasswordConfirmation(request.getPassword(), request.getConfirmPassword());
-
-        Usuario usuario = usuarioRepository.findByTokenVerificacion(request.getToken())
-                .orElseThrow(() -> new IllegalArgumentException("El token de verificación no es válido."));
-
-        if (usuario.getTokenVerificacionExpira() == null || usuario.getTokenVerificacionExpira().isBefore(LocalDateTime.now())) {
-            throw new IllegalArgumentException("El token de verificación ha expirado. Solicita un nuevo registro.");
-        }
-
+        usuario.setEmail(registroPendiente.getEmail());
         usuario.setPasswordHash(passwordEncoder.encode(request.getPassword()));
+        usuario.setRol(Usuario.RolUsuario.fiel);
         usuario.setEstado(true);
         usuario.setCorreoVerificado(true);
         usuario.setTokenVerificacion(null);
         usuario.setTokenVerificacionExpira(null);
+        usuario.setFiel(fiel);
 
         usuarioRepository.save(usuario);
+
+        registroPendiente.setConsumido(true);
+        registroPendiente.setFechaConsumido(LocalDateTime.now());
+        registroPendienteRepository.save(registroPendiente);
 
         log.info("Cuenta verificada para el usuario: {}", usuario.getEmail());
 
