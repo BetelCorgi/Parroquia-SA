@@ -28,13 +28,13 @@ export const routes: Routes = [
     path: 'admin',
     canActivate: [AdminGuard],
     canMatch: [AdminGuard],
-    children: adminRoutes,
+    children: fielRoutes,
   },
   {
     path: 'panel',
     canActivate: [AuthGuard],
     canMatch: [AuthGuard],
-    children: fielRoutes,
+    children: adminRoutes,
   },
   { path: '**', redirectTo: '' },
 ];
