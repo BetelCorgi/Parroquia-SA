@@ -5,8 +5,10 @@ import com.saparroquia.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -49,7 +51,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> cors.configure(http))
+                .cors(Customizer.withDefaults())
                 .sessionManagement(session -> 
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
@@ -60,8 +62,29 @@ public class SecurityConfig {
                                 "/api/comunidades/**",
                                 "/error"
                         ).permitAll()
+                        .requestMatchers(HttpMethod.GET,
+                                "/",
+                                "/index.html",
+                                "/verify-email/**",
+                                "/login",
+                                "/admin/login",
+                                "/registrarse",
+                                "/recuperar",
+                                "/restablecer/**",
+                                "/admin/**",
+                                "/panel/**",
+                                "/actuator/health",
+                                "/favicon.ico",
+                                "/assets/**",
+                                "/static/**",
+                                "/*.js",
+                                "/*.css",
+                                "/*.ico"
+                        ).permitAll()
                         // Endpoints de administrador
                         .requestMatchers("/api/admin/**").hasRole("administrador")
+                        // Endpoints de usuarios registrados
+                        .requestMatchers("/api/user/**").hasAnyRole("fiel", "administrador")
                         // Todos los demás requieren autenticación
                         .anyRequest().authenticated()
                 )

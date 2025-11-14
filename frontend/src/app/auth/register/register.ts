@@ -14,8 +14,6 @@ type RegisterFormGroup = {
   telefono: FormControl<string | null>;
   fechaNacimiento: FormControl<string | null>;
   comunidadId: FormControl<number | null>;
-  password: FormControl<string>;
-  confirmPassword: FormControl<string>;
 };
 
 @Component({
@@ -35,8 +33,6 @@ export class Register implements OnInit {
   communities: ComunidadDto[] = [];
   isLoadingCommunities = false;
   isSubmitting = false;
-  showPassword = false;
-  showConfirmPassword = false;
   serverError = '';
   successMessage = '';
 
@@ -55,9 +51,7 @@ export class Register implements OnInit {
       email: this.fb.nonNullable.control('', [Validators.required, Validators.email]),
       telefono: this.fb.control<string | null>(null),
       fechaNacimiento: this.fb.control<string | null>(null),
-      comunidadId: this.fb.control<number | null>(null),
-      password: this.fb.nonNullable.control('', [Validators.required, Validators.minLength(8)]),
-      confirmPassword: this.fb.nonNullable.control('', [Validators.required])
+      comunidadId: this.fb.control<number | null>(null)
     });
   }
 
@@ -86,11 +80,6 @@ export class Register implements OnInit {
 
     const value = this.form.getRawValue();
 
-    if (value.password !== value.confirmPassword) {
-      this.serverError = 'Las contraseñas no coinciden.';
-      return;
-    }
-
     const payload = {
       dni: value.dni,
       nombre: value.nombre,
@@ -98,9 +87,7 @@ export class Register implements OnInit {
       email: value.email,
       telefono: value.telefono || null,
       fechaNacimiento: value.fechaNacimiento || null,
-      comunidadId: value.comunidadId,
-      password: value.password,
-      confirmPassword: value.confirmPassword
+      comunidadId: value.comunidadId
     };
 
     this.isSubmitting = true;

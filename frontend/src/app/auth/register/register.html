@@ -91,29 +91,6 @@
           </label>
         </div>
 
-        <div class="grid-2">
-          <label class="field">
-            <span>Contraseña *</span>
-            <div class="password-wrap">
-              <input [type]="showPassword ? 'text' : 'password'" formControlName="password" placeholder="••••••••">
-              <button type="button" class="toggle-pass" (click)="showPassword = !showPassword" aria-label="Mostrar u ocultar contraseña">
-                <i class="fa-solid" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword"></i>
-              </button>
-            </div>
-            <small class="extra">Mínimo 8 caracteres.</small>
-          </label>
-
-          <label class="field">
-            <span>Confirmar contraseña *</span>
-            <div class="password-wrap">
-              <input [type]="showConfirmPassword ? 'text' : 'password'" formControlName="confirmPassword" placeholder="••••••••">
-              <button type="button" class="toggle-pass" (click)="showConfirmPassword = !showConfirmPassword" aria-label="Mostrar u ocultar confirmación">
-                <i class="fa-solid" [class.fa-eye]="!showConfirmPassword" [class.fa-eye-slash]="showConfirmPassword"></i>
-              </button>
-            </div>
-          </label>
-        </div>
-
         <p class="error" *ngIf="serverError">{{ serverError }}</p>
         <p class="success" *ngIf="successMessage">{{ successMessage }}</p>
 

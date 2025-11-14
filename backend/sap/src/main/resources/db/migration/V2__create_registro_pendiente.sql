@@ -1,0 +1,15 @@
+CREATE TABLE IF NOT EXISTS registro_pendiente (
+    id BIGSERIAL PRIMARY KEY,
+    token VARCHAR(255) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    dni VARCHAR(8) NOT NULL UNIQUE,
+    nombre VARCHAR(50) NOT NULL,
+    apellido VARCHAR(50) NOT NULL,
+    telefono VARCHAR(15),
+    fecha_nacimiento DATE,
+    id_comunidad BIGINT,
+    consumido BOOLEAN NOT NULL DEFAULT FALSE,
+    fecha_creacion TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
+    fecha_consumido TIMESTAMP WITHOUT TIME ZONE,
+    expira_en TIMESTAMP WITHOUT TIME ZONE NOT NULL
+);
