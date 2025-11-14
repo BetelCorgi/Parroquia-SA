@@ -24,6 +24,7 @@ export class Login implements OnInit {
   errorMessage = '';
   isSubmitting = false;
   isAdminLogin = false;
+  returnUrl = '';
 
   constructor(
     private router: Router,
@@ -34,6 +35,10 @@ export class Login implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe(data => {
       this.isAdminLogin = !!data['admin'];
+    });
+
+    this.route.queryParamMap.subscribe(params => {
+      this.returnUrl = params.get('returnUrl') ?? '';
     });
   }
 
@@ -63,11 +68,14 @@ export class Login implements OnInit {
             return;
           }
 
+          const sessionRole = role || (this.isAdminLogin ? 'administrador' : 'fiel');
+
           localStorage.setItem('authToken', response?.token ?? '');
           localStorage.setItem('authEmail', response?.email ?? this.email);
-          localStorage.setItem('authRole', response?.rol ?? '');
+          localStorage.setItem('authRole', sessionRole);
 
-          const target = role === 'administrador' ? '/admin' : '/panel/resumen';
+          const fallbackTarget = sessionRole === 'administrador' ? '/admin' : '/panel/resumen';
+          const target = this.returnUrl || fallbackTarget;
           this.router.navigate([target], { replaceUrl: true });
         },
         error: (error) => {
